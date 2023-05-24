@@ -115,7 +115,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 605532125392989573, guid: 65b2675c9dbc64d91b629a1e173e09b8, type: 3}
       propertyPath: m_SortingOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 605532125392989575, guid: 65b2675c9dbc64d91b629a1e173e09b8, type: 3}
       propertyPath: m_BodyType
