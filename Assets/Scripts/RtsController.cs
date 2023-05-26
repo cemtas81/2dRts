@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.Diagnostics;
+
 
 public class RtsController : MonoBehaviour
 {
@@ -20,6 +19,11 @@ public class RtsController : MonoBehaviour
     private void Update()
     {
         SelectionInput();
+      
+    }
+    private void LateUpdate()
+    {
+        MoveCam();
     }
     private void SelectionInput()
     {
@@ -39,6 +43,12 @@ public class RtsController : MonoBehaviour
             SelectionBox.gameObject.SetActive(false);
             mouseDownTime = 0;
         }
+    }
+    private void MoveCam()
+    {
+        float movex = Input.GetAxisRaw("Horizontal");
+        float movey = Input.GetAxisRaw("Vertical");
+        cam.transform.Translate(movex * Time.deltaTime, movey * Time.deltaTime, 0);
     }
     private void ResizeSelectionBox()
     {
