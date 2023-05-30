@@ -21,10 +21,10 @@ public class SelectionManager
     }
     public HashSet<SelectableUnit> SelectedUnits= new HashSet<SelectableUnit>();
     public List<SelectableUnit> AvailableUnits= new List<SelectableUnit>();
-    private SelectionManager()
-    {
+    //private SelectionManager()
+    //{
        
-    }
+    //}
     public void Select(SelectableUnit Unit)      
     {
         Unit.OnSelected();

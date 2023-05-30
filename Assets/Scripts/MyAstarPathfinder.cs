@@ -1,197 +1,179 @@
 
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class MyAstarPathfinder : MonoBehaviour
 {
-    // Represents a single node in the grid
-    private class Node
-    {
-        public bool IsWalkable;
-        public Vector2 Position;
-        public Node Parent;
-        public int GCost; // Cost from the start node to this node
-        public int HCost; // Estimated cost from this node to the target node
-
-        public int FCost => GCost + HCost; // Total cost of the node (GCost + HCost)
-
-        public Node(bool isWalkable, Vector2 position)
-        {
-            IsWalkable = isWalkable;
-            Position = position;
-        }
-    }
-
-    private Node[,] grid;
-    private int gridSizeX;
-    private int gridSizeY;
-
+    public GridManager gridManager;
+    public Vector2Int startCell;
+    public Vector2Int targetCell;
+    public float movementSpeed;
+    public float cellSize;
+    private Vector2 currentVelocity;
     private void Start()
     {
-        // Call this method to generate the grid
-        GenerateGrid();
+        gridManager = FindObjectOfType<GridManager>();
+
+        // Example usage:
+        //startCell = new Vector2Int(0, 0); // Set the start position
+        //targetCell = new Vector2Int(7, 7); // Set the initial target position
+        //List<Vector2Int> path = FindPath(startCell, targetCell);
+        // Use the path for further operations
     }
 
-    // Generates the grid for pathfinding
-    private void GenerateGrid()
+    public void SetTargetCell(Vector2 targetPosition)
     {
-        // TODO: Implement your grid generation logic here
-        // Create nodes for each cell in the grid and set their walkable status
 
-        // Example code assuming you have a 10x10 grid
-        gridSizeX = 10;
-        gridSizeY = 10;
-        grid = new Node[gridSizeX, gridSizeY];
+        //// Convert the target position to grid coordinates
+        //float cellSize = gridManager.gridCellPrefab.transform.localScale.x;
+        //targetCell = new Vector2Int(
+        //    Mathf.FloorToInt(targetPosition.x / cellSize),
+        //    Mathf.FloorToInt(targetPosition.y / cellSize)
+        //);
 
-        for (int x = 0; x < gridSizeX; x++)
-        {
-            for (int y = 0; y < gridSizeY; y++)
-            {
-                // Assuming (0, 0) is the bottom-left corner of the grid
-                Vector2 position = new Vector2(x, y);
-                bool isWalkable = true; // Set the walkable status based on your game logic
+        //// Calculate the world position of the target cell
+        //Vector3 targetWorldPosition = new Vector3(
+        //    targetCell.x * cellSize,
+        //    targetCell.y * cellSize,
+        //    0f
+        //);
 
-                grid[x, y] = new Node(isWalkable, position);
-            }
-        }
+        //// Move the item to the target position
+        var step = movementSpeed * Time.deltaTime;
+        transform.position = Vector2.MoveTowards(transform.position, targetPosition, step);
+        //// Call the FindPath method again to recalculate the path
+        //List<Vector2Int> path = FindPath(startCell, targetCell);
+        //// Use the updated path for further operations
     }
 
-    // Performs the A* pathfinding algorithm
-    public List<Vector2> FindPath(Vector2 start, Vector2 target)
-    {
-        Node startNode = NodeFromWorldPosition(start);
-        Node targetNode = NodeFromWorldPosition(target);
+    //    private List<Vector2Int> FindPath(Vector2Int startCell, Vector2Int targetCell)
+    //    {
+    //        // Convert the start and target cell positions to grid coordinates
+    //        Vector2Int startGridPos = new Vector2Int(startCell.x, startCell.y);
+    //        Vector2Int targetGridPos = new Vector2Int(targetCell.x, targetCell.y);
 
-        // Create open and closed sets
-        List<Node> openSet = new List<Node>();
-        HashSet<Node> closedSet = new HashSet<Node>();
+    //        // Initialize the open and closed lists
+    //        HashSet<Vector2Int> openList = new HashSet<Vector2Int>();
+    //        HashSet<Vector2Int> closedList = new HashSet<Vector2Int>();
+    //        openList.Add(startGridPos);
 
-        openSet.Add(startNode);
+    //        // Create a dictionary to keep track of the parent cell for each grid cell
+    //        Dictionary<Vector2Int, Vector2Int> parentCells = new Dictionary<Vector2Int, Vector2Int>();
 
-        while (openSet.Count > 0)
-        {
-            Node currentNode = openSet[0];
+    //        // Create a dictionary to store the G score for each grid cell
+    //        Dictionary<Vector2Int, int> gScores = new Dictionary<Vector2Int, int>();
+    //        gScores[startGridPos] = 0;
 
-            // Find the node with the lowest FCost in the open set
-            for (int i = 1; i < openSet.Count; i++)
-            {
-                if (openSet[i].FCost < currentNode.FCost || openSet[i].FCost == currentNode.FCost && openSet[i].HCost < currentNode.HCost)
-                {
-                    currentNode = openSet[i];
-                }
-            }
+    //        // Create a dictionary to store the F score for each grid cell
+    //        Dictionary<Vector2Int, int> fScores = new Dictionary<Vector2Int, int>();
+    //        fScores[startGridPos] = Heuristic(startGridPos, targetGridPos);
 
-            openSet.Remove(currentNode);
-            closedSet.Add(currentNode);
+    //        while (openList.Count > 0)
+    //        {
+    //            // Find the cell with the lowest F score in the open list
+    //            Vector2Int currentCell = FindLowestFScore(openList, fScores);
 
-            // Found the target node, reconstruct the path and return it
-            if (currentNode == targetNode)
-            {
-                return RetracePath(startNode, targetNode);
-            }
+    //            // If the current cell is the target cell, we have found the path
+    //            if (currentCell == targetGridPos)
+    //                return ReconstructPath(parentCells, currentCell);
 
-            // Check neighboring nodes
-            foreach (Node neighbor in GetNeighbors(currentNode))
-            {
-                if (!neighbor.IsWalkable || closedSet.Contains(neighbor))
-                {
-                    continue;
-                }
+    //            // Move the current cell from the open list to the closed list
+    //            openList.Remove(currentCell);
+    //            closedList.Add(currentCell);
 
-                int newMovementCostToNeighbor = currentNode.GCost + GetDistance(currentNode, neighbor);
-                if (newMovementCostToNeighbor < neighbor.GCost || !openSet.Contains(neighbor))
-                {
-                    neighbor.GCost = newMovementCostToNeighbor;
-                    neighbor.HCost = GetDistance(neighbor, targetNode);
-                    neighbor.Parent = currentNode;
+    //            // Get the neighboring cells
+    //            List<Vector2Int> neighbors = GetNeighborCells(currentCell);
 
-                    if (!openSet.Contains(neighbor))
-                    {
-                        openSet.Add(neighbor);
-                    }
-                }
-            }
-        }
+    //            foreach (Vector2Int neighborCell in neighbors)
+    //            {
+    //                // Skip the neighbor if it is already in the closed list
+    //                if (closedList.Contains(neighborCell))
+    //                    continue;
 
-        // No path found
-        return null;
-    }
+    //                // Calculate the tentative G score for the neighbor
+    //                int tentativeGScore = gScores[currentCell] + 1;
 
-    // Retraces the path from the target node to the start node
-    private List<Vector2> RetracePath(Node startNode, Node targetNode)
-    {
-        List<Vector2> path = new List<Vector2>();
-        Node currentNode = targetNode;
+    //                // If the neighbor is not in the open list, add it
+    //                if (!openList.Contains(neighborCell))
+    //                    openList.Add(neighborCell);
+    //                else if (tentativeGScore >= gScores[neighborCell])
+    //                    continue; // This is not a better path
 
-        while (currentNode != startNode)
-        {
-            path.Add(currentNode.Position);
-            currentNode = currentNode.Parent;
-        }
+    //                // Update the parent cell and G score for the neighbor
+    //                parentCells[neighborCell] = currentCell;
+    //                gScores[neighborCell] = tentativeGScore;
+    //                fScores[neighborCell] = gScores[neighborCell] + Heuristic(neighborCell, targetGridPos);
+    //            }
+    //        }
 
-        path.Reverse();
-        return path;
-    }
+    //        // No path found
+    //        return null;
+    //    }
 
-    // Returns the distance between two nodes
-    private int GetDistance(Node nodeA, Node nodeB)
-    {
-        int distanceX = Mathf.Abs((int)nodeA.Position.x - (int)nodeB.Position.x);
-        int distanceY = Mathf.Abs((int)nodeA.Position.y - (int)nodeB.Position.y);
 
-        // Diagonal movement cost (assuming both horizontal and vertical movements have a cost of 1)
-        int diagonalCost = 14;
-        int straightCost = 10;
+    //    private Vector2Int FindLowestFScore(HashSet<Vector2Int> openList, Dictionary<Vector2Int, int> fScores)
+    //    {
+    //        int lowestFScore = int.MaxValue;
+    //        Vector2Int lowestCell = Vector2Int.zero;
 
-        // Return diagonal distance if there is a diagonal movement, otherwise return straight distance
-        if (distanceX > distanceY)
-        {
-            return diagonalCost * distanceY + straightCost * (distanceX - distanceY);
-        }
-        else
-        {
-            return diagonalCost * distanceX + straightCost * (distanceY - distanceX);
-        }
-    }
+    //        foreach (Vector2Int cell in openList)
+    //        {
+    //            if (fScores[cell] < lowestFScore)
+    //            {
+    //                lowestFScore = fScores[cell];
+    //                lowestCell = cell;
+    //            }
+    //        }
 
-    // Returns the neighboring nodes of a given node
-    private List<Node> GetNeighbors(Node node)
-    {
-        List<Node> neighbors = new List<Node>();
+    //        return lowestCell;
+    //    }
 
-        // Define the possible movement directions (assuming 8-directional movement)
-        Vector2[] directions =
-        {
-            new Vector2(-1, 0),  // Left
-            new Vector2(1, 0),   // Right
-            new Vector2(0, -1),  // Down
-            new Vector2(0, 1),   // Up
-            new Vector2(-1, -1), // Bottom-left
-            new Vector2(-1, 1),  // Top-left
-            new Vector2(1, -1),  // Bottom-right
-            new Vector2(1, 1)    // Top-right
-        };
+    //    private List<Vector2Int> GetNeighborCells(Vector2Int cell)
+    //    {
+    //        List<Vector2Int> neighbors = new List<Vector2Int>();
 
-        foreach (Vector2 direction in directions)
-        {
-            int neighborX = (int)node.Position.x + (int)direction.x;
-            int neighborY = (int)node.Position.y + (int)direction.y;
+    //        Vector2Int[] directions =
+    //        {
+    //            new Vector2Int(-1, 0), // Left
+    //            new Vector2Int(1, 0), // Right
+    //            new Vector2Int(0, -1), // Down
+    //            new Vector2Int(0, 1) // Up
+    //        };
 
-            if (neighborX >= 0 && neighborX < gridSizeX && neighborY >= 0 && neighborY < gridSizeY)
-            {
-                neighbors.Add(grid[neighborX, neighborY]);
-            }
-        }
+    //        foreach (Vector2Int direction in directions)
+    //        {
+    //            Vector2Int neighbor = cell + direction;
 
-        return neighbors;
-    }
+    //            // Check if the neighbor is within the grid bounds
+    //            if (neighbor.x >= 0 && neighbor.x < gridManager.gridSizeX &&
+    //                neighbor.y >= 0 && neighbor.y < gridManager.gridSizeY)
+    //            {
+    //                // Add the valid neighbor to the list
+    //                neighbors.Add(neighbor);
+    //            }
+    //        }
 
-    // Converts a world position to the corresponding node in the grid
-    private Node NodeFromWorldPosition(Vector2 position)
-    {
-        int x = Mathf.RoundToInt(position.x);
-        int y = Mathf.RoundToInt(position.y);
+    //        return neighbors;
+    //    }
 
-        return grid[x, y];
-    }
+    //    private int Heuristic(Vector2Int cell, Vector2Int targetCell)
+    //    {
+    //        // Manhattan distance heuristic
+    //        return Mathf.Abs(cell.x - targetCell.x) + Mathf.Abs(cell.y - targetCell.y);
+    //    }
+
+    //    private List<Vector2Int> ReconstructPath(Dictionary<Vector2Int, Vector2Int> parentCells, Vector2Int currentCell)
+    //    {
+    //        List<Vector2Int> path = new List<Vector2Int>();
+
+    //        while (parentCells.ContainsKey(currentCell))
+    //        {
+    //            path.Add(currentCell);
+    //            currentCell = parentCells[currentCell];
+    //        }
+
+    //        path.Reverse();
+    //        return path;
+    //    }
 }
+
