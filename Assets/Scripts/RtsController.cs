@@ -14,15 +14,27 @@ public class RtsController : MonoBehaviour
     private float DragDelay = 0.1f,camSpeed=1,maxValueX,maxValueY,minValueX,minValueY;
     private float mouseDownTime;
     private Vector2 startPosition;
-    
+    public Transform target;
     private void Update()
     {
         SelectionInput();
-      
+        HandleMovement();
     }
     private void LateUpdate()
     {
         MoveCam();
+    }
+    private void HandleMovement()
+    {
+        if (Input.GetMouseButtonUp(1)&&SelectionManager.Instance.SelectedUnits.Count>0)
+        {
+            foreach (SelectableUnit unit in SelectionManager.Instance.SelectedUnits)
+            {
+                unit.GetComponent<SeekerScript>().enabled = true;
+                target.gameObject.SetActive(true);
+            }
+        }
+     
     }
     private void SelectionInput()
     {
@@ -40,6 +52,31 @@ public class RtsController : MonoBehaviour
         {
             SelectionBox.sizeDelta = Vector2.zero;
             SelectionBox.gameObject.SetActive(false);
+
+            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition),out RaycastHit hit,UnitLayers)
+                &&hit.collider.TryGetComponent<SelectableUnit>(out SelectableUnit unit))
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    if (SelectionManager.Instance.IsSelected(unit))
+                    {
+                        SelectionManager.Instance.Deselect(unit);
+                    }
+                    else
+                    {
+                        SelectionManager.Instance.Select(unit);
+                    }
+                }
+                else
+                {
+                    SelectionManager.Instance.DeselectAll();
+                    SelectionManager.Instance.Select(unit);
+                }
+            }
+            else if (mouseDownTime+DragDelay>Time.time)
+            {
+                SelectionManager.Instance.DeselectAll();
+            }
             mouseDownTime = 0;
         }
     }

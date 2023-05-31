@@ -21,15 +21,15 @@ public class SelectableUnit : MonoBehaviour
        
         selectionSprite.gameObject.SetActive(true);
         selected=true;
-        target.gameObject.SetActive(true);
-        seeker.enabled = true;
+        //target.gameObject.SetActive(true);
+        //seeker.enabled = true;
     }
     public void OnDeselected()
     {
         selectionSprite.gameObject.SetActive(false);
      
         selected=false;
-        target.gameObject.SetActive(false);
+        //target.gameObject.SetActive(false);
         seeker.enabled = false;
     }
    
