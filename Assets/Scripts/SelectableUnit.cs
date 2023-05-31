@@ -10,12 +10,14 @@ public class SelectableUnit : MonoBehaviour
     private MyAstarPathfinder astarPathfinder;
     public Transform target;
     private Pathfinding2D pathfinding2;
+    private SeekerScript seeker;
     private void Awake()
     {
         SelectionManager.Instance.AvailableUnits.Add(this); 
         //destinationSetter=GetComponent<AIDestinationSetter>(); 
         astarPathfinder=GetComponent<MyAstarPathfinder>(); 
         pathfinding2=GetComponent<Pathfinding2D>();
+        seeker = GetComponent<SeekerScript>();
     }
     public void OnSelected()
     {
@@ -23,32 +25,34 @@ public class SelectableUnit : MonoBehaviour
         selectionSprite.gameObject.SetActive(true);
         selected=true;
         target.gameObject.SetActive(true);
+        seeker.enabled = true;
     }
     public void OnDeselected()
     {
         selectionSprite.gameObject.SetActive(false);
         //destinationSetter.enabled=false;
         selected=false;
-        target.gameObject.SetActive(false); 
+        target.gameObject.SetActive(false);
+        seeker.enabled = false;
     }
-    private void Update()
-    {
-        if (selected == true)
-        {
-            Pathfind();
-        }
-        else return;
-    }
-    public void Pathfind()
-    {
-        if (target.gameObject.activeInHierarchy == true)
-        {
-            //astarPathfinder.SetTargetCell(target.position);
+    //private void Update()
+    //{
+    //    if (selected == true)
+    //    {
+    //        Pathfind();
+    //    }
+    //    else return;
+    //}
+    //public void Pathfind()
+    //{
+    //    if (target.gameObject.activeInHierarchy == true)
+    //    {
+    //        //astarPathfinder.SetTargetCell(target.position);
 
-            pathfinding2.FindPath(transform.position, target.position);
-            //transform.position = pathfinding2.GridOwner.GetComponent<Grid2D>().path[0].worldPosition;
-        }
+    //        pathfinding2.FindPath(transform.position, target.position);
+    //        //transform.position = pathfinding2.GridOwner.GetComponent<Grid2D>().path[0].worldPosition;
+    //    }
 
-    }
+    //}
 } 
 

@@ -31,7 +31,7 @@ public class Astar : MonoBehaviour
     /// </summary>
     /// <param name="startPos"></param>
     /// <param name="targetPos"></param>
-	public void StartFindPath(Vector3 startPos, Vector3 targetPos)
+	public void StartFindPath(Vector2 startPos, Vector2 targetPos)
     {
 		StartCoroutine(FindPath(startPos,targetPos));
 	}
@@ -42,10 +42,10 @@ public class Astar : MonoBehaviour
     /// <param name="startPos"></param>
     /// <param name="targetPos"></param>
     /// <returns></returns>
-	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
+	IEnumerator FindPath(Vector2 startPos, Vector2 targetPos)
     {
 
-		Vector3[] waypoints = new Vector3[0];
+		Vector2[] waypoints = new Vector2[0];
 		bool pathFound = false;
 
 		Node startNode = grid.NodeFromWorldPoint(startPos);
@@ -107,7 +107,7 @@ public class Astar : MonoBehaviour
     /// <param name="startNode"></param>
     /// <param name="endNode"></param>
     /// <returns></returns>
-	Vector3[] RetracePath(Node startNode, Node endNode)
+	Vector2[] RetracePath(Node startNode, Node endNode)
     {
 		List<Node> path = new List<Node>();
 		Node currentNode = endNode;
@@ -118,7 +118,7 @@ public class Astar : MonoBehaviour
 			currentNode = currentNode.parent;
 		}
 		path.Add (startNode);
-		Vector3[] waypoints = SimplifyPath(path);
+		Vector2[] waypoints = SimplifyPath(path);
 		Array.Reverse(waypoints);
 		return waypoints;
 
@@ -130,9 +130,9 @@ public class Astar : MonoBehaviour
     /// </summary>
     /// <param name="path"></param>
     /// <returns></returns>
-	Vector3[] SimplifyPath(List<Node> path)
+	Vector2[] SimplifyPath(List<Node> path)
     {
-		List<Vector3> waypoints = new List<Vector3>();
+		List<Vector2> waypoints = new List<Vector2>();
 		Vector2 directionOld = Vector2.zero;
 
 		for (int i = 1; i < path.Count; i ++)

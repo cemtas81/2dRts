@@ -11,7 +11,7 @@ public class SeekerScript : MonoBehaviour
 	public Transform target;
 	public float speed = 1;
 	public float rotationSpeed=1;
-	Vector3[] path;
+	Vector2[] path;
 	int targetIndex;
 	float timer;
 	Vector3 currenttarget;	
@@ -52,7 +52,7 @@ public class SeekerScript : MonoBehaviour
     /// <param name="newPath"></param>
     /// <param name="pathSuccessful"></param>
 
-	public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
+	public void OnPathFound(Vector2[] newPath, bool pathSuccessful)
     {
 		if (pathSuccessful)
         {
@@ -85,7 +85,7 @@ public class SeekerScript : MonoBehaviour
 				if (targetIndex >= path.Length) 
 				{
 					targetIndex = 0;
-					path = new Vector3[0];
+					path = new Vector2[0];
 					yield break;
 				}
 				currentWaypoint = path[targetIndex];
@@ -95,11 +95,11 @@ public class SeekerScript : MonoBehaviour
 
 
 
-			Vector3 targetWaypointDirection = currentWaypoint - transform.position;
-			if (targetWaypointDirection != Vector3.zero)    // not looking in the direction of the path
+			Vector2 targetWaypointDirection = currentWaypoint - transform.position;
+			if (targetWaypointDirection != Vector2.zero)    // not looking in the direction of the path
 			{
                 // Seeker rotates/looks in the direction of the path
-				transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetWaypointDirection, Vector3.up), rotationSpeed * Time.fixedDeltaTime);
+				transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetWaypointDirection, Vector2.up), rotationSpeed * Time.fixedDeltaTime);
 			}
 
 			yield return null;

@@ -4,7 +4,7 @@ public class Node : IHeapItem<Node>
 {
 
 	public bool isWalkable;
-	public Vector3 worldPosition;
+	public Vector2 worldPosition;
 	public int gridX;
 	public int gridY;
 	public int gCost;   // path cost from start to target
@@ -19,7 +19,7 @@ public class Node : IHeapItem<Node>
     /// <param name="_worldPos"></param>
     /// <param name="_gridX"></param>
     /// <param name="_gridY"></param>
-    public Node(bool _isWalkable, Vector3 _worldPos, int _gridX, int _gridY)
+    public Node(bool _isWalkable, Vector2 _worldPos, int _gridX, int _gridY)
     {
 		isWalkable = _isWalkable;
 		worldPosition = _worldPos;

@@ -35,16 +35,16 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Initialized grid's nodes
     /// </summary>
-	void CreateGrid()
+	public void CreateGrid()
     {
 		grid = new Node[gridSizeX,gridSizeY];
-		Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.forward * gridWorldSize.y/2;
+		Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.up * gridWorldSize.y/2;
 
 		for (int x = 0; x < gridSizeX; x ++)
         {
 			for (int y = 0; y < gridSizeY; y ++)
             {
-				Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
+				Vector2 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
 				bool walkable = !(Physics.CheckSphere(worldPoint,nodeRadius,unwalkableMask));
 				grid[x,y] = new Node(walkable,worldPoint, x,y);
 			}
@@ -97,13 +97,13 @@ public class Grid : MonoBehaviour
     /// </summary>
     /// <param name="worldPosition"></param>
     /// <returns> x,y coordinates of grid </returns>
-	public Node NodeFromWorldPoint(Vector3 worldPosition)
+	public Node NodeFromWorldPoint(Vector2 worldPosition)
     {
         //Debug.Log("WorldPosition.x: " + worldPosition.x);
         //Debug.Log("\nGrid world size.x / 2: " + gridWorldSize.x / 2);
 
         float percentX = (worldPosition.x + gridWorldSize.x/2) / gridWorldSize.x;
-		float percentY = (worldPosition.z + gridWorldSize.y/2) / gridWorldSize.y;
+		float percentY = (worldPosition.y + gridWorldSize.y/2) / gridWorldSize.y;
         
 
         int x = Mathf.RoundToInt((gridSizeX-1) * percentX);
