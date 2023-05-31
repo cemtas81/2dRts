@@ -11,7 +11,7 @@ public class RtsController : MonoBehaviour
     [SerializeField]
     private LayerMask UnitLayers, FloorLayers;
     [SerializeField]
-    private float DragDelay = 0.1f,camSpeed=1;
+    private float DragDelay = 0.1f,camSpeed=1,maxValueX,maxValueY,minValueX,minValueY;
     private float mouseDownTime;
     private Vector2 startPosition;
     
@@ -47,7 +47,10 @@ public class RtsController : MonoBehaviour
     {
         float movex = Input.GetAxisRaw("Horizontal");
         float movey = Input.GetAxisRaw("Vertical");
-        cam.transform.Translate(movex * Time.deltaTime*camSpeed, movey * Time.deltaTime*camSpeed, 0);
+        Vector3 move = new Vector3(movex, movey).normalized;
+        cam.transform.Translate(camSpeed * Time.deltaTime * move);
+        cam.transform.position = new Vector3(Mathf.Clamp(transform.position.x,minValueX,maxValueX),Mathf.Clamp(transform.position.y,minValueY,maxValueY)
+        ,cam.transform.position.z);
     }
     private void ResizeSelectionBox()
     {

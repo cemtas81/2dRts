@@ -12,8 +12,8 @@ public class Astar : MonoBehaviour
     private int normalMoveCost = 10;
     private int diagonalMoveCost = 14;
 
-  
-	void Awake()
+
+    void Awake()
     {
 		requestManager = GetComponent<PathRequestManager>();
 		grid = GetComponent<Grid>();

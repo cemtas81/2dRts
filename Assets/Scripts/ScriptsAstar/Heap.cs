@@ -6,22 +6,14 @@ public class Heap<T> where T : IHeapItem<T>
 {    
     T[] items; // The array that will hold the heap
     int currentItemCount; // Number of nodes we have stored in the heap
- 
-    
-    /// <summary>
-    /// Constructor, when instantiate heap, you must specify the maxheapsize
-    /// </summary>
-    /// <param name="maxHeapSize"></param>
+
     public Heap(int maxHeapSize) 
 	{
 		
 		items = new T[maxHeapSize];  //  instantiate the array with the maxheapsize specified by the user
     }
     
-    /// <summary>
-    /// Adds the new item (Node) to the heap
-    /// </summary>
-    /// <param name="item"></param>
+
     public void Add(T item) 
 	{
         if (currentItemCount + 1 > items.Length)
@@ -37,11 +29,7 @@ public class Heap<T> where T : IHeapItem<T>
 		SortUp(item);   // Sorting the item's position in the heap
 		currentItemCount++;
 	}
-    
-    /// <summary>
-    /// Remove the first item from the heap, which is the node with the lowest fcost
-    /// </summary>
-    /// <returns></returns>
+  
     public T RemoveFirst()
     {
         if (Count > 1)
@@ -74,20 +62,11 @@ public class Heap<T> where T : IHeapItem<T>
 		}
 	}    
 
-    /// <summary>
-    /// Check the heap contains this item
-    /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
     public bool Contains(T item) 
 	{
 		return Equals(items[item.HeapIndex], item);
 	}    
 
-    /// <summary>
-    /// Sorts an item down in the array to the position where it should be
-    /// </summary>
-    /// <param name="item"></param>
     void SortDown(T item) 
 	{
 		while (true) 
@@ -132,11 +111,6 @@ public class Heap<T> where T : IHeapItem<T>
 		}
 	}
 
-
-    /// <summary>
-    /// Sorts an item up in the array to the position where it should be
-    /// </summary>
-    /// <param name="item"></param>
     void SortUp(T item) 
 	{
         // Formula for finding parent
@@ -161,12 +135,6 @@ public class Heap<T> where T : IHeapItem<T>
 		}
 	}    
 
-    /// <summary>
-    /// Swap 2 items in the heap, which is the same as moving one item up (or down)
-    /// and the other item down (or up)
-    /// </summary>
-    /// <param name="itemA"></param>
-    /// <param name="itemB"></param>
     void Swap(T itemA, T itemB) 
 	{
 		items[itemA.HeapIndex] = itemB;
@@ -178,11 +146,6 @@ public class Heap<T> where T : IHeapItem<T>
 	}
 }
 
-
-/// <summary>
-/// Each node has to implement this, HeapIndex and CompareTo
-/// </summary>
-/// <typeparam name="T"></typeparam>
 public interface IHeapItem<T> : IComparable<T> 
 {
 	int HeapIndex 

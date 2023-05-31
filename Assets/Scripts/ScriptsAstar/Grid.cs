@@ -54,7 +54,13 @@ public class Grid : MonoBehaviour
 	public List<Node> GetNeighbours(Node node)
     {
 		List<Node> neighbours = new List<Node>();
-
+		// Loop for checking node's neighbours in 8 directions
+		/* x from left to right
+         * y from bottom to top
+         * | -1,1 | 0,1  | 1,1 |
+         * | -1,0 | 0,0  | 1,0 |
+         * | -1,-1| 0,-1 | 1,-1|
+         */
 		for (int x = -1; x < 2; x++)
         {
 			for (int y = -1; y < 2; y++)
@@ -93,18 +99,18 @@ public class Grid : MonoBehaviour
 
         return grid[x,y];
 	}
-	
-	//void OnDrawGizmos()
- //   {
-	//	Gizmos.DrawWireCube(transform.position,new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
-		
-	//	if (grid != null && displayGridGizmos) 
- //       {
-	//		foreach (Node n in grid)
- //           {
-	//			Gizmos.color = (n.isWalkable) ? Color.gray : Color.red;
-	//			Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
-	//		}
-	//	}
-	//}
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
+
+        if (grid != null && displayGridGizmos)
+        {
+            foreach (Node n in grid)
+            {
+                Gizmos.color = (n.isWalkable) ? Color.gray : Color.red;
+                Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
+            }
+        }
+    }
 }
