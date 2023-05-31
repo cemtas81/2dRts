@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Constract : MonoBehaviour
@@ -12,6 +11,18 @@ public class Constract : MonoBehaviour
     private void OnEnable()
     {
         grid = FindObjectOfType<Grid>();
-        grid.CreateGrid();
+        if (grid!=null)
+        {
+            grid.CreateGrid();
+        }
+        
+    }
+    private void OnDisable()
+    {
+        if (grid!=null)
+        {
+            grid.CreateGrid();
+        }
+        
     }
 }
