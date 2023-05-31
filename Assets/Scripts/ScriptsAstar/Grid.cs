@@ -9,10 +9,10 @@ public class Grid : MonoBehaviour
 	public Vector2 gridWorldSize;   // size of grid in the game
 	public float nodeRadius;    // radius of each grid's node
 	Node[,] grid;   // 2D array of Nodes (our grid)
-
+	public Tile gridCellPrefab;
 	float nodeDiameter; // size of each node
 	int gridSizeX, gridSizeY;   // Grid's x,y positions
-
+	
 	void Awake()
     {
 		nodeDiameter = nodeRadius*2;
@@ -43,6 +43,10 @@ public class Grid : MonoBehaviour
 				Vector2 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
 				bool walkable = !(Physics.CheckSphere(worldPoint,nodeRadius,unwalkableMask));
 				grid[x,y] = new Node(walkable,worldPoint, x,y);
+				Tile gridcell = Instantiate(gridCellPrefab, worldPoint, Quaternion.identity,this.transform);				
+				gridcell.name = $"Tile {x}{y}";
+				var issOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
+				gridcell.Init(issOffset);
 			}
 		}
 	}
