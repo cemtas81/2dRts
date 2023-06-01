@@ -4,7 +4,8 @@ public class Node : IHeapItem<Node>
 {
 
 	public bool isWalkable;
-	public Vector2 worldPosition;
+    public bool isOccupied;
+    public Vector2 worldPosition;
 	public int gridX;
 	public int gridY;
 	public int gCost;   // path cost from start to target
@@ -19,7 +20,8 @@ public class Node : IHeapItem<Node>
 		worldPosition = _worldPos;
 		gridX = _gridX;
 		gridY = _gridY;
-	}
+        isOccupied = false;
+    }
 
 	public int fCost
     {

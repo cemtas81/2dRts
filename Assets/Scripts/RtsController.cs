@@ -31,7 +31,7 @@ public class RtsController : MonoBehaviour
             foreach (SelectableUnit unit in SelectionManager.Instance.SelectedUnits)
             {
                 unit.GetComponent<SeekerScript>().enabled = true;
-                target.gameObject.SetActive(true);
+                //target.gameObject.SetActive(true);
             }
         }
      

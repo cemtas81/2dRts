@@ -8,10 +8,10 @@ public class Grid : MonoBehaviour
 	public LayerMask unwalkableMask;    // Layer for the obstacles
 	public Vector2 gridWorldSize;   // size of grid in the game
 	public float nodeRadius;    // radius of each grid's node
-	Node[,] grid;   // 2D array of Nodes (our grid)
+	public Node[,] grid;   // 2D array of Nodes (our grid)
 	public Tile gridCellPrefab;
 	float nodeDiameter; // size of each node
-	int gridSizeX, gridSizeY;   // Grid's x,y positions
+	public int gridSizeX, gridSizeY;   // Grid's x,y positions
 	
 	void Awake()
     {
@@ -99,6 +99,10 @@ public class Grid : MonoBehaviour
 
         return grid[x,y];
 	}
+    public Vector3 GetWorldPositionFromNode(Node node)
+    {
+        return new Vector3(node.gridX * nodeDiameter + nodeRadius, node.gridY * nodeDiameter + nodeRadius, 0f) + transform.position;
+    }
 
     void OnDrawGizmos()
     {
@@ -113,4 +117,5 @@ public class Grid : MonoBehaviour
             }
         }
     }
+	
 }
