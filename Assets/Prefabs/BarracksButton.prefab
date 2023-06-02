@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 3019656121277053185}
   - component: {fileID: 3593789594921479764}
   - component: {fileID: 2049727418381905860}
+  - component: {fileID: -3584133668280336962}
   m_Layer: 5
   m_Name: BarracksButton
   m_TagString: Untagged
@@ -256,4 +257,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3593789594921479764}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3584133668280336962}
+        m_TargetAssemblyTypeName: Building1, Assembly-CSharp
+        m_MethodName: BuildIconOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-3584133668280336962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8908446642685282817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ecac6521dc79d84793ac07f41d03727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildOn: {fileID: 5893593981824383762, guid: 226624edd1881474798e2e714fb399e1, type: 3}
