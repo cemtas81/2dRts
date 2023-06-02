@@ -15,7 +15,7 @@ public class Building1 : MonoBehaviour
    
    public void BuildIconOn()
     {
-       
+        managerb.enabled = true;
         //sprite1.enabled = true;
         //managerb.enabled = true;
         managerb.InitializeWithBuilding(buildOn);

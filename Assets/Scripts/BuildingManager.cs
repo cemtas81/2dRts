@@ -1,10 +1,15 @@
 using UnityEngine;
 
+
 public class BuildingManager : MonoBehaviour
 {
     public bool Placed { get; private set; }
     public BoundsInt area;
-   
+    private Grid grid;
+    private void OnEnable()
+    {
+        grid = FindObjectOfType<Grid>();
+    }
     public bool CanBePlaced()
     {
         Vector3Int positionInt = TileBuildingSystem.current.gridLayout.LocalToCell(transform.position);
@@ -23,6 +28,9 @@ public class BuildingManager : MonoBehaviour
         areaTemp.position = positionInt;
         Placed = true;
         TileBuildingSystem.current.TakeArea(areaTemp);
+        grid.CreateGrid();
+        Debug.Log("Placed");
+
     }
 
 
