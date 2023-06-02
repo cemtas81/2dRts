@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemigo
   - BarracksIcon
+  - UnitPanel
   layers:
   - Default
   - TransparentFX
