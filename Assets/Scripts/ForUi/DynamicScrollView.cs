@@ -14,9 +14,9 @@ public class DynamicScrollView : MonoBehaviour
     public float space=100;
     public Transform content;
 
-    public List<Sprite> spriteList;
-    public List<string> textList;
-    public List<GameObject> gameobjectList;
+    //public List<Sprite> spriteList;
+    //public List<string> textList;
+    //public List<GameObject> gameobjectList;
 
     private int topItemIndex;
     private int botItemIndex;
@@ -36,11 +36,7 @@ public class DynamicScrollView : MonoBehaviour
     private void Start()
     {
         scrollRect = GetComponent<ScrollRect>();
-        //if (spriteList.Count != poolSize && textList.Count != poolSize && gameobjectList.Count != poolSize)
-        //{
-        //    Debug.Log("List size do not match");
-        //    return;
-        //}
+     
         InitScrollView();
     }
 
@@ -65,14 +61,14 @@ public class DynamicScrollView : MonoBehaviour
     {
         objectPool = new List<GameObject>();
         GameObject tmp;
-        ScrollViewItem item;
+        //ScrollViewItem item;
         for (int i = 0; i < poolSize; i++)
         {
             tmp = Instantiate(objectToPool, content);
-            if (tmp.TryGetComponent<ScrollViewItem>(out item))
-            {
-                item.InitItemButton(spriteList[0], textList[i], gameobjectList[i]);
-            }
+            //if (tmp.TryGetComponent<ScrollViewItem>(out item))
+            //{
+            //    item.InitItemButton(spriteList[0], textList[i], gameobjectList[i]);
+            //}
             //tmp.SetActive(false);
             objectPool.Add(tmp);
             
