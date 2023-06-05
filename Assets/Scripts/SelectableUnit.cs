@@ -1,19 +1,19 @@
-//using Pathfinding;
+
 using UnityEngine;
 
 public class SelectableUnit : MonoBehaviour
 {
     [SerializeField]
     private SpriteRenderer selectionSprite;
-   
+  
     private bool selected;
-   
+    public BoundsInt area;
     public Transform target;
     private SeekerScript seeker;
     private void Awake()
     {
         SelectionManager.Instance.AvailableUnits.Add(this); 
-     
+  
         seeker = GetComponent<SeekerScript>();
     }
     public void OnSelected()

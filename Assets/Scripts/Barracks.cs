@@ -7,11 +7,13 @@ public class Barracks : MonoBehaviour
     public CanvasGroup Units;
     private Canvas canvas;
     private Camera cam;
+   
     private void Awake()
     {
         cam=Camera.main;   
         canvas=GetComponentInParent<Canvas>();
-        canvas.worldCamera = cam;       
+        canvas.worldCamera = cam;  
+     
     }
     private void Start()
     {
@@ -19,6 +21,7 @@ public class Barracks : MonoBehaviour
     }
     public void OpenUnits()
     {
+      
         Units.alpha=1;
     }
   

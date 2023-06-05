@@ -76,8 +76,8 @@ public class TileBuildingSystem : MonoBehaviour
     }
     public bool CanTakeArea(BoundsInt area)
     {
-        TileBase[] baseArray= GetTilesBlock(area,mainTilemap);
-        
+        TileBase[] baseArray = GetTilesBlock(area, mainTilemap);
+
         foreach (var tile in baseArray)
         {
             if (tile != tileBases[TileType.White])
@@ -85,9 +85,25 @@ public class TileBuildingSystem : MonoBehaviour
                 Debug.Log("Cannot place here!");
                 return false;
             }
-        }   
+        }
+
+        Vector2 areaMin = new Vector2(area.min.x, area.min.y);
+        Vector2 areaMax = new Vector2(area.max.x, area.max.y);
+
+        Collider2D[] colliders = Physics2D.OverlapAreaAll(areaMin, areaMax);
+        foreach (var collider in colliders)
+        {
+            // Check if the collider belongs to a dynamic character
+            if (collider.CompareTag("Player"))
+            {
+                Debug.Log("Cannot place here - dynamic character present!");
+                return false;
+            }
+        }
+
         return true;
     }
+
     public void TakeArea(BoundsInt area)
     {
         SetTilesBlock(area,TileType.Empty,tempTilemap);

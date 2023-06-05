@@ -10,12 +10,13 @@ public class SeekerScript : MonoBehaviour
 	Vector2[] path;
 	int targetIndex;
 	float timer;
-	Vector3 currenttarget;	
-
-	void Start()
+	Vector3 currenttarget;
+   
+ 
+    void Start()
     {
-
-		currenttarget = target.position;
+      
+        currenttarget = target.position;
 		PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
 	}
 
@@ -34,10 +35,11 @@ public class SeekerScript : MonoBehaviour
 				//Debug.Log ("Path changed to " + target.position);
 				currenttarget = target.position;
 				PathRequestManager.RequestPath (transform.position, target.position, OnPathFound);
+
 			}
 		}
-
-	}
+ 
+    }
 
 	public void OnPathFound(Vector2[] newPath, bool pathSuccessful)
     {

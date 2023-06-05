@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 
@@ -33,8 +34,7 @@ public class BuildingManager : MonoBehaviour
         Debug.Log("Placed");
 
     }
-
-
+   
 }
 
 
