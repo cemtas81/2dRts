@@ -50,51 +50,48 @@ public class SeekerScript : MonoBehaviour
 		}
 	}
 
-	IEnumerator FollowPath()
+    IEnumerator FollowPath()
     {
-
-		targetIndex = 0;
-
-		Vector3 currentWaypoint = path[0];
+        targetIndex = 0;
+        Vector3 currentWaypoint = path[0];
 
         while (true)
         {
+            if (transform.position == currentWaypoint)
+            {
+                targetIndex++;
+                if (targetIndex >= path.Length)
+                {
+                    targetIndex = 0;
+                    path = new Vector2[0];
+                    yield break;
+                }
+                currentWaypoint = path[targetIndex];
+            }
 
-			//if you reach a waypoint
-			if (transform.position == currentWaypoint) 
-			{
-				//go to the next waypoint
-				targetIndex ++;
+            // Calculate the desired movement direction towards the current waypoint
+            Vector3 targetWaypointDirection = currentWaypoint - transform.position;
+            Vector3 movementDirection = targetWaypointDirection.normalized;
+
+            // Check for collisions using a raycast in the movement direction
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, movementDirection, movementDirection.magnitude);
+
+            if (hit.collider != null)
+            {
+                // If a collision is detected, adjust the movement direction to avoid the obstacle
+                movementDirection = Vector3.Reflect(movementDirection, hit.normal);
+            }
+
+            // Move towards the next waypoint using the adjusted movement direction
+            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movementDirection, Vector2.up), rotationSpeed * Time.fixedDeltaTime);
+
+            yield return null;
+        }
+    }
 
 
-
-				//if the next waypoint is bigger than the path length, reset the waypoint and path to 0
-				if (targetIndex >= path.Length) 
-				{
-					targetIndex = 0;
-					path = new Vector2[0];
-					yield break;
-				}
-				currentWaypoint = path[targetIndex];
-			}
-
-			transform.position = Vector3.MoveTowards(transform.position,currentWaypoint,speed * Time.deltaTime);
-
-
-
-			Vector2 targetWaypointDirection = currentWaypoint - transform.position;
-			if (targetWaypointDirection != Vector2.zero)    // not looking in the direction of the path
-			{
-                // Seeker rotates/looks in the direction of the path
-				transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetWaypointDirection, Vector2.up), rotationSpeed * Time.fixedDeltaTime);
-			}
-
-			yield return null;
-
-		}
-	}
-
-	public void OnDrawGizmos()
+    public void OnDrawGizmos()
     {
 		if (path != null)
         {

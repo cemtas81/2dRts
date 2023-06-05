@@ -14,7 +14,7 @@ public class TileBuildingSystem : MonoBehaviour
     private BuildingManager temp;
     private Vector3 prevPos;
     private BoundsInt prevArea;
-   
+    public GameObject buildCanvas;
     public enum TileType
     {
         Empty,
@@ -36,15 +36,18 @@ public class TileBuildingSystem : MonoBehaviour
     }
     public void InitializeWithBuilding(GameObject building)
     {
-       
-        temp = Instantiate(building, Vector3.zero, Quaternion.identity).GetComponent<BuildingManager>();
+        Vector2 offset = new Vector2(0.5f, -0.5f); // Adjust the offset as needed
+        temp = Instantiate(building, Vector2.zero + offset, Quaternion.identity).GetComponent<BuildingManager>();
+
         FollowBuilding();
+        buildCanvas.SetActive( false);
     }
     private void ClearArea()
     {
         TileBase[] toClear = new TileBase[prevArea.size.x * prevArea.size.y * prevArea.size.z];
         FillTiles(toClear, TileType.Empty);
         tempTilemap.SetTilesBlock(prevArea,toClear);
+        
     }
     private void FollowBuilding()
     {
@@ -120,13 +123,15 @@ public class TileBuildingSystem : MonoBehaviour
             if (temp.CanBePlaced())
             {
                 temp.Place();
-             
+                temp.gameObject.transform.GetChild(1).GetComponent<Canvas>().enabled=true;
+                buildCanvas.SetActive(true);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Escape)&&temp.Placed!=true)
         {
             ClearArea();
             Destroy(temp.gameObject);
+            buildCanvas.SetActive(true);
         }
     }
     

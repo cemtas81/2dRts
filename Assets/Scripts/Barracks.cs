@@ -9,11 +9,9 @@ public class Barracks : MonoBehaviour
     private Camera cam;
     private void Awake()
     {
-        cam=Camera.main;
-       
+        cam=Camera.main;   
         canvas=GetComponentInParent<Canvas>();
-        canvas.worldCamera = cam;
-        
+        canvas.worldCamera = cam;       
     }
     private void Start()
     {
@@ -23,12 +21,5 @@ public class Barracks : MonoBehaviour
     {
         Units.alpha=1;
     }
-    private void OnDisable()
-    {
-        if (grid!=null)
-        {
-            grid.CreateGrid();
-        }
-        
-    }
+  
 }

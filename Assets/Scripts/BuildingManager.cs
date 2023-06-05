@@ -6,6 +6,7 @@ public class BuildingManager : MonoBehaviour
     public bool Placed { get; private set; }
     public BoundsInt area;
     private Grid grid;
+   
     private void OnEnable()
     {
         grid = FindObjectOfType<Grid>();
