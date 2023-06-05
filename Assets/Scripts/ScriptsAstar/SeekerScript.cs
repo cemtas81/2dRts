@@ -11,17 +11,25 @@ public class SeekerScript : MonoBehaviour
 	int targetIndex;
 	float timer;
 	Vector3 currenttarget;
-   
- 
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {
-      
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         currenttarget = target.position;
 		PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
-	}
+        if (currenttarget.x < transform.position.x)
+            FlipSprite(true); // Flip sprite to face left
+        else
+            FlipSprite(false); // Flip sprite to face right
+    }
 
- 
-	void Update()
+    void FlipSprite(bool faceLeft)
+    {
+        // Flip the sprite based on the faceLeft parameter
+        spriteRenderer.flipX = faceLeft;
+    }
+    void Update()
 	{		
 		timer += Time.deltaTime;
 
@@ -35,9 +43,14 @@ public class SeekerScript : MonoBehaviour
 				//Debug.Log ("Path changed to " + target.position);
 				currenttarget = target.position;
 				PathRequestManager.RequestPath (transform.position, target.position, OnPathFound);
-
-			}
-		}
+                // Flip the sprite based on the target's position relative to the seeker
+                if (currenttarget.x < transform.position.x)
+                    FlipSprite(true); // Flip sprite to face left
+                else
+                    FlipSprite(false); // Flip sprite to face right
+            }
+        }
+		
  
     }
 
