@@ -16,5 +16,6 @@ public class Building1 : MonoBehaviour
     {
   
         managerb.InitializeWithBuilding(buildOn);
+        
     }
 }

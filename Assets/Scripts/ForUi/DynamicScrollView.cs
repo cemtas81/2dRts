@@ -11,7 +11,7 @@ public class DynamicScrollView : MonoBehaviour
     public List<GameObject> objectPool;
     public GameObject objectToPool;
     public int poolSize;
-
+    public float space=100;
     public Transform content;
 
     public List<Sprite> spriteList;
@@ -69,7 +69,7 @@ public class DynamicScrollView : MonoBehaviour
         for (int i = 0; i < poolSize; i++)
         {
             tmp = Instantiate(objectToPool, content);
-            if(tmp.TryGetComponent<ScrollViewItem>(out item))
+            if (tmp.TryGetComponent<ScrollViewItem>(out item))
             {
                 item.InitItemButton(spriteList[0], textList[i], gameobjectList[i]);
             }
@@ -110,15 +110,16 @@ public class DynamicScrollView : MonoBehaviour
 
     private void InfiniteView(bool goingUp)
     {
-        // Check to make sure the pool is not empty
+       
         if (goingUp)
         {
+           
             GameObject newObj = GetPooledObject(botItemIndex);
             if (newObj != null)
             {
                 //newObj.transform.SetParent(content);
                 //newObj.transform.SetAsFirstSibling();
-                newObj.transform.localPosition = Vector3.up * 50 * topNextItemPos;
+                newObj.transform.localPosition = Vector3.up * space * topNextItemPos;
                 topItemIndex = botItemIndex;
 
                 if (botItemIndex == 0)
@@ -141,7 +142,7 @@ public class DynamicScrollView : MonoBehaviour
             {
                 //newObj.transform.SetParent(content);
                 //newObj.transform.SetAsFirstSibling();
-                newObj.transform.localPosition = Vector3.up * 50 * botNextItemPos;
+                newObj.transform.localPosition = Vector3.up * space * botNextItemPos;
                 botItemIndex = topItemIndex;
 
                 if (topItemIndex == poolSize - 1)

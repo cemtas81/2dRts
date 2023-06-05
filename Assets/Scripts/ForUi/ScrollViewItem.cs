@@ -1,18 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using UnityEngine.Tilemaps;
 using TMPro;
 
 [RequireComponent(typeof(Button))]
 public class ScrollViewItem : MonoBehaviour
 {
+   
     [SerializeField]
     private TextMeshProUGUI buttonText;
-
+    private TileBuildingSystem managerb;
     private Button button;
 
     public GameObject objectToSpawn;
-
+    private void Awake()
+    {
+        managerb = FindObjectOfType<TileBuildingSystem>();
+    }
     public void InitItemButton(Sprite image, string text, GameObject gameObject)
     {
         button = GetComponent<Button>();
@@ -40,6 +44,7 @@ public class ScrollViewItem : MonoBehaviour
         if (objectToSpawn != null)
         {
             //GridBuildingSystem.instance.InitBuilding(objectToSpawn, this);
+            managerb.InitializeWithBuilding(objectToSpawn);
         }
     }
 

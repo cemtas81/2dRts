@@ -34500,32 +34500,12 @@ MonoBehaviour:
   objectPool: []
   objectToPool: {fileID: 8908446642685282817, guid: 7279786ef37aa204aaf14df1ee2aa8fe, type: 3}
   poolSize: 20
+  space: 100
   content: {fileID: 1181854127}
-  spriteList:
-  - {fileID: 0}
-  textList:
-  - barrack
-  - Tesla tower
-  - f
-  - f
-  - f
-  - f
-  - f
-  - f
-  - f
-  - f
-  gameobjectList:
-  - {fileID: 6472651964643413442, guid: 4ccb9b1f3fc28a74d91928597756563a, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  spacing: {x: 0, y: -50, z: 0}
+  spriteList: []
+  textList: []
+  gameobjectList: []
+  spacing: {x: 0, y: -100, z: 0}
   topLimit: {fileID: 76840200}
   botLimit: {fileID: 229083352}
 --- !u!114 &817742893
@@ -35009,7 +34989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.085395135, g: 0.68180144, b: 0.9528302, a: 0.39215687}
+  m_Color: {r: 0.009396391, g: 0.29803923, b: 0, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -36038,16 +36018,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
       propertyPath: poolSize
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
       propertyPath: spacing.y
-      value: -50
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: objectToPool
+      value: 
+      objectReference: {fileID: 8908446642685282817, guid: 9ec78215feb9a2f47a91ab114a27f3b7, type: 3}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: spriteList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: textList.Array.data[2]
+      value: barrack
+      objectReference: {fileID: 0}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: textList.Array.data[3]
+      value: tesla
       objectReference: {fileID: 0}
     - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
       propertyPath: spriteList.Array.data[0]
       value: 
+      objectReference: {fileID: 21300000, guid: aba304093b4a3b8458a9cd7d36d07bc2, type: 3}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: spriteList.Array.data[1]
+      value: 
+      objectReference: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: gameobjectList.Array.size
+      value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: gameobjectList.Array.data[0]
+      value: 
+      objectReference: {fileID: 5893593981824383762, guid: cd81eabda27f2ca4c8b089b97155df77, type: 3}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: gameobjectList.Array.data[1]
+      value: 
+      objectReference: {fileID: 5893593981824383762, guid: 226624edd1881474798e2e714fb399e1, type: 3}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: gameobjectList.Array.data[2]
+      value: 
+      objectReference: {fileID: 5893593981824383762, guid: cd81eabda27f2ca4c8b089b97155df77, type: 3}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: gameobjectList.Array.data[3]
+      value: 
+      objectReference: {fileID: 5893593981824383762, guid: 226624edd1881474798e2e714fb399e1, type: 3}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: gameobjectList.Array.data[4]
+      value: 
+      objectReference: {fileID: 5893593981824383762, guid: 226624edd1881474798e2e714fb399e1, type: 3}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: gameobjectList.Array.data[5]
+      value: 
+      objectReference: {fileID: 5893593981824383762, guid: 226624edd1881474798e2e714fb399e1, type: 3}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: gameobjectList.Array.data[6]
+      value: 
+      objectReference: {fileID: 5893593981824383762, guid: 226624edd1881474798e2e714fb399e1, type: 3}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: gameobjectList.Array.data[7]
+      value: 
+      objectReference: {fileID: 5893593981824383762, guid: 226624edd1881474798e2e714fb399e1, type: 3}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: gameobjectList.Array.data[8]
+      value: 
+      objectReference: {fileID: 5893593981824383762, guid: 226624edd1881474798e2e714fb399e1, type: 3}
+    - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: gameobjectList.Array.data[9]
+      value: 
+      objectReference: {fileID: 5893593981824383762, guid: 226624edd1881474798e2e714fb399e1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
 --- !u!224 &1124746000043572874 stripped
