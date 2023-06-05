@@ -4,7 +4,7 @@ using System.Collections;
 
 public class SeekerScript : MonoBehaviour
 {
-	public Transform target;
+	private Transform target;
 	public float speed = 1;
 	public float rotationSpeed=1;
 	Vector2[] path;
@@ -15,6 +15,7 @@ public class SeekerScript : MonoBehaviour
 
     void Start()
     {
+        target = FindObjectOfType<ItemMover>().GetComponent<Transform>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         currenttarget = target.position;
 		PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
