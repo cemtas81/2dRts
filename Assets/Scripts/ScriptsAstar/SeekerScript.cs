@@ -4,19 +4,19 @@ using System.Collections;
 
 public class SeekerScript : MonoBehaviour
 {
-	private Transform target;
+	public Transform target;
 	public float speed = 1;
-	public float rotationSpeed=1;
+	//public float rotationSpeed=1;
 	Vector2[] path;
 	int targetIndex;
-	float timer;
-	Vector3 currenttarget;
-    private SpriteRenderer spriteRenderer;
+    float timer;
+    Vector3 currenttarget;
+    public SpriteRenderer spriteRenderer;
 
-    void Start()
+    public void Start()
     {
-        target = FindObjectOfType<ItemMover>().GetComponent<Transform>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        //target = FindObjectOfType<ItemMover>().GetComponent<Transform>();
+        //spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         currenttarget = target.position;
 		PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
         if (currenttarget.x < transform.position.x)
@@ -25,37 +25,54 @@ public class SeekerScript : MonoBehaviour
             FlipSprite(false); // Flip sprite to face right
     }
 
-    void FlipSprite(bool faceLeft)
+    public void FlipSprite(bool faceLeft)
     {
         // Flip the sprite based on the faceLeft parameter
         spriteRenderer.flipX = faceLeft;
     }
-    void Update()
-	{		
-		timer += Time.deltaTime;
+ //   void Update()
+	//{		
+	//	timer += Time.deltaTime;
 
-		if (timer > 0.30)
-        {
-			timer = 0;
+	//	if (timer > 0.30)
+ //       {
+	//		//timer = 0;
 
-			//  if the target position have change already
-			if ((target.position != currenttarget))
-			{				
-				//Debug.Log ("Path changed to " + target.position);
-				currenttarget = target.position;
-				PathRequestManager.RequestPath (transform.position, target.position, OnPathFound);
-                // Flip the sprite based on the target's position relative to the seeker
-                if (currenttarget.x < transform.position.x)
-                    FlipSprite(true); // Flip sprite to face left
-                else
-                    FlipSprite(false); // Flip sprite to face right
-            }
-        }
+	//		////  if the target position have change already
+	//		//if ((target.position != currenttarget))
+	//		//{				
+	//		//	//Debug.Log ("Path changed to " + target.position);
+	//		//	currenttarget = target.position;
+	//		//	PathRequestManager.RequestPath (transform.position, target.position, OnPathFound);
+ //  //             // Flip the sprite based on the target's position relative to the seeker
+ //  //             if (currenttarget.x < transform.position.x)
+ //  //                 FlipSprite(true); // Flip sprite to face left
+ //  //             else
+ //  //                 FlipSprite(false); // Flip sprite to face right
+ //  //         }
+ //        Move(target);
+ //       }
 		
  
-    }
+ //   }
+    public void Move(Transform target)
+    {
+        timer = 0;
 
-	public void OnPathFound(Vector2[] newPath, bool pathSuccessful)
+        //  if the target position have change already
+        if ((target.position != currenttarget))
+        {
+            //Debug.Log ("Path changed to " + target.position);
+            currenttarget = target.position;
+            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+            // Flip the sprite based on the target's position relative to the seeker
+            if (currenttarget.x < transform.position.x)
+                FlipSprite(true); // Flip sprite to face left
+            else
+                FlipSprite(false); // Flip sprite to face right
+        }
+    }
+    public void OnPathFound(Vector2[] newPath, bool pathSuccessful)
     {
 		if (pathSuccessful)
         {
@@ -100,7 +117,7 @@ public class SeekerScript : MonoBehaviour
 
             // Move towards the next waypoint using the adjusted movement direction
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movementDirection, Vector2.up), rotationSpeed * Time.fixedDeltaTime);
+            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movementDirection, Vector2.up), rotationSpeed * Time.fixedDeltaTime);
 
             yield return null;
         }

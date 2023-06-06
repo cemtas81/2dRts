@@ -8,6 +8,9 @@ TagManager:
   - BarracksIcon
   - UnitPanel
   - Target
+  - Enemy
+  - Ground
+  - PowerPlantIcon
   layers:
   - Default
   - TransparentFX

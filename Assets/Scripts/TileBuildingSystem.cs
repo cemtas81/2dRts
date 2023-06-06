@@ -94,7 +94,7 @@ public class TileBuildingSystem : MonoBehaviour
         foreach (var collider in colliders)
         {
             // Check if the collider belongs to a dynamic character
-            if (collider.CompareTag("Player"))
+            if (collider.CompareTag("Player")||collider.CompareTag("Enemy"))
             {
                 Debug.Log("Cannot place here - dynamic character present!");
                 return false;
@@ -139,7 +139,6 @@ public class TileBuildingSystem : MonoBehaviour
             if (temp.CanBePlaced())
             {
                 temp.Place();
-                temp.gameObject.transform.GetChild(1).GetComponent<Canvas>().enabled=true;
                 buildCanvas.SetActive(true);
             }
         }

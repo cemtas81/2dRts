@@ -7,10 +7,11 @@ public class BuildingManager : MonoBehaviour
     public bool Placed { get; private set; }
     public BoundsInt area;
     private Grid grid;
-   
+    public BoxCollider coll;
     private void OnEnable()
     {
         grid = FindObjectOfType<Grid>();
+        coll=GetComponent<BoxCollider>(); 
     }
     public bool CanBePlaced()
     {
@@ -32,7 +33,7 @@ public class BuildingManager : MonoBehaviour
         TileBuildingSystem.current.TakeArea(areaTemp);
         grid.CreateGrid();
         Debug.Log("Placed");
-
+        coll.enabled = true;
     }
    
 }

@@ -1,4 +1,7 @@
 
+using Unity.Mathematics;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -15,6 +18,7 @@ public class RtsController : MonoBehaviour
     private float mouseDownTime;
     private Vector2 startPosition;
     public Transform target;
+    private Barracks hittoB;
     private void Update()
     {
         SelectionInput();
@@ -26,16 +30,21 @@ public class RtsController : MonoBehaviour
     }
     private void HandleMovement()
     {
-        if (Input.GetMouseButtonUp(1)&&SelectionManager.Instance.SelectedUnits.Count>0)
+        if (Input.GetMouseButtonUp(1) && SelectionManager.Instance.SelectedUnits.Count > 0)
         {
             foreach (SelectableUnit unit in SelectionManager.Instance.SelectedUnits)
             {
-                unit.GetComponent<SeekerScript>().enabled = true;
-                //target.gameObject.SetActive(true);
+                SeekerScript seekerScript = unit.GetComponent<SeekerScript>();
+
+                if (seekerScript != null)
+                {
+                    seekerScript.enabled = true;
+                    //target.gameObject.SetActive(true);
+                }
             }
         }
-     
     }
+
     private void SelectionInput()
     {
         if (Input.GetMouseButtonDown(0))
@@ -43,6 +52,39 @@ public class RtsController : MonoBehaviour
             SelectionBox.sizeDelta = Vector2.zero;
             SelectionBox.gameObject.SetActive(true);
             startPosition=Input.mousePosition;
+
+            Ray ray=cam.ScreenPointToRay(startPosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, 150))
+            {
+                if (hit.collider.gameObject.CompareTag("BarracksIcon"))
+                {
+                    hittoB = hit.collider.gameObject.GetComponent<Barracks>();
+                    hittoB.OpenUnits();
+                 
+                }
+                else if (hit.collider.gameObject.CompareTag("PowerPlantIcon"))
+                {
+                    if (hittoB!=null)
+                    {
+                        FindObjectOfType<Barracks>().CloseB();
+                    }
+                    Debug.Log("yoo");
+                    
+                    
+                } 
+                 else if (hit.collider.gameObject.CompareTag("Player")|| hit.collider.gameObject.CompareTag("Enemy") && hittoB != null)
+                {
+                    if (hittoB!=null)
+                    {
+                        FindObjectOfType<Barracks>().CloseB();
+                    }
+                    Debug.Log("yeee");
+            
+                }
+           
+            }
+           
         }
         else if (Input.GetMouseButton(0) && mouseDownTime + DragDelay < Time.time)
         {
@@ -78,6 +120,11 @@ public class RtsController : MonoBehaviour
                 SelectionManager.Instance.DeselectAll();
             }
             mouseDownTime = 0;
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") != 0)
+        {
+            cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime*100;
+            cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 3,8);
         }
     }
     private void MoveCam()

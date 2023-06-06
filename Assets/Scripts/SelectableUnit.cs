@@ -9,12 +9,12 @@ public class SelectableUnit : MonoBehaviour
     private bool selected;
     public BoundsInt area;
     private Transform target;
-    private SeekerScript seeker;
+    private PlayerSeeker seeker;
     private void Awake()
     {
         SelectionManager.Instance.AvailableUnits.Add(this); 
         target=FindObjectOfType<ItemMover>().GetComponent<Transform>();
-        seeker = GetComponent<SeekerScript>();
+        seeker = GetComponent<PlayerSeeker>();
     }
     public void OnSelected()
     {

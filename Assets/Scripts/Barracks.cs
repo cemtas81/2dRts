@@ -3,23 +3,14 @@ using UnityEngine;
 
 public class Barracks : MonoBehaviour
 {
-    private Grid grid;
-    public CanvasGroup Units;
-    private Canvas canvas;
-    private Camera cam;
-    [SerializeField]Transform spawnPoint;
+  
+    private CanvasGroup Units;
+    public Transform spawnPoint;
     private UnitSpawn spawn;
-    private void Awake()
-    {
-        cam=Camera.main;   
-        canvas=GetComponentInParent<Canvas>();
-        canvas.worldCamera = cam;
-        Units = CanvasGroup.FindObjectOfType<CanvasGroup>();
-      
-
-    }
+  
     private void Start()
     {
+        Units = CanvasGroup.FindObjectOfType<CanvasGroup>();
         spawn = FindObjectOfType<UnitSpawn>();
         Units.alpha = 0;
         Units.interactable = false;
@@ -30,6 +21,11 @@ public class Barracks : MonoBehaviour
         spawn.m_SpawnTransform = spawnPoint;
         Units.alpha=1;
         Units.interactable = true;
+    }
+    public void CloseB()
+    {
+        Units.alpha = 0;
+        Units.interactable = false;
     }
   
 }

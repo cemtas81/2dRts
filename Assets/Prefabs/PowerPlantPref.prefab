@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6398840152170090586}
   m_Layer: 7
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: PowerPlantIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5704746349482040503
 RectTransform:
   m_ObjectHideFlags: 0
@@ -209,10 +209,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5547315464064622874}
   - component: {fileID: 521191196803048137}
-  - component: {fileID: 5752756397277600420}
+  - component: {fileID: 5001990430727823934}
   m_Layer: 7
   m_Name: PowerPlantPref
-  m_TagString: Untagged
+  m_TagString: PowerPlantIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,32 +249,20 @@ MonoBehaviour:
   area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 1, y: 3, z: 1}
---- !u!61 &5752756397277600420
-BoxCollider2D:
+  coll: {fileID: 0}
+--- !u!65 &5001990430727823934
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5893593981824383762}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.000000059604645, y: 0.9954878}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.943508, y: 2.8367488}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.96, y: 2.8, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7197064137138723465
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,4 +409,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec13a3c0096a7a479a150c185c0e85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Units: {fileID: 0}
+  spawnPoint: {fileID: 0}
