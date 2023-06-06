@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class PlayerSeeker : SeekerScript
 {
-    
-    float timer2;
-    private new void Start()
+
+    private float timer;
+    void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        target = FindObjectOfType<ItemMover>().GetComponent<Transform>();
+        target= FindObjectOfType<ItemMover>().GetComponent<Transform>();
     }
     // Update is called once per frame
     void Update()
     {
-        timer2 += Time.deltaTime;
+        timer += Time.deltaTime;
 
-        if (timer2 > 0.30)
+        if (timer > 0.30)
         {
             Move(target);
+            timer = 0;
         }
     }
 

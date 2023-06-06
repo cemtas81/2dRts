@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class EnemySeeker : SeekerScript
 {
-    float timer3;
-    private new void Start()
+    private float timer;
+    void Awake()
     {
-        target = this.gameObject.transform;
+     
+        target=GameObject.FindWithTag("Target").transform;
     }
   
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,11 +19,12 @@ public class EnemySeeker : SeekerScript
     }
     void Update()
     {
-        timer3 += Time.deltaTime;
+        timer += Time.deltaTime;
 
-        if (timer3 > 0.30)
+        if (timer > 0.4&&target!=null)
         {
             Move(target);
+            timer = 0;
         }
     }
 }

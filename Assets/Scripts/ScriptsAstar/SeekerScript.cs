@@ -9,8 +9,8 @@ public class SeekerScript : MonoBehaviour
 	//public float rotationSpeed=1;
 	Vector2[] path;
 	int targetIndex;
-    float timer;
-    Vector3 currenttarget;
+    //public float timer;
+    private Vector3 currenttarget;
     public SpriteRenderer spriteRenderer;
 
     public void Start()
@@ -57,7 +57,7 @@ public class SeekerScript : MonoBehaviour
  //   }
     public void Move(Transform target)
     {
-        timer = 0;
+        //timer = 0;
 
         //  if the target position have change already
         if ((target.position != currenttarget))
