@@ -104,18 +104,18 @@ public class Grid : MonoBehaviour
         return new Vector3(node.gridX * nodeDiameter + nodeRadius, node.gridY * nodeDiameter + nodeRadius, 0f) + transform.position;
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
+	void OnDrawGizmos()
+	{
+		Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
 
-        if (grid != null && displayGridGizmos)
-        {
-            foreach (Node n in grid)
-            {
-                Gizmos.color = (n.isWalkable) ? Color.gray : Color.red;
-                Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
-            }
-        }
-    }
-	
+		if (grid != null && displayGridGizmos)
+		{
+			foreach (Node n in grid)
+			{
+				Gizmos.color = (n.isWalkable) ? Color.gray : Color.red;
+				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
+			}
+		}
+	}
+
 }

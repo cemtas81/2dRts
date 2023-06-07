@@ -15,8 +15,7 @@ public class SeekerScript : MonoBehaviour
 
     public void Start()
     {
-        //target = FindObjectOfType<ItemMover>().GetComponent<Transform>();
-        //spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+  
         currenttarget = target.position;
 		PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
         if (currenttarget.x < transform.position.x)
@@ -30,31 +29,7 @@ public class SeekerScript : MonoBehaviour
         // Flip the sprite based on the faceLeft parameter
         spriteRenderer.flipX = faceLeft;
     }
- //   void Update()
-	//{		
-	//	timer += Time.deltaTime;
-
-	//	if (timer > 0.30)
- //       {
-	//		//timer = 0;
-
-	//		////  if the target position have change already
-	//		//if ((target.position != currenttarget))
-	//		//{				
-	//		//	//Debug.Log ("Path changed to " + target.position);
-	//		//	currenttarget = target.position;
-	//		//	PathRequestManager.RequestPath (transform.position, target.position, OnPathFound);
- //  //             // Flip the sprite based on the target's position relative to the seeker
- //  //             if (currenttarget.x < transform.position.x)
- //  //                 FlipSprite(true); // Flip sprite to face left
- //  //             else
- //  //                 FlipSprite(false); // Flip sprite to face right
- //  //         }
- //        Move(target);
- //       }
-		
  
- //   }
     public void Move(Transform target)
     {
         //timer = 0;
@@ -71,6 +46,10 @@ public class SeekerScript : MonoBehaviour
             else
                 FlipSprite(false); // Flip sprite to face right
         }
+    }
+    public void Stop()
+    {
+        StopCoroutine("FollowPath");
     }
     public void OnPathFound(Vector2[] newPath, bool pathSuccessful)
     {
@@ -124,24 +103,24 @@ public class SeekerScript : MonoBehaviour
     }
 
 
-    public void OnDrawGizmos()
-    {
-		if (path != null)
-        {
-			for (int i = targetIndex; i < path.Length; i ++)
-            {
-				Gizmos.color = Color.black;
-				Gizmos.DrawCube(path[i], Vector3.one);
+ //   public void OnDrawGizmos()
+ //   {
+	//	if (path != null)
+ //       {
+	//		for (int i = targetIndex; i < path.Length; i ++)
+ //           {
+	//			Gizmos.color = Color.black;
+	//			Gizmos.DrawCube(path[i], Vector3.one);
 
-				if (i == targetIndex)
-                {
-					Gizmos.DrawLine(transform.position, path[i]);
-				}
-				else
-                {
-					Gizmos.DrawLine(path[i-1],path[i]);
-				}
-			}
-		}
-	}
+	//			if (i == targetIndex)
+ //               {
+	//				Gizmos.DrawLine(transform.position, path[i]);
+	//			}
+	//			else
+ //               {
+	//				Gizmos.DrawLine(path[i-1],path[i]);
+	//			}
+	//		}
+	//	}
+	//}
 }
