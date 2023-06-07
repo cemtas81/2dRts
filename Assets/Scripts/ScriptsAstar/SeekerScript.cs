@@ -1,32 +1,33 @@
 ﻿
 using UnityEngine;
 using System.Collections;
+using Unity.Mathematics;
 
 public class SeekerScript : MonoBehaviour
 {
 	public Transform target;
 	public float speed = 1;
-	//public float rotationSpeed=1;
-	Vector2[] path;
+    //public float rotationSpeed = 1;
+    Vector2[] path;
 	int targetIndex;
     //public float timer;
     private Vector3 currenttarget;
     public SpriteRenderer spriteRenderer;
-
+    public float angle;
     public void Start()
     {
   
         currenttarget = target.position;
 		PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
-        if (currenttarget.x < transform.position.x)
-            FlipSprite(true); // Flip sprite to face left
-        else
-            FlipSprite(false); // Flip sprite to face right
+        //if (currenttarget.x < transform.position.x)
+        //    FlipSprite(true); // Flip sprite to face left
+        //else
+        //    FlipSprite(false); // Flip sprite to face right
     }
 
     public void FlipSprite(bool faceLeft)
     {
-        // Flip the sprite based on the faceLeft parameter
+        //Flip the sprite(if its not topdown) based on the faceLeft parameter
         spriteRenderer.flipX = faceLeft;
     }
  
@@ -40,15 +41,16 @@ public class SeekerScript : MonoBehaviour
             //Debug.Log ("Path changed to " + target.position);
             currenttarget = target.position;
             PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-            // Flip the sprite based on the target's position relative to the seeker
-            if (currenttarget.x < transform.position.x)
-                FlipSprite(true); // Flip sprite to face left
-            else
-                FlipSprite(false); // Flip sprite to face right
+            //Flip the sprite based on the target's position relative to the seeker
+            //if (currenttarget.x < transform.position.x)
+            //    FlipSprite(true); // Flip sprite to face left
+            //else
+            //    FlipSprite(false); // Flip sprite to face right
         }
     }
     public void Stop()
     {
+        
         StopCoroutine("FollowPath");
     }
     public void OnPathFound(Vector2[] newPath, bool pathSuccessful)
@@ -97,7 +99,9 @@ public class SeekerScript : MonoBehaviour
             // Move towards the next waypoint using the adjusted movement direction
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
             //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movementDirection, Vector2.up), rotationSpeed * Time.fixedDeltaTime);
+            angle =math.atan2 (targetWaypointDirection.y, targetWaypointDirection.x) * Mathf.Rad2Deg;
 
+            transform.rotation = Quaternion.Euler(0, 0, angle);
             yield return null;
         }
     }

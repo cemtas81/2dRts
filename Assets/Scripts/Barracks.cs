@@ -14,7 +14,9 @@ public class Barracks : MonoBehaviour
         spawn = FindObjectOfType<UnitSpawn>();
         Units.alpha = 0;
         Units.interactable = false;
+    
     }
+  
     public void OpenUnits()
     {
 

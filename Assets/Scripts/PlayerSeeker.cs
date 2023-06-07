@@ -10,7 +10,7 @@ public class PlayerSeeker : SeekerScript
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         target= FindObjectOfType<ItemMover>().GetComponent<Transform>();
-        dist = Random.Range(0.2f, 1.5f);
+        dist = Random.Range(1f, 1.6f);
     }
     // Update is called once per frame
     void Update()

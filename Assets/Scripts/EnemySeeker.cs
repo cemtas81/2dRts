@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class EnemySeeker : SeekerScript
@@ -25,40 +25,26 @@ public class EnemySeeker : SeekerScript
     {
         timer += Time.deltaTime;
         float distance = Vector3.Distance(transform.position, target.transform.position);
-        if (distance >= dist)
+  
+        if (timer > 0.4 && target != null && distance > dist && canMove == true)
         {
-            if (timer > 0.30)
-            {
-                Move(target);
-                timer = 0;
-            }
+            Move(target);
+            timer = 0;
         }
-     
-        else
+
+        if (target != null && distance <= dist)
         {
             Stop();
-            timer = 0;
             Debug.Log("firee");
-        }
-        //if (timer > 0.4 && target != null &&distance>2&&canMove==true)
-        //{
-        //    Move(target);
-        //    timer = 0;
-        //}
+            timer = 0;
 
-        //if (target != null && distance <= 2)
-        //{
-        //    Stop();
-        //    Debug.Log("firee");
-        //    timer = 0;
-           
-        //}
-        //if (canMove==false)
-        //{
-        //    Stop();
-        //}
-        
-       
+        }
+        if (canMove == false)
+        {
+            Stop();
+        }
+
+
     }
 }
 
