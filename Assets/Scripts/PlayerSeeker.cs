@@ -1,8 +1,7 @@
 
 using UnityEngine;
 
-
-public class PlayerSeeker : SeekerScript
+public class PlayerSeeker : SeekerScript,IDamage
 {
     
     private float timer,dist;
@@ -32,5 +31,13 @@ public class PlayerSeeker : SeekerScript
             Debug.Log("saldýýr");
         }
     }
+    public void LoseHealth(int damage)
+    {
 
+
+    }
+    public void Die()
+    {
+
+    }
 }

@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class EnemySeeker : SeekerScript
+public class EnemySeeker : SeekerScript,IDamage
 {
     private float timer, dist;
     private bool canMove;
@@ -44,6 +44,14 @@ public class EnemySeeker : SeekerScript
             Stop();
         }
 
+    }
+    public void LoseHealth(int damage)
+    {
+
+
+    }
+    public void Die()
+    {
 
     }
 }

@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3998880745659811229}
   - component: {fileID: 6388034415747910579}
-  - component: {fileID: 5086110939225187106}
   m_Layer: 7
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141643030464170378}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 1.45, z: 0}
+  m_LocalPosition: {x: 1.39, y: 1.39, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 156ad9c1e08f81c42b048ef437a15f6c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a9018c78b381a6c48a1ab596970dbf59, type: 3}
+  m_Color: {r: 0.9811321, g: 0.745105, b: 0.745105, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,19 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &5086110939225187106
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141643030464170378}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.96, y: 0.96, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3414131296550409294
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3414131296550409294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -1, z: 0}
+  m_LocalPosition: {x: -1, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -138,12 +124,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5547315464064622874}
-  - component: {fileID: 521191196803048137}
-  - component: {fileID: 6418505318734872259}
-  - component: {fileID: 2099300488932960459}
+  - component: {fileID: 1862442556}
+  - component: {fileID: 1862442555}
   m_Layer: 7
-  m_Name: BarracksPref1
-  m_TagString: BarracksIcon
+  m_Name: EnemyBarracksPref
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,23 +150,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &521191196803048137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893593981824383762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 964bee3448e4d494f95cd3121dd92615, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  area:
-    m_Position: {x: 0, y: 0, z: 0}
-    m_Size: {x: 4, y: 4, z: 1}
-  coll: {fileID: 6418505318734872259}
---- !u!65 &6418505318734872259
+--- !u!65 &1862442556
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,11 +159,11 @@ BoxCollider:
   m_GameObject: {fileID: 5893593981824383762}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.831526, y: 3.7193868, z: 1}
-  m_Center: {x: 1.5279027, y: 1.4437982, z: 0}
---- !u!114 &2099300488932960459
+  m_Size: {x: 3.851595, y: 3.8145566, z: 1}
+  m_Center: {x: 1.4907761, y: 1.4775789, z: 0}
+--- !u!114 &1862442555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,7 +172,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5893593981824383762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ec13a3c0096a7a479a150c185c0e85e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d6cce07e5b9c5341b88491ceeabf4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 5041664971534352214}
+  m_SpawnTransform: {fileID: 5041664971534352214}
+  soldier: {fileID: 1558981321293870158, guid: d4a8c809439a86c4c85b24297f146162, type: 3}
+  area:
+    m_Position: {x: 5, y: 1, z: 0}
+    m_Size: {x: 4, y: 4, z: 1}

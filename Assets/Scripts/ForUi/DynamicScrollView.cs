@@ -1,8 +1,6 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Pool;
 using UnityEngine.UI;
 
 public class DynamicScrollView : MonoBehaviour
@@ -13,11 +11,6 @@ public class DynamicScrollView : MonoBehaviour
     public int poolSize;
     public float space=100;
     public Transform content;
-
-    //public List<Sprite> spriteList;
-    //public List<string> textList;
-    //public List<GameObject> gameobjectList;
-
     private int topItemIndex;
     private int botItemIndex;
     private int topNextItemPos;
@@ -65,11 +58,6 @@ public class DynamicScrollView : MonoBehaviour
         for (int i = 0; i < poolSize; i++)
         {
             tmp = Instantiate(objectToPool, content);
-            //if (tmp.TryGetComponent<ScrollViewItem>(out item))
-            //{
-            //    item.InitItemButton(spriteList[0], textList[i], gameobjectList[i]);
-            //}
-            //tmp.SetActive(false);
             objectPool.Add(tmp);
             
         }
@@ -113,8 +101,6 @@ public class DynamicScrollView : MonoBehaviour
             GameObject newObj = GetPooledObject(botItemIndex);
             if (newObj != null)
             {
-                //newObj.transform.SetParent(content);
-                //newObj.transform.SetAsFirstSibling();
                 newObj.transform.localPosition = Vector3.up * space * topNextItemPos;
                 topItemIndex = botItemIndex;
 
@@ -136,8 +122,6 @@ public class DynamicScrollView : MonoBehaviour
             GameObject newObj = GetPooledObject(topItemIndex);
             if (newObj != null)
             {
-                //newObj.transform.SetParent(content);
-                //newObj.transform.SetAsFirstSibling();
                 newObj.transform.localPosition = Vector3.up * space * botNextItemPos;
                 botItemIndex = topItemIndex;
 

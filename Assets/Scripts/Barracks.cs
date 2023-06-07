@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class Barracks : MonoBehaviour
+public class Barracks : MonoBehaviour,IDamage
 {
   
     private CanvasGroup Units;
@@ -29,5 +29,13 @@ public class Barracks : MonoBehaviour
         Units.alpha = 0;
         Units.interactable = false;
     }
-  
+    public void LoseHealth(int damage)
+    {
+
+
+    }
+    public void Die()
+    {
+
+    }
 }

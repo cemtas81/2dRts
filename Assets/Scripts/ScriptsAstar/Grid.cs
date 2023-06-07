@@ -21,7 +21,6 @@ public class Grid : MonoBehaviour
 		CreateGrid();
 	}
 
- 
 	public int MaxSize
     {
 		get
