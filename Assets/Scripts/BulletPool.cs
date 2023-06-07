@@ -20,24 +20,17 @@ public class BulletPool : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            FireBullet();
-        }
-    }
-
-    private void FireBullet()
+    public void FireBullet(Vector3 position, Quaternion rotation)
     {
         // Activate the next available bullet
         bullets[currentBulletIndex].SetActive(true);
 
-        // Set bullet position and rotation to match the gun's position and rotation
-        bullets[currentBulletIndex].transform.position = transform.position;
-        bullets[currentBulletIndex].transform.rotation = transform.rotation;
+        // Set bullet position and rotation to match the player's position and rotation
+        bullets[currentBulletIndex].transform.position = position;
+        bullets[currentBulletIndex].transform.rotation = rotation;
 
         // Move to the next bullet in the pool
         currentBulletIndex = (currentBulletIndex + 1) % poolSize;
     }
+
 }

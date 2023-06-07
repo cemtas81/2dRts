@@ -2,14 +2,17 @@ using UnityEngine;
 
 public class EnemySeeker : SeekerScript, IDamage
 {
-    private float timer, dist;
+    private float timer = 0f,dist;
     private bool canMove;
-
-    void Awake()
+    private BulletPool bulletPool;
+    public Transform nozzle;
+    public float fireRate;
+    private void Awake()
     {
         target = GameObject.FindWithTag("Target").transform;
         canMove = false;
-        dist = Random.Range(2f, 2.3f);
+        bulletPool = FindObjectOfType<BulletPool>();
+        dist = Random.Range(2f, 3f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,8 +23,15 @@ public class EnemySeeker : SeekerScript, IDamage
             canMove = true;
         }
     }
-
-    void Update()
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+         
+            canMove = false;
+        }
+    }
+    private void Update()
     {
         timer += Time.deltaTime;
         float distance = Vector3.Distance(transform.position, target.transform.position);
@@ -36,24 +46,28 @@ public class EnemySeeker : SeekerScript, IDamage
         {
             Stop();
             Debug.Log("firee");
-            timer = 0;
             LookAtTarget();
+
+            if (timer >= fireRate)
+            {
+                bulletPool.FireBullet(nozzle.position, nozzle.rotation);
+                timer = 0f;
+            }
         }
 
         if (!canMove)
         {
             Stop();
-           
         }
     }
 
     public void LoseHealth(int damage)
     {
-
+        // Implement the LoseHealth method logic here
     }
 
     public void Die()
     {
-
+        // Implement the Die method logic here
     }
 }

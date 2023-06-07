@@ -34832,10 +34832,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPool: []
   objectToPool: {fileID: 8908446642685282817, guid: 7279786ef37aa204aaf14df1ee2aa8fe, type: 3}
-  poolSize: 10
-  space: 100
+  poolSize: 8
+  space: 150
   content: {fileID: 1181854127}
-  spacing: {x: 0, y: -100, z: 0}
+  spacing: {x: 0, y: -150, z: 0}
   topLimit: {fileID: 76840200}
   botLimit: {fileID: 229083352}
 --- !u!114 &817742893
@@ -36691,15 +36691,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
       propertyPath: space
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
       propertyPath: poolSize
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
       propertyPath: spacing.y
-      value: -100
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 849071384546153795, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
       propertyPath: objectToPool

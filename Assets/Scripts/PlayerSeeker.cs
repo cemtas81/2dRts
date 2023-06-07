@@ -1,45 +1,55 @@
-
 using UnityEngine;
 
-public class PlayerSeeker : SeekerScript,IDamage
+public class PlayerSeeker : SeekerScript, IDamage
 {
-   
-    private float timer,dist;
-    void Awake()
+    private BulletPool bulletPool;
+    public float fireRate;
+    private float timer=0, dist;
+    public Transform nozzle;
+  
+    private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        target= FindObjectOfType<ItemMover>().GetComponent<Transform>();
+        target = FindObjectOfType<ItemMover>().transform;
         dist = Random.Range(0f, 0.5f);
+        
+        bulletPool = FindObjectOfType<BulletPool>();
     }
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
         timer += Time.deltaTime;
         float distance = Vector3.Distance(transform.position, target.transform.position);
-        if (distance>=dist)
+
+        if (timer > 0.3 && target != null && distance > dist )
         {
-            if (timer > 0.30)
-            {
-                Move(target);
-                timer = 0;
-            }
+            Move(target);
+            timer = 0;
         }
-        else
+
+        if (target != null && distance <= dist)
         {
             Stop();
-            timer = 0;
             Debug.Log("saldýr");
             LookAtTarget();
+
+            if (timer >= fireRate)
+            {
+                bulletPool.FireBullet(nozzle.position, nozzle.rotation);
+                timer = 0f;
+            }
         }
+
+     
     }
-   
+
     public void LoseHealth(int damage)
     {
-
-
+        // Implement the LoseHealth method logic here
     }
+
     public void Die()
     {
-
+        // Implement the Die method logic here
     }
 }
