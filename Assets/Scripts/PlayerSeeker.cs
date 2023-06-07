@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class PlayerSeeker : SeekerScript,IDamage
 {
-    
+   
     private float timer,dist;
     void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         target= FindObjectOfType<ItemMover>().GetComponent<Transform>();
-        dist = Random.Range(1f, 1.6f);
+        dist = Random.Range(0f, 0.5f);
     }
     // Update is called once per frame
     void Update()
@@ -28,9 +28,11 @@ public class PlayerSeeker : SeekerScript,IDamage
         {
             Stop();
             timer = 0;
-            Debug.Log("saldýýr");
+            Debug.Log("saldýr");
+            LookAtTarget();
         }
     }
+   
     public void LoseHealth(int damage)
     {
 

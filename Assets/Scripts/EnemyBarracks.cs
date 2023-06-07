@@ -6,12 +6,12 @@ public class EnemyBarracks : MonoBehaviour,IDamage
     public Transform m_SpawnTransform;
     [SerializeField] GameObject soldier;
     public BoundsInt area;
-    private Grid grid;
+    private MyGrid grid;
     public float spawn;
     // Start is called before the first frame update
     void Start()
     {    
-        grid = FindObjectOfType<Grid>();    
+        grid = FindObjectOfType<MyGrid>();    
         StartCoroutine(Area());
         InvokeRepeating("EnemySpawn", 1, spawn);
     }

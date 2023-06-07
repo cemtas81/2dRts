@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Grid : MonoBehaviour
+public class MyGrid : MonoBehaviour
 {
 
 	public bool displayGridGizmos;  // Show grid or not
@@ -105,14 +105,14 @@ public class Grid : MonoBehaviour
 
 	void OnDrawGizmos()
 	{
-		Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
-
+		Gizmos.DrawWireCube(transform.position, new Vector2(gridWorldSize.x,  gridWorldSize.y));
+		
 		if (grid != null && displayGridGizmos)
 		{
 			foreach (Node n in grid)
 			{
 				Gizmos.color = (n.isWalkable) ? Color.gray : Color.red;
-				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
+				Gizmos.DrawCube(n.worldPosition, Vector2.one * (nodeDiameter - 0.1f));
 			}
 		}
 	}

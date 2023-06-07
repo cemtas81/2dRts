@@ -14,6 +14,7 @@ public class SeekerScript : MonoBehaviour
     private Vector3 currenttarget;
     public SpriteRenderer spriteRenderer;
     public float angle;
+    private Quaternion targetRotation;
     public void Start()
     {
   
@@ -105,26 +106,15 @@ public class SeekerScript : MonoBehaviour
             yield return null;
         }
     }
+    public void LookAtTarget()
+    {
+        if (target != null)
+        {
+            Vector3 direction = target.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+    }
 
-
- //   public void OnDrawGizmos()
- //   {
-	//	if (path != null)
- //       {
-	//		for (int i = targetIndex; i < path.Length; i ++)
- //           {
-	//			Gizmos.color = Color.black;
-	//			Gizmos.DrawCube(path[i], Vector3.one);
-
-	//			if (i == targetIndex)
- //               {
-	//				Gizmos.DrawLine(transform.position, path[i]);
-	//			}
-	//			else
- //               {
-	//				Gizmos.DrawLine(path[i-1],path[i]);
-	//			}
-	//		}
-	//	}
-	//}
 }

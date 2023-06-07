@@ -8,7 +8,7 @@ public class Astar : MonoBehaviour
 {
 
 	PathRequestManager requestManager;
-	Grid grid;
+	MyGrid grid;
     private int normalMoveCost = 10;
     private int diagonalMoveCost = 14;
 
@@ -16,7 +16,7 @@ public class Astar : MonoBehaviour
     void Awake()
     {
 		requestManager = GetComponent<PathRequestManager>();
-		grid = GetComponent<Grid>();
+		grid = GetComponent<MyGrid>();
 	}
 
 	public void StartFindPath(Vector2 startPos, Vector2 targetPos)

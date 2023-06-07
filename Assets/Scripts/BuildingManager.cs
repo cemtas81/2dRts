@@ -6,11 +6,11 @@ public class BuildingManager : MonoBehaviour
 {
     public bool Placed { get; private set; }
     public BoundsInt area;
-    private Grid grid;
+    private MyGrid grid;
     public BoxCollider coll;
     private void OnEnable()
     {
-        grid = FindObjectOfType<Grid>();
+        grid = FindObjectOfType<MyGrid>();
         coll=GetComponent<BoxCollider>(); 
     }
     public bool CanBePlaced()
