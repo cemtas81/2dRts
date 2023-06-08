@@ -15,6 +15,7 @@ public class SeekerScript : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public float angle;
     private Quaternion targetRotation;
+    
     public void Start()
     {
   

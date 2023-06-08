@@ -4,14 +4,12 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
     public float lifeTime = 2f;
-
     private float timer = 0f;
 
-    private void OnEnable()
+    private void Start()
     {
         timer = 0f;
     }
-
     private void Update()
     {
         // Move the bullet forward

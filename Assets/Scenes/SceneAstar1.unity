@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -499,6 +499,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpawnTransform: {fileID: 0}
   soldier: {fileID: 3218574123713683905, guid: 5cce03729f6126649b1e8a28aa9a6995, type: 3}
+  maxSoldiers: 10
+  soldiers: 0
 --- !u!1 &101842371
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,7 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8559500821180523088, guid: e089c83cb1821de48ae1a9ecc5d7e13a, type: 3}
-  poolSize: 10
+  poolSize: 40
 --- !u!4 &175799288
 Transform:
   m_ObjectHideFlags: 0
@@ -64943,7 +64945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -65053,7 +65055,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1862442555, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
       propertyPath: spawn
-      value: 60
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862442555, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
+      propertyPath: maxEnemy
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5547315464064622874, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
       propertyPath: m_RootOrder
@@ -65532,7 +65538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

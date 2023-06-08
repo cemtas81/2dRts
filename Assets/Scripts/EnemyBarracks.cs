@@ -8,6 +8,8 @@ public class EnemyBarracks : MonoBehaviour,IDamage
     public BoundsInt area;
     private MyGrid grid;
     public float spawn;
+    public int enemies;
+    public int maxEnemy;
     // Start is called before the first frame update
     void Start()
     {    
@@ -23,7 +25,12 @@ public class EnemyBarracks : MonoBehaviour,IDamage
     }
     void EnemySpawn()
     {
-        Instantiate(soldier, m_SpawnTransform.position, Quaternion.identity);
+        if (enemies<maxEnemy)
+        {
+            Instantiate(soldier, m_SpawnTransform.position, Quaternion.identity);
+            enemies++;
+        }
+       
     }
     public void LoseHealth(int damage)
     {

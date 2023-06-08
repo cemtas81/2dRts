@@ -6,13 +6,13 @@ public class PlayerSeeker : SeekerScript, IDamage
     public float fireRate;
     private float timer=0, dist;
     public Transform nozzle;
-  
+    private UnitSpawn units; 
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         target = FindObjectOfType<ItemMover>().transform;
         dist = Random.Range(0f, 0.5f);
-        
+        units=FindObjectOfType<UnitSpawn>();
         bulletPool = FindObjectOfType<BulletPool>();
     }
 
@@ -50,6 +50,6 @@ public class PlayerSeeker : SeekerScript, IDamage
 
     public void Die()
     {
-        // Implement the Die method logic here
+        units.soldiers--;
     }
 }

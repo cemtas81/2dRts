@@ -7,6 +7,9 @@ public class EnemySeeker : SeekerScript, IDamage
     private BulletPool bulletPool;
     public Transform nozzle;
     public float fireRate;
+    private EnemyBarracks enemies;
+    public float radius;
+    public LayerMask layer;
     private void Awake()
     {
         target = GameObject.FindWithTag("Target").transform;
@@ -15,24 +18,21 @@ public class EnemySeeker : SeekerScript, IDamage
         dist = Random.Range(2f, 3f);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            target = collision.gameObject.GetComponent<Transform>();
-            canMove = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-         
-            canMove = false;
-        }
-    }
     private void Update()
     {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius,layer);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Collider2D collider = colliders[i];
+
+            if (collider.gameObject.CompareTag("Player"))
+            {
+                target = collider.gameObject.GetComponent<Transform>();
+                canMove = true;
+                break;
+            }
+        } 
         timer += Time.deltaTime;
         float distance = Vector3.Distance(transform.position, target.transform.position);
 
@@ -68,6 +68,6 @@ public class EnemySeeker : SeekerScript, IDamage
 
     public void Die()
     {
-        // Implement the Die method logic here
+        enemies.enemies--;
     }
 }

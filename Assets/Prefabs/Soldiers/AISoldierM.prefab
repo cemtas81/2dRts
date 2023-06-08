@@ -264,7 +264,7 @@ MonoBehaviour:
   speed: 2
   spriteRenderer: {fileID: 0}
   angle: 0
-  fireRate: 0.5
+  fireRate: 1
   nozzle: {fileID: 6930649124458647120}
 --- !u!1 &4809995386771435183
 GameObject:
