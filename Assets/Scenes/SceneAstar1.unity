@@ -98324,7 +98324,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1862442555, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
       propertyPath: spawn
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1862442555, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
       propertyPath: maxEnemy
@@ -99145,7 +99145,7 @@ MonoBehaviour:
   - {fileID: 3218574123713683905, guid: 5cce03729f6126649b1e8a28aa9a6995, type: 3}
   - {fileID: 3218574123713683905, guid: b529b22066679804a960bd2bb114b004, type: 3}
   - {fileID: 3218574123713683905, guid: 1d4a7527ba78505499c99e8eed828ea2, type: 3}
-  maxSoldiers: 30
+  maxSoldiers: 20
   soldiers: 0
 --- !u!1 &2117733222
 GameObject:
