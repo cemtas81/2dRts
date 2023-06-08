@@ -1,7 +1,7 @@
 
 
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 public class RtsController : MonoBehaviour
 {
@@ -45,21 +45,35 @@ public class RtsController : MonoBehaviour
 
     private void SelectionInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
+        {
+            var selectedObject = EventSystem.current.currentSelectedGameObject;
+            if (selectedObject != null)
+            {
+                var canvasGroup = selectedObject.GetComponent<CanvasGroup>();
+                if (canvasGroup != null && canvasGroup.alpha == 0)
+                {
+                    return;
+                }
+            }
+        }
+        else if (Input.GetMouseButtonDown(0))
         {
             SelectionBox.sizeDelta = Vector2.zero;
             SelectionBox.gameObject.SetActive(true);
             startPosition=Input.mousePosition;
 
             Ray ray=cam.ScreenPointToRay(startPosition);
-
+         
             if (Physics.Raycast(ray, out RaycastHit hit, 150))
             {
+               
                 if (hit.collider.gameObject.CompareTag("BarracksIcon"))
                 {
+                    Debug.Log("hitto");
                     hittoB = hit.collider.gameObject.GetComponent<Barracks>();
                     hittoB.OpenUnits();
-                 
+                  
                 }
                 else if (hit.collider.gameObject.CompareTag("PowerPlantIcon"))
                 {
@@ -122,7 +136,7 @@ public class RtsController : MonoBehaviour
         else if (Input.GetAxis("Mouse ScrollWheel") != 0)
         {
             cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime*100;
-            cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 3,8);
+            cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 4,12);
         }
     }
     private void MoveCam()
