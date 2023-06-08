@@ -1,5 +1,5 @@
 
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class UnitSpawn : MonoBehaviour
@@ -8,6 +8,8 @@ public class UnitSpawn : MonoBehaviour
     [SerializeField] GameObject soldier;
     public int maxSoldiers;
     public int soldiers;
+  
+  
     public void SoldierSpawn() 
     {
         if (soldiers<maxSoldiers)
