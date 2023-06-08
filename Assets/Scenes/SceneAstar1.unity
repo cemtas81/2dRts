@@ -347,7 +347,6 @@ GameObject:
   - component: {fileID: 86248547}
   - component: {fileID: 86248546}
   - component: {fileID: 86248545}
-  - component: {fileID: 86248549}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -435,10 +434,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 86248549}
+      - m_Target: {fileID: 2057599321}
         m_TargetAssemblyTypeName: UnitSpawn, Assembly-CSharp
         m_MethodName: SoldierSpawn
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -485,22 +484,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86248543}
   m_CullTransparentMesh: 1
---- !u!114 &86248549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 86248543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c339f7ed0987ec4a9fabfadfe0fc5d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SpawnTransform: {fileID: 0}
-  soldier: {fileID: 3218574123713683905, guid: 5cce03729f6126649b1e8a28aa9a6995, type: 3}
-  maxSoldiers: 20
-  soldiers: 0
 --- !u!1 &101842371
 GameObject:
   m_ObjectHideFlags: 0
@@ -98206,14 +98189,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2057599321}
         m_TargetAssemblyTypeName: UnitSpawn, Assembly-CSharp
         m_MethodName: SoldierSpawn
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -98798,7 +98781,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1822970782}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2057599321}
+        m_TargetAssemblyTypeName: UnitSpawn, Assembly-CSharp
+        m_MethodName: SoldierSpawn
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1822970782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99023,6 +99018,7 @@ GameObject:
   - component: {fileID: 2057599317}
   - component: {fileID: 2057599319}
   - component: {fileID: 2057599320}
+  - component: {fileID: 2057599321}
   m_Layer: 5
   m_Name: UnitsPanel
   m_TagString: UnitPanel
@@ -99132,6 +99128,25 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2057599321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057599315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c339f7ed0987ec4a9fabfadfe0fc5d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpawnTransform: {fileID: 0}
+  soldierPrefabs:
+  - {fileID: 3218574123713683905, guid: 5cce03729f6126649b1e8a28aa9a6995, type: 3}
+  - {fileID: 3218574123713683905, guid: b529b22066679804a960bd2bb114b004, type: 3}
+  - {fileID: 3218574123713683905, guid: 1d4a7527ba78505499c99e8eed828ea2, type: 3}
+  maxSoldiers: 30
+  soldiers: 0
 --- !u!1 &2117733222
 GameObject:
   m_ObjectHideFlags: 0

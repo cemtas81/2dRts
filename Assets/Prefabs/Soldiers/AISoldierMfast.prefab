@@ -202,6 +202,7 @@ Transform:
   - {fileID: 4181085741292385683}
   - {fileID: 8042875540628929525}
   - {fileID: 9135627060573612372}
+  - {fileID: 5570653158319399086}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -263,6 +264,8 @@ MonoBehaviour:
   speed: 3
   spriteRenderer: {fileID: 0}
   angle: 0
+  fireRate: 1.5
+  nozzle: {fileID: 5570653158319399086}
 --- !u!1 &8967392087022414404
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,3 +364,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.86, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &9143921996236055068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5570653158319399086}
+  m_Layer: 3
+  m_Name: Nozzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5570653158319399086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143921996236055068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.415, y: -0.225, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3218574123713683932}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

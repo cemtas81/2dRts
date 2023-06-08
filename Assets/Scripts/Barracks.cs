@@ -7,7 +7,7 @@ public class Barracks : MonoBehaviour,IDamage
     private CanvasGroup Units;
     public Transform spawnPoint;
     private UnitSpawn spawn;
-  
+   
     private void Start()
     {
         Units = CanvasGroup.FindObjectOfType<CanvasGroup>();
@@ -18,8 +18,7 @@ public class Barracks : MonoBehaviour,IDamage
     }
   
     public void OpenUnits()
-    {
-
+    { 
         spawn.m_SpawnTransform = spawnPoint;
         Units.alpha=1;
         Units.interactable = true;
