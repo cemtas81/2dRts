@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemySeeker : SeekerScript, IDamage
 {
-    private float timer = 0f,dist;
+    private float timer = 0f,dist,distance;
     private bool canMove;
     private BulletPool bulletPool;
     public Transform nozzle;
@@ -10,9 +10,11 @@ public class EnemySeeker : SeekerScript, IDamage
     private EnemyBarracks enemies;
     public float radius;
     public LayerMask layer;
+    private Status enemyStatus;
     private void Awake()
     {
-        target = GameObject.FindWithTag("Target").transform;
+        enemyStatus=GetComponent<Status>();
+        target = GameObject.FindWithTag("Target").transform.position;
         canMove = false;
         bulletPool = FindObjectOfType<BulletPool>();
         dist = Random.Range(2f, 3f);
@@ -28,14 +30,17 @@ public class EnemySeeker : SeekerScript, IDamage
 
             if (collider.gameObject.CompareTag("Player"))
             {
-                target = collider.gameObject.GetComponent<Transform>();
+                target = collider.gameObject.GetComponent<Transform>().position;
                 canMove = true;
                 break;
             }
         } 
         timer += Time.deltaTime;
-        float distance = Vector3.Distance(transform.position, target.transform.position);
-
+        if (target!=null)
+        {
+           distance = Vector3.Distance(transform.position, target);
+        }
+  
         if (timer > 0.4 && target != null && distance > dist && canMove)
         {
             Move(target);
@@ -63,11 +68,16 @@ public class EnemySeeker : SeekerScript, IDamage
 
     public void LoseHealth(int damage)
     {
-        // Implement the LoseHealth method logic here
+        enemyStatus.health -= damage;
+        if (enemyStatus.health<=0)
+        {
+            Die();
+        }
     }
 
     public void Die()
     {
         enemies.enemies--;
+        Destroy(this.gameObject);
     }
 }

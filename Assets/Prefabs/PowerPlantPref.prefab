@@ -96,7 +96,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.96, y: 0.96, z: 0.1}
+  m_Size: {x: 0.94, y: 0.96, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4570654174648474911
 GameObject:
@@ -210,6 +210,8 @@ GameObject:
   - component: {fileID: 5547315464064622874}
   - component: {fileID: 521191196803048137}
   - component: {fileID: 5001990430727823934}
+  - component: {fileID: 7842363764804025208}
+  - component: {fileID: -2145563330652187150}
   m_Layer: 7
   m_Name: PowerPlantPref
   m_TagString: PowerPlantIcon
@@ -261,8 +263,34 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.96, y: 2.8, z: 0.15}
+  m_Size: {x: 0.96, y: 2.8, z: 0.2}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &7842363764804025208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5893593981824383762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e83d5bf63e4ca419cd7e4a37f6a9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 50
+  health: 0
+--- !u!114 &-2145563330652187150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5893593981824383762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7faeb531619597049ae6d56228fb4951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7197064137138723465
 GameObject:
   m_ObjectHideFlags: 0

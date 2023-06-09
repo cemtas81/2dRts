@@ -1,55 +1,67 @@
+
 using UnityEngine;
 
 public class PlayerSeeker : SeekerScript, IDamage
 {
-    private BulletPool bulletPool;
+    private MyBulletPool bulletPool;
     public float fireRate;
     private float timer=0, dist;
     public Transform nozzle;
-    private UnitSpawn units; 
+    private UnitSpawn units;
+    private Status status;
+    public bool dead;
     private void Awake()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        target = FindObjectOfType<ItemMover>().transform;
+        status = GetComponent<Status>();
+
+        target = FindObjectOfType<ItemMover>().transform.position;
         dist = Random.Range(0f, 0.5f);
         units=FindObjectOfType<UnitSpawn>();
-        bulletPool = FindObjectOfType<BulletPool>();
+        bulletPool = FindObjectOfType<MyBulletPool>();
     }
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        float distance = Vector3.Distance(transform.position, target.transform.position);
-
-        if (timer > 0.3 && target != null && distance > dist )
+        if (!dead)
         {
-            Move(target);
-            timer = 0;
-        }
+            timer += Time.deltaTime;
+            float distance = Vector3.Distance(transform.position, target);
 
-        if (target != null && distance <= dist)
-        {
-            Stop();
-            Debug.Log("saldýr");
-            LookAtTarget();
-
-            if (timer >= fireRate)
+            if (timer > 0.3 && target != null && distance > dist)
             {
-                bulletPool.FireBullet(nozzle.position, nozzle.rotation);
-                timer = 0f;
+                Move(target);
+                timer = 0;
+            }
+
+            if (target != null && distance <= dist)
+            {
+                Stop();
+                Debug.Log("saldýr");
+                LookAtTarget();
+
+                if (timer >= fireRate)
+                {
+                    bulletPool.FireBullet2(nozzle.position, nozzle.rotation);
+                    timer = 0f;
+                }
             }
         }
-
-     
+   
     }
 
     public void LoseHealth(int damage)
     {
-        // Implement the LoseHealth method logic here
+        status.health -= damage;
+        if (status.health<=0)
+        {
+            Die();
+        }
     }
 
     public void Die()
     {
+        dead = true;
         units.soldiers--;
+        Destroy(this.gameObject);
     }
 }

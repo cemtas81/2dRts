@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletPool : MonoBehaviour
+public class MyBulletPool : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public int poolSize = 10;
@@ -20,7 +20,7 @@ public class BulletPool : MonoBehaviour
         }
     }
 
-    public void FireBullet(Vector3 position, Quaternion rotation)
+    public void FireBullet2(Vector3 position, Quaternion rotation)
     {
        
         bullets[currentBulletIndex].SetActive(true);

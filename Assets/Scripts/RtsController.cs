@@ -1,7 +1,8 @@
-
-
+using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class RtsController : MonoBehaviour
 {
@@ -31,19 +32,51 @@ public class RtsController : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(1) && SelectionManager.Instance.SelectedUnits.Count > 0)
         {
+            List<Vector3> targetPoslist = GetPosListAround(target.position,new float[] {1,2,3f},new int[] {5,10,20});
+                  
+            int targetPosLÝstIndex = 0;
             foreach (SelectableUnit unit in SelectionManager.Instance.SelectedUnits)
             {
-                SeekerScript seekerScript = unit.GetComponent<SeekerScript>();
+                if (unit != null)
+                {                    
 
-                if (seekerScript != null)
-                {
-                    seekerScript.enabled = true;
-                    //target.gameObject.SetActive(true);
+                    if (unit.TryGetComponent<SeekerScript>(out var seekerScript))
+                    {
+                        seekerScript.Move(targetPoslist[targetPosLÝstIndex]);
+                        targetPosLÝstIndex=targetPosLÝstIndex+1%targetPoslist.Count;
+                    }
                 }
+               
             }
         }
     }
+    private List<Vector3> GetPosListAround(Vector3 startPos, float[] ringDistanceArray, int[] ringPosCountArray)
+    {
+        List<Vector3> poslist = new List<Vector3>();
+        poslist.Add(startPos);
+        for (int i = 0; i < ringDistanceArray.Length; i++)
+        {
+            poslist.AddRange(GetPosListAround(startPos, ringDistanceArray[i], ringPosCountArray[i]));
 
+        }
+        return poslist;
+    }
+    private List<Vector3> GetPosListAround(Vector3 startPos,float distance,int positionCount)
+    {
+        List<Vector3> poslist = new List<Vector3>();
+        for (int i = 0; i < positionCount; i++)
+        {
+            float angle = i * (360 / positionCount);
+            Vector3 dir= ApplyRotationToVector(new Vector3(1,0),angle);
+            Vector3 position =startPos + dir*distance;
+            poslist.Add(position);
+        }
+        return poslist;
+    }
+    private Vector3 ApplyRotationToVector(Vector3 vec,float angle)
+    {
+        return Quaternion.Euler(0,0,angle)*vec;
+    }
     private void SelectionInput()
     {
         if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
@@ -65,13 +98,13 @@ public class RtsController : MonoBehaviour
             startPosition=Input.mousePosition;
 
             Ray ray=cam.ScreenPointToRay(startPosition);
-         
-            if (Physics.Raycast(ray, out RaycastHit hit, 150))
+
+            if (Physics.Raycast(ray, out RaycastHit hit, 1000))
             {
-               
+
                 if (hit.collider.gameObject.CompareTag("BarracksIcon"))
                 {
-                   
+
                     hittoB = hit.collider.gameObject.GetComponent<Barracks>();
                     hittoB.OpenUnits();
                     enemyBarracks.SetActive(false);
@@ -81,30 +114,36 @@ public class RtsController : MonoBehaviour
                 {
                     if (hittoB!=null)
                     {
-                        FindObjectOfType<Barracks>().CloseB();
-                    }
+                        hittoB.CloseB();
+                    }                 
                     enemyBarracks.SetActive(false);
                     powerMenu.SetActive(true);
 
-                } 
-                 else if (hit.collider.gameObject.CompareTag("Player")|| hit.collider.gameObject.CompareTag("Enemy") && hittoB != null)
-                {
-                    if (hittoB!=null)
-                    {
-                        FindObjectOfType<Barracks>().CloseB();
-                    }
-                    enemyBarracks.SetActive(false);
-                    powerMenu.SetActive(false);
-
                 }
+
                 else if (hit.collider.gameObject.CompareTag("EnemyBarracks"))
                 {
+                    if (hittoB != null)
+                    {
+                        hittoB.CloseB();
+                    }
                     enemyBarracks.SetActive(true);
                     powerMenu.SetActive(false);
                 }
-           
+
             }
-           
+         
+            else
+            {
+                if (hittoB != null)
+                {
+                    hittoB.CloseB();
+                }
+                enemyBarracks.SetActive(false);
+                powerMenu.SetActive(false);
+            }
+               
+
         }
         else if (Input.GetMouseButton(0) && mouseDownTime + DragDelay < Time.time)
         {
@@ -165,14 +204,20 @@ public class RtsController : MonoBehaviour
         Bounds bounds = new Bounds(SelectionBox.anchoredPosition, SelectionBox.sizeDelta);
         for (int i = 0; i < SelectionManager.Instance.AvailableUnits.Count; i++)
         {
-            if (UnitIsInBox(cam.WorldToScreenPoint(SelectionManager.Instance.AvailableUnits[i].transform.position),bounds))
+            if(SelectionManager.Instance.AvailableUnits[i] != null) 
             {
-                SelectionManager.Instance.Select(SelectionManager.Instance.AvailableUnits[i]);
+                if (UnitIsInBox(cam.WorldToScreenPoint(SelectionManager.Instance.AvailableUnits[i].transform.position), bounds))
+                {
+
+                    SelectionManager.Instance.Select(SelectionManager.Instance.AvailableUnits[i]);
+
+                }
+                else
+                {
+                    SelectionManager.Instance.Deselect(SelectionManager.Instance.AvailableUnits[i]);
+                }
             }
-            else
-            {
-                SelectionManager.Instance.Deselect(SelectionManager.Instance.AvailableUnits[i]);
-            }
+      
         }
     }
     private bool UnitIsInBox(Vector2 pos,Bounds bounds)

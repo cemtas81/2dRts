@@ -28,10 +28,28 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the bullet collides with the player
-        if (collision.CompareTag("Player"))
+        switch (collision.tag)
         {
-            DeactivateBullet();
+            case "Player":
+                PlayerSeeker player=collision.GetComponent<PlayerSeeker>();
+                player.LoseHealth(10);
+                DeactivateBullet();
+                break;
+            case "Player2":
+                PlayerSeeker player2 = collision.GetComponent<PlayerSeeker>();
+                player2.LoseHealth(5);
+                DeactivateBullet();
+                break;
+            case "Player3":
+                PlayerSeeker player3 = collision.GetComponent<PlayerSeeker>();
+                player3.LoseHealth(10);
+                DeactivateBullet();
+                break;
+           
+              
+ 
         }
+       
     }
 
     private void DeactivateBullet()

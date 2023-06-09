@@ -2,10 +2,11 @@
 using UnityEngine;
 using System.Collections;
 using Unity.Mathematics;
+using System.Collections.Generic;
 
 public class SeekerScript : MonoBehaviour
 {
-	public Transform target;
+	public Vector3 target;
 	public float speed = 1;
     //public float rotationSpeed = 1;
     Vector2[] path;
@@ -19,24 +20,25 @@ public class SeekerScript : MonoBehaviour
     public void Start()
     {
   
-        currenttarget = target.position;
-		PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
+        currenttarget = target;
+		PathRequestManager.RequestPath(transform.position,target, OnPathFound);
      
     }
 
-    public void Move(Transform target)
+    public void Move(Vector3 target)
     {
-        //timer = 0;
-
+    
         //  if the target position have change already
-        if ((target.position != currenttarget))
+        if ((target!= currenttarget))
         {
+           
             //Debug.Log ("Path changed to " + target.position);
-            currenttarget = target.position;
-            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+            currenttarget = target;
+            PathRequestManager.RequestPath(transform.position, target, OnPathFound);
        
         }
     }
+
     public void Stop()
     {
         
@@ -98,7 +100,7 @@ public class SeekerScript : MonoBehaviour
     {
         if (target != null)
         {
-            Vector3 direction = target.position - transform.position;
+            Vector3 direction = target - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Euler(0, 0, angle);
