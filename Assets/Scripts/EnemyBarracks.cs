@@ -7,28 +7,22 @@ public class EnemyBarracks :BuildingManager,IDamage
 {
     public Transform m_SpawnTransform;
     [SerializeField] GameObject soldier;
-   
-   
     public float spawn;
     public int enemies;
     public int maxEnemy;
   
     // Start is called before the first frame update
     void Start()
-    {
-       
+    {     
         StartCoroutine(Area());
-
         InvokeRepeating(nameof(EnemySpawn), 1, spawn);
     }
  
     IEnumerator Area()
     {
         yield return new WaitForSeconds(0.1f);
-
         Place();
        
-
     }
     void EnemySpawn()
     {

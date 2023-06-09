@@ -17,6 +17,7 @@ public class RtsController : MonoBehaviour
     private Vector2 startPosition;
     public Transform target;
     private Barracks hittoB;
+    public GameObject powerMenu, enemyBarracks;
     private void Update()
     {
         SelectionInput();
@@ -70,10 +71,11 @@ public class RtsController : MonoBehaviour
                
                 if (hit.collider.gameObject.CompareTag("BarracksIcon"))
                 {
-                    Debug.Log("hitto");
+                   
                     hittoB = hit.collider.gameObject.GetComponent<Barracks>();
                     hittoB.OpenUnits();
-                  
+                    enemyBarracks.SetActive(false);
+                    powerMenu.SetActive(false);
                 }
                 else if (hit.collider.gameObject.CompareTag("PowerPlantIcon"))
                 {
@@ -81,9 +83,9 @@ public class RtsController : MonoBehaviour
                     {
                         FindObjectOfType<Barracks>().CloseB();
                     }
-                    Debug.Log("yoo");
-                    
-                    
+                    enemyBarracks.SetActive(false);
+                    powerMenu.SetActive(true);
+
                 } 
                  else if (hit.collider.gameObject.CompareTag("Player")|| hit.collider.gameObject.CompareTag("Enemy") && hittoB != null)
                 {
@@ -91,8 +93,14 @@ public class RtsController : MonoBehaviour
                     {
                         FindObjectOfType<Barracks>().CloseB();
                     }
-                    Debug.Log("yeee");
-            
+                    enemyBarracks.SetActive(false);
+                    powerMenu.SetActive(false);
+
+                }
+                else if (hit.collider.gameObject.CompareTag("EnemyBarracks"))
+                {
+                    enemyBarracks.SetActive(true);
+                    powerMenu.SetActive(false);
                 }
            
             }

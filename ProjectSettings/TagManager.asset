@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Ground
   - PowerPlantIcon
+  - EnemyBarracks
   layers:
   - Default
   - TransparentFX
