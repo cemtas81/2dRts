@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3998880745659811229
 Transform:
@@ -125,7 +125,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5041664971534352214
 Transform:
@@ -135,7 +135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3414131296550409294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -1, z: 0}
+  m_LocalPosition: {x: 1.23, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -158,7 +158,7 @@ GameObject:
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5547315464064622874
 Transform:
@@ -202,11 +202,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6cce07e5b9c5341b88491ceeabf4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SpawnTransform: {fileID: 5041664971534352214}
-  soldier: {fileID: 1558981321293870158, guid: d4a8c809439a86c4c85b24297f146162, type: 3}
   area:
     m_Position: {x: 5, y: 1, z: 0}
-    m_Size: {x: 4, y: 4, z: 0}
-  spawn: 0
+    m_Size: {x: 4, y: 4, z: 1}
+  coll: {fileID: 0}
+  m_SpawnTransform: {fileID: 5041664971534352214}
+  soldier: {fileID: 1558981321293870158, guid: d4a8c809439a86c4c85b24297f146162, type: 3}
+  spawn: 10
   enemies: 0
-  maxEnemy: 0
+  maxEnemy: 10
