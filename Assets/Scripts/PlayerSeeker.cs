@@ -1,6 +1,6 @@
 
 using UnityEngine;
-
+using System.Collections;
 public class PlayerSeeker : SeekerScript, IDamage
 {
     private MyBulletPool bulletPool;
@@ -15,7 +15,7 @@ public class PlayerSeeker : SeekerScript, IDamage
         status = GetComponent<Status>();
 
         target = FindObjectOfType<ItemMover>().transform.position;
-        dist = Random.Range(0f, 0.5f);
+        dist = Random.Range(1, 2f);
         units=FindObjectOfType<UnitSpawn>();
         bulletPool = FindObjectOfType<MyBulletPool>();
     }
@@ -26,17 +26,18 @@ public class PlayerSeeker : SeekerScript, IDamage
         {
             timer += Time.deltaTime;
             float distance = Vector3.Distance(transform.position, target);
-
+      
             if (timer > 0.3 && target != null && distance > dist)
             {
                 Move(target);
                 timer = 0;
+                         
             }
 
             if (target != null && distance <= dist)
             {
                 Stop();
-                Debug.Log("saldýr");
+
                 LookAtTarget();
 
                 if (timer >= fireRate)
@@ -45,10 +46,11 @@ public class PlayerSeeker : SeekerScript, IDamage
                     timer = 0f;
                 }
             }
-        }
-   
-    }
 
+        }
+        bulletPool.FireBullet2(nozzle.position, nozzle.rotation);
+    }
+    
     public void LoseHealth(int damage)
     {
         status.health -= damage;

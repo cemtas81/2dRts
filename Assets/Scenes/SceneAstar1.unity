@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc51dc032ddfcb4488f02a6619fb872b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8559500821180523088, guid: 83dd50f6a7a6bec45bd84428e9de851c, type: 3}
+  bulletPrefab2: {fileID: 8559500821180523088, guid: 83dd50f6a7a6bec45bd84428e9de851c, type: 3}
   poolSize: 20
 --- !u!1 &283122861
 GameObject:
@@ -788,7 +788,11 @@ MonoBehaviour:
   gridLayout: {fileID: 376084883}
   mainTilemap: {fileID: 421178057}
   tempTilemap: {fileID: 564281277}
+  prevArea:
+    m_Position: {x: 0, y: 0, z: 0}
+    m_Size: {x: 0, y: 0, z: 0}
   buildCanvas: {fileID: 662975489}
+  toClear2: []
 --- !u!1 &380702990
 GameObject:
   m_ObjectHideFlags: 0
@@ -98268,6 +98272,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1862442555, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
+      propertyPath: spawn
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862442555, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
       propertyPath: maxEnemy
       value: 5
       objectReference: {fileID: 0}
@@ -98614,7 +98622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ac2a009c0f40b4aaec6c5c2bf8c579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayGridGizmos: 1
+  displayGridGizmos: 0
   unwalkableMask:
     serializedVersion: 2
     m_Bits: 128

@@ -17,7 +17,7 @@ public class EnemySeeker : SeekerScript, IDamage
         target = GameObject.FindWithTag("Target").transform.position;
         canMove = false;
         bulletPool = FindObjectOfType<BulletPool>();
-        dist = Random.Range(2f, 3f);
+        dist = Random.Range(3f, 4f);
     }
 
     private void Update()
@@ -29,6 +29,30 @@ public class EnemySeeker : SeekerScript, IDamage
             Collider2D collider = colliders[i];
 
             if (collider.gameObject.CompareTag("Player"))
+            {
+                target = collider.gameObject.GetComponent<Transform>().position;
+                canMove = true;
+                break;
+            }
+            else if (collider.gameObject.CompareTag("Player2"))
+            {
+                target = collider.gameObject.GetComponent<Transform>().position;
+                canMove = true;
+                break;
+            } 
+            else if (collider.gameObject.CompareTag("Player3"))
+            {
+                target = collider.gameObject.GetComponent<Transform>().position;
+                canMove = true;
+                break;
+            }
+            else if (collider.gameObject.CompareTag("BarracksIcon"))
+            {
+                target = collider.gameObject.GetComponent<Transform>().position;
+                canMove = true;
+                break;
+            }
+            else if (collider.gameObject.CompareTag("PowerPlantIcon"))
             {
                 target = collider.gameObject.GetComponent<Transform>().position;
                 canMove = true;
@@ -50,7 +74,7 @@ public class EnemySeeker : SeekerScript, IDamage
         if (target != null && distance <= dist)
         {
             Stop();
-            Debug.Log("firee");
+          
             LookAtTarget();
 
             if (timer >= fireRate)

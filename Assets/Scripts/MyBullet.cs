@@ -28,7 +28,8 @@ public class MyBullet : MonoBehaviour
         
         switch (collision.tag)
         {
-            case "Enemy":
+           
+            case "EnemyHit":
                 EnemySeeker enemya=collision.GetComponent<EnemySeeker>();
                 enemya.LoseHealth(10);
                 DeactivateBullet2();

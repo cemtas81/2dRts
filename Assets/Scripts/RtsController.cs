@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using System.Security.Cryptography;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
+
 
 public class RtsController : MonoBehaviour
 {
@@ -96,9 +96,8 @@ public class RtsController : MonoBehaviour
             SelectionBox.sizeDelta = Vector2.zero;
             SelectionBox.gameObject.SetActive(true);
             startPosition=Input.mousePosition;
-
             Ray ray=cam.ScreenPointToRay(startPosition);
-
+         
             if (Physics.Raycast(ray, out RaycastHit hit, 1000))
             {
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MyBulletPool : MonoBehaviour
 {
-    public GameObject bulletPrefab;
+    public GameObject bulletPrefab2;
     public int poolSize = 10;
 
     private GameObject[] bullets;
@@ -15,7 +15,7 @@ public class MyBulletPool : MonoBehaviour
        
         for (int i = 0; i < poolSize; i++)
         {
-            bullets[i] = Instantiate(bulletPrefab, transform);
+            bullets[i] = Instantiate(bulletPrefab2, transform);
             bullets[i].SetActive(false);
         }
     }
@@ -25,8 +25,7 @@ public class MyBulletPool : MonoBehaviour
        
         bullets[currentBulletIndex].SetActive(true);
 
-        bullets[currentBulletIndex].transform.position = position;
-        bullets[currentBulletIndex].transform.rotation = rotation;
+        bullets[currentBulletIndex].transform.SetPositionAndRotation(position, rotation);
 
         currentBulletIndex = (currentBulletIndex + 1) % poolSize;
     }

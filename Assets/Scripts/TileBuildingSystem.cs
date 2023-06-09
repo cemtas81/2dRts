@@ -13,8 +13,9 @@ public class TileBuildingSystem : MonoBehaviour
     private static Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase>();
     private BuildingManager temp;
     private Vector3 prevPos;
-    private BoundsInt prevArea;
+    public BoundsInt prevArea;
     public GameObject buildCanvas;
+    public TileBase[] toClear2;
     public enum TileType
     {
         Empty,
@@ -42,11 +43,19 @@ public class TileBuildingSystem : MonoBehaviour
         FollowBuilding();
         buildCanvas.SetActive( false);
     }
-    private void ClearArea()
+    public void ClearArea()
     {
         TileBase[] toClear = new TileBase[prevArea.size.x * prevArea.size.y * prevArea.size.z];
         FillTiles(toClear, TileType.Empty);
         tempTilemap.SetTilesBlock(prevArea,toClear);
+        
+    }  
+    public void ClearArea2(BoundsInt exArea)
+    {
+        GetTilesBlock(exArea, mainTilemap);
+        toClear2 =new TileBase [exArea.size.x*exArea.size.y*exArea.size.z];
+        FillTiles(toClear2, TileType.Empty);
+       
         
     }
     private void FollowBuilding()

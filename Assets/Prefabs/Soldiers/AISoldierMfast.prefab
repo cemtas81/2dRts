@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 6963763649353023338}
   m_Layer: 3
   m_Name: AISoldierMfast
-  m_TagString: Player
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,12 +261,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648f299d998116041816033837800df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
   speed: 3
   spriteRenderer: {fileID: 0}
   angle: 0
   fireRate: 1.5
   nozzle: {fileID: 5570653158319399086}
+  dead: 0
 --- !u!114 &6963763649353023338
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,11 +42,19 @@ public class Bullet : MonoBehaviour
                 break;
             case "Player3":
                 PlayerSeeker player3 = collision.GetComponent<PlayerSeeker>();
-                player3.LoseHealth(10);
+                player3.LoseHealth(2);
+                DeactivateBullet();
+                break;  
+            case "BarracksIcon":
+                Barracks barracks = collision.GetComponent<Barracks>();
+                barracks.LoseHealth(10);
+                DeactivateBullet();
+                break; 
+            case "PowerPlantIcon":
+                PowerPlant pPlant = collision.GetComponent<PowerPlant>();
+                pPlant.LoseHealth(10);
                 DeactivateBullet();
                 break;
-           
-              
  
         }
        

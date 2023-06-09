@@ -12,6 +12,9 @@ TagManager:
   - Ground
   - PowerPlantIcon
   - EnemyBarracks
+  - Player2
+  - Player3
+  - EnemyHit
   layers:
   - Default
   - TransparentFX
