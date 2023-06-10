@@ -11,13 +11,14 @@ public class PlayerSeeker : SeekerScript, IDamage
     private Status status;
     public bool dead;
     public LayerMask layer;
-    private SelectableUnit unit;
+   
     private AudioSource audios;
     public AudioClip clip;
+    private float range;
     private void Awake()
     {
         status = GetComponent<Status>();
-        unit = GetComponent<SelectableUnit>();
+       
         target = FindObjectOfType<ItemMover>().transform.position;   
         units=FindObjectOfType<UnitSpawn>();
         bulletPool = FindObjectOfType<MyBulletPool>();
@@ -41,17 +42,17 @@ public class PlayerSeeker : SeekerScript, IDamage
                 // Check if the collider has a valid position and is not destroyed
                 if (IsValidTarget(collider))
                 {
-                    target = targetTransform.position;
-                    
+                   
                     foundTarget = true;
+                    range = Vector3.Distance(transform.position, targetTransform.position);
                     break;
                 }
             }
         }
         timer += Time.deltaTime;
-        if (!foundTarget)
+        if (!foundTarget&&range<=5)
         {
-            target = transform.position;
+
             if (timer >= fireRate)
             {
                 bulletPool.FireBullet2(nozzle.position, nozzle.rotation);

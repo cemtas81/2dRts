@@ -14,7 +14,7 @@ public class EnemySeeker :SeekerScript,IDamage
   
     private void Awake()
     {
-      
+        cam = FindObjectOfType<Camera>();
         enemyStatus=GetComponent<Status>();
         target = GameObject.FindWithTag("Target").transform.position;
         canMove = false;
@@ -47,8 +47,7 @@ public class EnemySeeker :SeekerScript,IDamage
                 }
             }
         }
-
-        
+ 
         if (!foundTarget)
         {
             target = transform.position;

@@ -15,7 +15,7 @@ public class SeekerScript : MonoBehaviour
     private Vector3 currenttarget;
     public float angle;
     private Quaternion targetRotation;
-    public bool attackRange;
+    //public bool attackRange;
     public List<EnemySeeker> Enemies;
     public Camera cam;
     
