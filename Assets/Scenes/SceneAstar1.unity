@@ -77299,7 +77299,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-  - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -77377,7 +77377,7 @@ MonoBehaviour:
     m_Bits: 8
   FloorLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 503
   DragDelay: 0.1
   camSpeed: 3
   maxValueX: 15
@@ -77409,7 +77409,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &519420035
+--- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77418,10 +77418,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c296ec53ee338b4f9e2c8d87bfd6ca6, type: 3}
+  m_Script: {fileID: 11500000, guid: cd5fc1a265e7b834fa83d56edbcd4fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 2019248355}
+  target: {x: 0, y: 0, z: 0}
+  target2: {fileID: 2019248355}
+  enemies: []
+  timer: 0
+  timer2: 0
 --- !u!1 &564281274
 GameObject:
   m_ObjectHideFlags: 0
@@ -98292,7 +98296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1862442555, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
       propertyPath: maxEnemy
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1862442555, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
       propertyPath: area.m_Position.x
@@ -98637,7 +98641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ac2a009c0f40b4aaec6c5c2bf8c579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayGridGizmos: 1
+  displayGridGizmos: 0
   unwalkableMask:
     serializedVersion: 2
     m_Bits: 128
@@ -98668,6 +98672,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1862442555, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
+      propertyPath: spawn
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5547315464064622874, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -99326,6 +99334,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1862442555, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
+      propertyPath: spawn
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1862442555, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
       propertyPath: maxEnemy
       value: 5

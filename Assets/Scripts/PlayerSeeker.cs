@@ -19,6 +19,7 @@ public class PlayerSeeker : SeekerScript, IDamage
         target = FindObjectOfType<ItemMover>().transform.position;   
         units=FindObjectOfType<UnitSpawn>();
         bulletPool = FindObjectOfType<MyBulletPool>();
+        
     }
 
     private void Update()
@@ -26,15 +27,15 @@ public class PlayerSeeker : SeekerScript, IDamage
         if (!dead&&unit.selected==true)
         {
 
-            //timer += Time.deltaTime;
-            //float distance = Vector3.Distance(transform.position, target);
+            timer += Time.deltaTime;
+            float distance = Vector3.Distance(transform.position, target);
 
-            //if (timer > 0.3 && target != null )
-            //{
-            //    Move(target);
-            //    timer = 0;
-            //    LookAtTarget();
-            //}
+            if (timer > 0.3 && target != null)
+            {
+                Move(target);
+                timer = 0;
+                LookAtTarget();
+            }
 
         }
 

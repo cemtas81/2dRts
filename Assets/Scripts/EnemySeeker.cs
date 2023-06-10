@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemySeeker : SeekerScript, IDamage
+public class EnemySeeker :SeekerScript,IDamage
 {
     private float timer = 0f,dist,distance;
     private bool canMove;
@@ -11,16 +11,17 @@ public class EnemySeeker : SeekerScript, IDamage
     public float radius;
     public LayerMask layer;
     private Status enemyStatus;
-    private EnemyMover mover;
+    private RtsMover rts;
     private void Awake()
     {
-        mover = FindObjectOfType<EnemyMover>();
+        rts = FindObjectOfType<RtsMover>();
         enemyStatus=GetComponent<Status>();
         target = GameObject.FindWithTag("Target").transform.position;
         canMove = false;
         bulletPool = FindObjectOfType<BulletPool>();
         dist = 4;
-        mover.enemies.Add(this);
+        rts.enemies.Add(this);
+        Enemies.Add(this);
     }
 
     private void Update()
@@ -30,30 +31,33 @@ public class EnemySeeker : SeekerScript, IDamage
         for (int i = 0; i < colliders.Length; i++)
         {
             Collider2D collider = colliders[i];
-            canMove = true;
+           
             switch (collider.tag)
             {
                 case "Player":
                     target = collider.gameObject.GetComponent<Transform>().position;
-                   
+                    canMove = true;
                     break;
                 case "Player2":
                     target = collider.gameObject.GetComponent<Transform>().position;
-              
+                    canMove = true;
                     break;
                 case "Player3":
                     target = collider.gameObject.GetComponent<Transform>().position;
-                   
+                    canMove = true;
                     break;
                 case "BarracksIcon":
                     target = collider.gameObject.GetComponent<Transform>().position;
-                  
+                    canMove = true;
                     break;
                 case "PowerPlantIcon":
                     target = collider.gameObject.GetComponent<Transform>().position;
-                  
+                    canMove = true;
                     break;
-
+                case "Untagged":
+                    target=transform.position;
+                    canMove = false;
+                    break;
             }
         }
         timer += Time.deltaTime;
@@ -62,18 +66,16 @@ public class EnemySeeker : SeekerScript, IDamage
             distance = Vector3.Distance(transform.position, target);
         }
 
-        //if (timer > 0.4 && target != null && distance > dist && canMove)
-        //{
-        //    Move(target);
-        //    timer = 0;
-        //}
-
-        if (target != null && distance <= dist)
+        if (timer > 0.4 && target != null && distance > dist && canMove)
         {
-            //LookAtTarget();
-            //Stop();
-           
-            
+            Move(target);
+            timer = 0;
+        }
+
+        if (target != null && distance <= dist&&canMove)
+        {
+            LookAtTarget();
+            Stop();
 
             if (timer >= fireRate)
             {
@@ -82,10 +84,12 @@ public class EnemySeeker : SeekerScript, IDamage
             }
         }
 
-        //if (!canMove)
-        //{
-        //    Stop();
-        //}
+        if (!canMove)
+        {
+            Stop();
+        }
+       
+            
     }
 
     public void LoseHealth(int damage)
@@ -99,7 +103,8 @@ public class EnemySeeker : SeekerScript, IDamage
 
     public void Die()
     {
-        mover.enemies.Remove(this);
+        Enemies.Remove(this);
+        rts.enemies.Remove(this);
         enemiesB.enemies--;
         Destroy(this.gameObject);
       

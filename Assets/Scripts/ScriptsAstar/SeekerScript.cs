@@ -17,9 +17,10 @@ public class SeekerScript : MonoBehaviour
     private Quaternion targetRotation;
     public bool attackRange;
     public List<EnemySeeker> Enemies;
+    public Camera cam;
     public void Start()
     {
-  
+        cam = FindObjectOfType<Camera>();
         currenttarget = target;
 		PathRequestManager.RequestPath(transform.position,target, OnPathFound);
      
@@ -107,5 +108,24 @@ public class SeekerScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
+    public void OnDrawGizmos()
+    {
+        if (path != null)
+        {
+            for (int i = targetIndex; i < path.Length; i++)
+            {
+                Gizmos.color = Color.black;
+                Gizmos.DrawCube(path[i], Vector3.one);
 
+                if (i == targetIndex)
+                {
+                    Gizmos.DrawLine(transform.position, path[i]);
+                }
+                else
+                {
+                    Gizmos.DrawLine(path[i - 1], path[i]);
+                }
+            }
+        }
+    }
 }

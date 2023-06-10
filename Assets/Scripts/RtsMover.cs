@@ -5,7 +5,10 @@ using UnityEngine;
 public class RtsMover : MonoBehaviour
 {
     private Camera cam;
-    public Transform target;
+    public Vector3 target;
+    public Transform target2;
+    public List<EnemySeeker> enemies;
+    public float timer,timer2;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,42 +17,45 @@ public class RtsMover : MonoBehaviour
     void Update()
     {
         HandleMovement();
+       
     }
     private void HandleMovement()
     {
+      
         if (Input.GetMouseButtonUp(1) && SelectionManager.Instance.SelectedUnits.Count > 0)
         {
-            List<Vector3> targetPoslist = GetPosListAround(target.position, new float[] { 1, 2, 4f }, new int[] { 5, 10, 20 });
-
-            int targetPosLÝstIndex = 0;
+            List<Vector3> targetPoslist2 = GetPosListAround(target2.position, new float[] { 1, 2, 4f }, new int[] { 5, 10, 20 });
+           
+            int targetPosLÝstIndex2 = 0;
             foreach (SelectableUnit unit in SelectionManager.Instance.SelectedUnits)
             {
-                if (unit != null)
+                if (unit != null&&target2!=null)
                 {
 
-                    if (unit.TryGetComponent<SeekerScript>(out var seekerScript))
+                    if (unit.TryGetComponent<SeekerScript>(out var seekerScript2))
                     {
-                        seekerScript.Move(targetPoslist[targetPosLÝstIndex]);
-                        targetPosLÝstIndex = targetPosLÝstIndex + 1 % targetPoslist.Count;
-                        seekerScript.LookAtTarget();
+                        seekerScript2.Move(targetPoslist2[targetPosLÝstIndex2]);
+                        targetPosLÝstIndex2 = targetPosLÝstIndex2 + 1 % targetPoslist2.Count;
+                        seekerScript2.LookAtTarget();
+                    }
+                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+                    if (Physics.Raycast(ray, out RaycastHit hit, 100))
+                    {
+                        if (hit.collider.gameObject.CompareTag("EnemyBarracks"))
+                        {
+                            Debug.Log("enemybarracks");
+                            
+                        }
+                        if (hit.collider.gameObject.CompareTag("Enemy"))
+                        {
+                            Debug.Log("enemy");
+                        }
                     }
                 }
-
+               
             }
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 100))
-            {
-                if (hit.collider.CompareTag("Enemy"))
-                {
-                    Debug.Log("dsadfsaf");
-                }
-                if (hit.collider.CompareTag("EnemyBarracks"))
-                {
-                    Debug.Log("dsadfsaf");
-                }
-
-            }
         }
     }
     private List<Vector3> GetPosListAround(Vector3 startPos, float[] ringDistanceArray, int[] ringPosCountArray)
@@ -79,6 +85,4 @@ public class RtsMover : MonoBehaviour
     {
         return Quaternion.Euler(0, 0, angle) * vec;
     }
-  
-  
 }

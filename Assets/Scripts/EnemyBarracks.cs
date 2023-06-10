@@ -45,6 +45,6 @@ public class EnemyBarracks :BuildingManager,IDamage
     }
     public void Die()
     {
-        Destroy(this.gameObject);
+        Demolition();
     }
 }
