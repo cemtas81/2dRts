@@ -10,8 +10,7 @@ public class BuildingManager : MonoBehaviour
     public BoxCollider coll;
  
     private void OnEnable()
-    {
-        
+    {       
         grid = FindObjectOfType<MyGrid>();
         coll=GetComponent<BoxCollider>(); 
     }
@@ -39,23 +38,17 @@ public class BuildingManager : MonoBehaviour
     }
     public void Demolition()
     {
-
-        GetComponent<Collider>().enabled = false;
-        grid.CreateGrid();
-        StartCoroutine(Demo());
-      
-        
-        TileBuildingSystem.current.ClearArea2(area);
     
+        TileBuildingSystem.current.ClearArea2(area);
+        coll.enabled = false;
+        StartCoroutine(Demo());
     }
     IEnumerator Demo()
     {
-       
-        
-       
-       
-        yield return new WaitForSeconds(50.2f);
+        yield return new WaitForSeconds(.2f);
+        grid.CreateGrid();
         Destroy(this.gameObject);
+      
     }
 }
 

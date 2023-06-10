@@ -15,7 +15,7 @@ public class TileBuildingSystem : MonoBehaviour
     private Vector3 prevPos;
     public BoundsInt prevArea;
     public GameObject buildCanvas;
-    public TileBase[] toClear2;
+   
     public enum TileType
     {
         Empty,
@@ -43,7 +43,7 @@ public class TileBuildingSystem : MonoBehaviour
         FollowBuilding();
         buildCanvas.SetActive( false);
     }
-    public void ClearArea()
+    private void ClearArea()
     {
         TileBase[] toClear = new TileBase[prevArea.size.x * prevArea.size.y * prevArea.size.z];
         FillTiles(toClear, TileType.Empty);
@@ -52,11 +52,11 @@ public class TileBuildingSystem : MonoBehaviour
     }  
     public void ClearArea2(BoundsInt exArea)
     {
-        GetTilesBlock(exArea, mainTilemap);
-        toClear2 =new TileBase [exArea.size.x*exArea.size.y*exArea.size.z];
-        FillTiles(toClear2, TileType.Empty);
-       
-        
+
+        TileBase[] toClear2 =new TileBase [exArea.size.x*exArea.size.y*exArea.size.z];
+        FillTiles(toClear2, TileType.White);
+        mainTilemap.SetTilesBlock(exArea, toClear2);
+
     }
     private void FollowBuilding()
     {
@@ -112,7 +112,6 @@ public class TileBuildingSystem : MonoBehaviour
 
         return true;
     }
-
     public void TakeArea(BoundsInt area)
     {
         SetTilesBlock(area,TileType.Empty,tempTilemap);
@@ -157,8 +156,7 @@ public class TileBuildingSystem : MonoBehaviour
             Destroy(temp.gameObject);
             buildCanvas.SetActive(true);
         }
-    }
-    
+    }   
     private static void FillTiles(TileBase[] arr, TileType type)
     {
         for (int i = 0; i < arr.Length; i++)

@@ -4,52 +4,42 @@ using System.Collections;
 public class PlayerSeeker : SeekerScript, IDamage
 {
     private MyBulletPool bulletPool;
-    public float fireRate;
-    private float timer=0, dist;
+    public float fireRate,radius;
+    private float timer=0 ;
     public Transform nozzle;
     private UnitSpawn units;
     private Status status;
     public bool dead;
+    public LayerMask layer;
+    private SelectableUnit unit;
     private void Awake()
     {
         status = GetComponent<Status>();
-
-        target = FindObjectOfType<ItemMover>().transform.position;
-        dist = Random.Range(1, 2f);
+        unit = GetComponent<SelectableUnit>();
+        target = FindObjectOfType<ItemMover>().transform.position;   
         units=FindObjectOfType<UnitSpawn>();
         bulletPool = FindObjectOfType<MyBulletPool>();
     }
 
     private void Update()
     {
-        if (!dead)
+        if (!dead&&unit.selected==true)
         {
-            timer += Time.deltaTime;
-            float distance = Vector3.Distance(transform.position, target);
-      
-            if (timer > 0.3 && target != null && distance > dist)
-            {
-                Move(target);
-                timer = 0;
-                         
-            }
 
-            if (target != null && distance <= dist)
-            {
-                Stop();
+            //timer += Time.deltaTime;
+            //float distance = Vector3.Distance(transform.position, target);
 
-                LookAtTarget();
-
-                if (timer >= fireRate)
-                {
-                    bulletPool.FireBullet2(nozzle.position, nozzle.rotation);
-                    timer = 0f;
-                }
-            }
+            //if (timer > 0.3 && target != null )
+            //{
+            //    Move(target);
+            //    timer = 0;
+            //    LookAtTarget();
+            //}
 
         }
-        bulletPool.FireBullet2(nozzle.position, nozzle.rotation);
+
     }
+        
     
     public void LoseHealth(int damage)
     {

@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         // Check if the bullet collides with the player
         switch (collision.tag)
@@ -46,7 +46,7 @@ public class Bullet : MonoBehaviour
                 DeactivateBullet();
                 break;  
             case "BarracksIcon":
-                Barracks barracks = collision.GetComponent<Barracks>();
+                Barracks barracks = collision.GetComponentInChildren<Barracks>();
                 barracks.LoseHealth(10);
                 DeactivateBullet();
                 break; 
@@ -55,9 +55,9 @@ public class Bullet : MonoBehaviour
                 pPlant.LoseHealth(10);
                 DeactivateBullet();
                 break;
- 
+           
         }
-       
+      
     }
 
     private void DeactivateBullet()

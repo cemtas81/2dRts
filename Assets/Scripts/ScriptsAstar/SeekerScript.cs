@@ -13,10 +13,10 @@ public class SeekerScript : MonoBehaviour
 	int targetIndex;
     //public float timer;
     private Vector3 currenttarget;
-    public SpriteRenderer spriteRenderer;
     public float angle;
     private Quaternion targetRotation;
-    
+    public bool attackRange;
+    public List<EnemySeeker> Enemies;
     public void Start()
     {
   
@@ -85,6 +85,7 @@ public class SeekerScript : MonoBehaviour
             {
                 // If a collision is detected, adjust the movement direction to avoid the obstacle
                 movementDirection = Vector3.Reflect(movementDirection, hit.normal);
+          
             }
 
             // Move towards the next waypoint using the adjusted movement direction

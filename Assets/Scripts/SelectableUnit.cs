@@ -5,8 +5,7 @@ public class SelectableUnit : MonoBehaviour
 {
     [SerializeField]
     private SpriteRenderer selectionSprite;
-  
-   
+    public bool selected;
     public BoundsInt area;
    
     private PlayerSeeker seeker;
@@ -18,14 +17,14 @@ public class SelectableUnit : MonoBehaviour
     }
     public void OnSelected()
     {
-    
+        selected = true;
         selectionSprite.gameObject.SetActive(true);
      
     }
     public void OnDeselected()
     {
         selectionSprite.gameObject.SetActive(false);
-     
+        selected = false;
         seeker.enabled = false;
     }
    

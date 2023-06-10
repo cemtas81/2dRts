@@ -6,14 +6,10 @@ public class PowerPlant : MonoBehaviour,IDamage
     
     private Status pStatus;
     private BuildingManager pPlant;
-    private Collider2D pCollider;
-    SpriteRenderer sprite;
     // Start is called before the first frame update
     void Start()
     {
-        pPlant=GetComponentInParent<BuildingManager>();
-        sprite = GetComponent<SpriteRenderer>();    
-        pCollider=GetComponent<Collider2D>();
+        pPlant=GetComponentInParent<BuildingManager>(); 
         pStatus=GetComponent<Status>();
    
     }
@@ -31,8 +27,8 @@ public class PowerPlant : MonoBehaviour,IDamage
    
     public void Die()
     {
-        sprite.enabled = false;
-        pCollider.enabled = false;
+        GetComponent<Collider>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
         pPlant.Demolition();
 
     }

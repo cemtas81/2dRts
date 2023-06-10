@@ -13,70 +13,27 @@ public class RtsController : MonoBehaviour
     [SerializeField]
     private LayerMask UnitLayers, FloorLayers;
     [SerializeField]
-    private float DragDelay = 0.1f,camSpeed=1,maxValueX,maxValueY,minValueX,minValueY;
-    private float mouseDownTime;
+    private float DragDelay = 0.1f,camSpeed=1,maxValueX,maxValueY,minValueX,minValueY,mouseDownTime;
+    public float radius;
     private Vector2 startPosition;
     public Transform target;
     private Barracks hittoB;
     public GameObject powerMenu, enemyBarracks;
+    MyGrid grid;
+    private void Awake()
+    {
+        grid = FindObjectOfType<MyGrid>();
+    }
     private void Update()
     {
         SelectionInput();
-        HandleMovement();
+     
     }
     private void LateUpdate()
     {
         MoveCam();
     }
-    private void HandleMovement()
-    {
-        if (Input.GetMouseButtonUp(1) && SelectionManager.Instance.SelectedUnits.Count > 0)
-        {
-            List<Vector3> targetPoslist = GetPosListAround(target.position,new float[] {1,2,3f},new int[] {5,10,20});
-                  
-            int targetPosLÝstIndex = 0;
-            foreach (SelectableUnit unit in SelectionManager.Instance.SelectedUnits)
-            {
-                if (unit != null)
-                {                    
 
-                    if (unit.TryGetComponent<SeekerScript>(out var seekerScript))
-                    {
-                        seekerScript.Move(targetPoslist[targetPosLÝstIndex]);
-                        targetPosLÝstIndex=targetPosLÝstIndex+1%targetPoslist.Count;
-                    }
-                }
-               
-            }
-        }
-    }
-    private List<Vector3> GetPosListAround(Vector3 startPos, float[] ringDistanceArray, int[] ringPosCountArray)
-    {
-        List<Vector3> poslist = new List<Vector3>();
-        poslist.Add(startPos);
-        for (int i = 0; i < ringDistanceArray.Length; i++)
-        {
-            poslist.AddRange(GetPosListAround(startPos, ringDistanceArray[i], ringPosCountArray[i]));
-
-        }
-        return poslist;
-    }
-    private List<Vector3> GetPosListAround(Vector3 startPos,float distance,int positionCount)
-    {
-        List<Vector3> poslist = new List<Vector3>();
-        for (int i = 0; i < positionCount; i++)
-        {
-            float angle = i * (360 / positionCount);
-            Vector3 dir= ApplyRotationToVector(new Vector3(1,0),angle);
-            Vector3 position =startPos + dir*distance;
-            poslist.Add(position);
-        }
-        return poslist;
-    }
-    private Vector3 ApplyRotationToVector(Vector3 vec,float angle)
-    {
-        return Quaternion.Euler(0,0,angle)*vec;
-    }
     private void SelectionInput()
     {
         if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
@@ -98,13 +55,13 @@ public class RtsController : MonoBehaviour
             startPosition=Input.mousePosition;
             Ray ray=cam.ScreenPointToRay(startPosition);
          
-            if (Physics.Raycast(ray, out RaycastHit hit, 1000))
+            if (Physics.Raycast(ray, out RaycastHit hit, 100))
             {
 
                 if (hit.collider.gameObject.CompareTag("BarracksIcon"))
                 {
 
-                    hittoB = hit.collider.gameObject.GetComponent<Barracks>();
+                    hittoB = hit.collider.gameObject.GetComponentInChildren<Barracks>();
                     hittoB.OpenUnits();
                     enemyBarracks.SetActive(false);
                     powerMenu.SetActive(false);

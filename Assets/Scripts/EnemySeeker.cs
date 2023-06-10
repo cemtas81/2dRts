@@ -7,75 +7,73 @@ public class EnemySeeker : SeekerScript, IDamage
     private BulletPool bulletPool;
     public Transform nozzle;
     public float fireRate;
-    private EnemyBarracks enemies;
+    private EnemyBarracks enemiesB;
     public float radius;
     public LayerMask layer;
     private Status enemyStatus;
+    private EnemyMover mover;
     private void Awake()
     {
+        mover = FindObjectOfType<EnemyMover>();
         enemyStatus=GetComponent<Status>();
         target = GameObject.FindWithTag("Target").transform.position;
         canMove = false;
         bulletPool = FindObjectOfType<BulletPool>();
-        dist = Random.Range(3f, 4f);
+        dist = 4;
+        mover.enemies.Add(this);
     }
 
     private void Update()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius,layer);
-
+ 
         for (int i = 0; i < colliders.Length; i++)
         {
             Collider2D collider = colliders[i];
+            canMove = true;
+            switch (collider.tag)
+            {
+                case "Player":
+                    target = collider.gameObject.GetComponent<Transform>().position;
+                   
+                    break;
+                case "Player2":
+                    target = collider.gameObject.GetComponent<Transform>().position;
+              
+                    break;
+                case "Player3":
+                    target = collider.gameObject.GetComponent<Transform>().position;
+                   
+                    break;
+                case "BarracksIcon":
+                    target = collider.gameObject.GetComponent<Transform>().position;
+                  
+                    break;
+                case "PowerPlantIcon":
+                    target = collider.gameObject.GetComponent<Transform>().position;
+                  
+                    break;
 
-            if (collider.gameObject.CompareTag("Player"))
-            {
-                target = collider.gameObject.GetComponent<Transform>().position;
-                canMove = true;
-                break;
             }
-            else if (collider.gameObject.CompareTag("Player2"))
-            {
-                target = collider.gameObject.GetComponent<Transform>().position;
-                canMove = true;
-                break;
-            } 
-            else if (collider.gameObject.CompareTag("Player3"))
-            {
-                target = collider.gameObject.GetComponent<Transform>().position;
-                canMove = true;
-                break;
-            }
-            else if (collider.gameObject.CompareTag("BarracksIcon"))
-            {
-                target = collider.gameObject.GetComponent<Transform>().position;
-                canMove = true;
-                break;
-            }
-            else if (collider.gameObject.CompareTag("PowerPlantIcon"))
-            {
-                target = collider.gameObject.GetComponent<Transform>().position;
-                canMove = true;
-                break;
-            }
-        } 
+        }
         timer += Time.deltaTime;
-        if (target!=null)
+        if (target != null)
         {
-           distance = Vector3.Distance(transform.position, target);
+            distance = Vector3.Distance(transform.position, target);
         }
-  
-        if (timer > 0.4 && target != null && distance > dist && canMove)
-        {
-            Move(target);
-            timer = 0;
-        }
+
+        //if (timer > 0.4 && target != null && distance > dist && canMove)
+        //{
+        //    Move(target);
+        //    timer = 0;
+        //}
 
         if (target != null && distance <= dist)
         {
-            Stop();
-          
-            LookAtTarget();
+            //LookAtTarget();
+            //Stop();
+           
+            
 
             if (timer >= fireRate)
             {
@@ -84,10 +82,10 @@ public class EnemySeeker : SeekerScript, IDamage
             }
         }
 
-        if (!canMove)
-        {
-            Stop();
-        }
+        //if (!canMove)
+        //{
+        //    Stop();
+        //}
     }
 
     public void LoseHealth(int damage)
@@ -101,7 +99,9 @@ public class EnemySeeker : SeekerScript, IDamage
 
     public void Die()
     {
-        enemies.enemies--;
+        mover.enemies.Remove(this);
+        enemiesB.enemies--;
         Destroy(this.gameObject);
+      
     }
 }
