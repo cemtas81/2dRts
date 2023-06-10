@@ -1,6 +1,6 @@
 
 using UnityEngine;
-using System.Collections;
+
 public class PlayerSeeker : SeekerScript, IDamage
 {
     private MyBulletPool bulletPool;
@@ -12,6 +12,8 @@ public class PlayerSeeker : SeekerScript, IDamage
     public bool dead;
     public LayerMask layer;
     private SelectableUnit unit;
+    private AudioSource audios;
+    public AudioClip clip;
     private void Awake()
     {
         status = GetComponent<Status>();
@@ -19,29 +21,65 @@ public class PlayerSeeker : SeekerScript, IDamage
         target = FindObjectOfType<ItemMover>().transform.position;   
         units=FindObjectOfType<UnitSpawn>();
         bulletPool = FindObjectOfType<MyBulletPool>();
-        
+        audios = FindObjectOfType<AudioSource>();
+        cam = FindObjectOfType<Camera>();
     }
 
     private void Update()
     {
-        if (!dead&&unit.selected==true)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, layer);
+
+        bool foundTarget = false; // Flag to track if a valid target is found
+
+        for (int i = 0; i < colliders.Length; i++)
         {
+            Collider2D collider = colliders[i];
+            Transform targetTransform = collider.gameObject.GetComponent<Transform>();
 
-            timer += Time.deltaTime;
-            float distance = Vector3.Distance(transform.position, target);
-
-            if (timer > 0.3 && target != null)
+            if (targetTransform != null)
             {
-                Move(target);
-                timer = 0;
-                LookAtTarget();
+                // Check if the collider has a valid position and is not destroyed
+                if (IsValidTarget(collider))
+                {
+                    target = targetTransform.position;
+                    
+                    foundTarget = true;
+                    break;
+                }
             }
-
+        }
+        timer += Time.deltaTime;
+        if (!foundTarget)
+        {
+            target = transform.position;
+            if (timer >= fireRate)
+            {
+                bulletPool.FireBullet2(nozzle.position, nozzle.rotation);
+                timer = 0f;
+            }
         }
 
     }
-        
-    
+    private bool IsValidTarget(Collider2D collider)
+    {
+
+        switch (collider.tag)
+        {
+            case "EnemyHit":
+            case "EnemyBarracks":
+         
+                Transform targetTransform = collider.gameObject.GetComponent<Transform>();
+
+                if (targetTransform != null && targetTransform.gameObject.activeInHierarchy && targetTransform.position != transform.position)
+                {
+                    return true;
+                }
+                break;
+        }
+
+        return false;
+    }
+
     public void LoseHealth(int damage)
     {
         status.health -= damage;
@@ -53,6 +91,7 @@ public class PlayerSeeker : SeekerScript, IDamage
 
     public void Die()
     {
+        audios.PlayOneShot(clip,Random.Range(.3f,1));
         dead = true;
         units.soldiers--;
         Destroy(this.gameObject);

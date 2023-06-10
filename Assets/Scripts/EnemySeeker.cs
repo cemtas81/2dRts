@@ -11,59 +11,54 @@ public class EnemySeeker :SeekerScript,IDamage
     public float radius;
     public LayerMask layer;
     private Status enemyStatus;
-    private RtsMover rts;
+  
     private void Awake()
     {
-        rts = FindObjectOfType<RtsMover>();
+      
         enemyStatus=GetComponent<Status>();
         target = GameObject.FindWithTag("Target").transform.position;
         canMove = false;
         bulletPool = FindObjectOfType<BulletPool>();
         dist = 4;
-        rts.enemies.Add(this);
+    
         Enemies.Add(this);
     }
 
     private void Update()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius,layer);
- 
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, layer);
+
+        bool foundTarget = false; // Flag to track if a valid target is found
+
         for (int i = 0; i < colliders.Length; i++)
         {
             Collider2D collider = colliders[i];
-           
-            switch (collider.tag)
+            Transform targetTransform = collider.gameObject.GetComponent<Transform>();
+
+            if (targetTransform != null)
             {
-                case "Player":
-                    target = collider.gameObject.GetComponent<Transform>().position;
+                // Check if the collider has a valid position and is not destroyed
+                if (IsValidTarget(collider))
+                {
+                    target = targetTransform.position;
                     canMove = true;
-                    break;
-                case "Player2":
-                    target = collider.gameObject.GetComponent<Transform>().position;
-                    canMove = true;
-                    break;
-                case "Player3":
-                    target = collider.gameObject.GetComponent<Transform>().position;
-                    canMove = true;
-                    break;
-                case "BarracksIcon":
-                    target = collider.gameObject.GetComponent<Transform>().position;
-                    canMove = true;
-                    break;
-                case "PowerPlantIcon":
-                    target = collider.gameObject.GetComponent<Transform>().position;
-                    canMove = true;
-                    break;
-                case "Untagged":
-                    target=transform.position;
-                    canMove = false;
-                    break;
+                    foundTarget = true; 
+                    break; 
+                }
             }
+        }
+
+        
+        if (!foundTarget)
+        {
+            target = transform.position;
+            canMove = false;
         }
         timer += Time.deltaTime;
         if (target != null)
         {
             distance = Vector3.Distance(transform.position, target);
+            LookAtTarget();
         }
 
         if (timer > 0.4 && target != null && distance > dist && canMove)
@@ -74,7 +69,7 @@ public class EnemySeeker :SeekerScript,IDamage
 
         if (target != null && distance <= dist&&canMove)
         {
-            LookAtTarget();
+            
             Stop();
 
             if (timer >= fireRate)
@@ -89,7 +84,27 @@ public class EnemySeeker :SeekerScript,IDamage
             Stop();
         }
        
-            
+    }
+    private bool IsValidTarget(Collider2D collider)
+    {
+       
+        switch (collider.tag)
+        {
+            case "Player":
+            case "Player2":
+            case "Player3":
+            case "BarracksIcon":
+            case "PowerPlantIcon":
+                Transform targetTransform = collider.gameObject.GetComponent<Transform>();
+
+                if (targetTransform != null && targetTransform.gameObject.activeInHierarchy && targetTransform.position != transform.position)
+                {
+                    return true; 
+                }
+                break;
+        }
+
+        return false; 
     }
 
     public void LoseHealth(int damage)
@@ -104,7 +119,7 @@ public class EnemySeeker :SeekerScript,IDamage
     public void Die()
     {
         Enemies.Remove(this);
-        rts.enemies.Remove(this);
+     
         enemiesB.enemies--;
         Destroy(this.gameObject);
       

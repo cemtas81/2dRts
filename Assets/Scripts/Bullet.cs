@@ -27,38 +27,51 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        // Check if the bullet collides with the player
         switch (collision.tag)
         {
             case "Player":
-                PlayerSeeker player=collision.GetComponent<PlayerSeeker>();
-                player.LoseHealth(10);
+                PlayerSeeker player = collision.GetComponent<PlayerSeeker>();
+                if (player != null)
+                {
+                    player.LoseHealth(10);
+                }
                 DeactivateBullet();
                 break;
             case "Player2":
                 PlayerSeeker player2 = collision.GetComponent<PlayerSeeker>();
-                player2.LoseHealth(5);
+                if (player2 != null)
+                {
+                    player2.LoseHealth(5);
+                }
                 DeactivateBullet();
                 break;
             case "Player3":
                 PlayerSeeker player3 = collision.GetComponent<PlayerSeeker>();
-                player3.LoseHealth(2);
-                DeactivateBullet();
-                break;  
-            case "BarracksIcon":
-                Barracks barracks = collision.GetComponentInChildren<Barracks>();
-                barracks.LoseHealth(10);
-                DeactivateBullet();
-                break; 
-            case "PowerPlantIcon":
-                PowerPlant pPlant = collision.GetComponent<PowerPlant>();
-                pPlant.LoseHealth(10);
+                if (player3 != null)
+                {
+                    player3.LoseHealth(2);
+                }
                 DeactivateBullet();
                 break;
-           
+            case "BarracksIcon":
+                Barracks barracks = collision.GetComponentInChildren<Barracks>();
+                if (barracks != null)
+                {
+                    barracks.LoseHealth(10);
+                }
+                DeactivateBullet();
+                break;
+            case "PowerPlantIcon":
+                PowerPlant pPlant = collision.GetComponent<PowerPlant>();
+                if (pPlant != null)
+                {
+                    pPlant.LoseHealth(10);
+                }
+                DeactivateBullet();
+                break;
         }
-      
     }
+
 
     private void DeactivateBullet()
     {

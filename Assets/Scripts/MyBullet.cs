@@ -25,23 +25,26 @@ public class MyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
         switch (collision.tag)
         {
-           
-            case "EnemyHit":
-                EnemySeeker enemya=collision.GetComponent<EnemySeeker>();
-                enemya.LoseHealth(10);
-                DeactivateBullet2();
-                break; 
-            case "EnemyBarracks":
-                EnemyBarracks enemyb=collision.GetComponent<EnemyBarracks>();
-                enemyb.LoseHealth(10);
+            case "Enemy":
+                EnemySeeker enemy = collision.GetComponent<EnemySeeker>();
+                if (enemy != null)
+                {
+                    enemy.LoseHealth(10);
+                }
                 DeactivateBullet2();
                 break;
-         
+            case "EnemyBarracks":
+                EnemyBarracks eBarracks = collision.GetComponent<EnemyBarracks>();
+                if (eBarracks != null)
+                {
+                    eBarracks.LoseHealth(5);
+                }
+                DeactivateBullet2();
+                break;
+            
         }
-       
     }
 
     private void DeactivateBullet2()

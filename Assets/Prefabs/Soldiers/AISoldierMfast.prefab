@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionSprite: {fileID: 3746193548246448736}
+  selected: 0
   area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 1, y: 1, z: 1}
@@ -239,13 +240,17 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   speed: 3
   angle: 0
+  attackRange: 0
+  Enemies: []
+  cam: {fileID: 0}
   fireRate: 1.5
-  radius: 10
+  radius: 5
   nozzle: {fileID: 5570653158319399086}
   dead: 0
   layer:
     serializedVersion: 2
     m_Bits: 136
+  clip: {fileID: 8300000, guid: 75b8320020f3a4ec488bd70393a7e09d, type: 3}
 --- !u!114 &6963763649353023338
 MonoBehaviour:
   m_ObjectHideFlags: 0

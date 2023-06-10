@@ -205,7 +205,11 @@ MonoBehaviour:
   area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 4, y: 4, z: 1}
+  areaTemp:
+    m_Position: {x: 0, y: 0, z: 0}
+    m_Size: {x: 0, y: 0, z: 0}
   coll: {fileID: 0}
+  detection: {fileID: 4814976511827413074}
   m_SpawnTransform: {fileID: 5041664971534352214}
   soldier: {fileID: 1558981321293870158, guid: d4a8c809439a86c4c85b24297f146162, type: 3}
   spawn: 10

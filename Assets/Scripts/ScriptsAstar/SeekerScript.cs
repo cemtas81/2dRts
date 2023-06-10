@@ -18,12 +18,13 @@ public class SeekerScript : MonoBehaviour
     public bool attackRange;
     public List<EnemySeeker> Enemies;
     public Camera cam;
+    
     public void Start()
     {
         cam = FindObjectOfType<Camera>();
         currenttarget = target;
 		PathRequestManager.RequestPath(transform.position,target, OnPathFound);
-     
+      
     }
 
     public void Move(Vector3 target)

@@ -39,7 +39,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457255302720467266}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -271,6 +271,8 @@ MonoBehaviour:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 0, y: 0, z: 0}
   coll: {fileID: 6418505318734872259}
+  detection: {fileID: 884351112502341018}
+  clip: {fileID: 8300000, guid: 11064bc3536a64653b85457d156975ce, type: 3}
 --- !u!65 &6418505318734872259
 BoxCollider:
   m_ObjectHideFlags: 0

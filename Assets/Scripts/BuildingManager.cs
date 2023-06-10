@@ -8,11 +8,19 @@ public class BuildingManager : MonoBehaviour
     public BoundsInt area,areaTemp;
     private MyGrid grid;
     public BoxCollider coll;
- 
-    private void OnEnable()
-    {       
+    public BoxCollider2D detection;
+    private AudioSource sound;
+    public AudioClip clip;
+    //private void OnEnable()
+    //{       
+    //    grid = FindObjectOfType<MyGrid>();
+    //    coll=GetComponent<BoxCollider>(); 
+    //}
+    private void Awake()
+    {
         grid = FindObjectOfType<MyGrid>();
-        coll=GetComponent<BoxCollider>(); 
+        coll = GetComponent<BoxCollider>();
+        sound = FindObjectOfType<AudioSource>();
     }
     public bool CanBePlaced()
     {
@@ -31,14 +39,16 @@ public class BuildingManager : MonoBehaviour
         areaTemp = area;
         areaTemp.position = positionInt;
         Placed = true;
+        detection.enabled = true;
         TileBuildingSystem.current.TakeArea(areaTemp);
         grid.CreateGrid();
         Debug.Log("Placed");
         coll.enabled = true;
+        
     }
     public void Demolition()
     {
-    
+        sound.PlayOneShot(clip);
         TileBuildingSystem.current.ClearArea2(area);
         coll.enabled = false;
         StartCoroutine(Demo());
