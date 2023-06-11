@@ -83,22 +83,19 @@ public class MyGrid : MonoBehaviour
 		return neighbours;
 	}
 
- 
+
 	public Node NodeFromWorldPoint(Vector2 worldPosition)
-    {
-        //Debug.Log("WorldPosition.x: " + worldPosition.x);
-        //Debug.Log("\nGrid world size.x / 2: " + gridWorldSize.x / 2);
+	{
+		float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
+		float percentY = (worldPosition.y + gridWorldSize.y / 2) / gridWorldSize.y;
 
-        float percentX = (worldPosition.x + gridWorldSize.x/2) / gridWorldSize.x;
-		float percentY = (worldPosition.y + gridWorldSize.y/2) / gridWorldSize.y;
-        
+		int x = Mathf.Clamp(Mathf.RoundToInt((gridSizeX - 1) * percentX), 0, gridSizeX - 1);
+		int y = Mathf.Clamp(Mathf.RoundToInt((gridSizeY - 1) * percentY), 0, gridSizeY - 1);
 
-        int x = Mathf.RoundToInt((gridSizeX-1) * percentX);
-		int y = Mathf.RoundToInt((gridSizeY-1) * percentY);
-
-        return grid[x,y];
+		return grid[x, y];
 	}
-    public Vector3 GetWorldPositionFromNode(Node node)
+
+	public Vector3 GetWorldPositionFromNode(Node node)
     {
         return new Vector3(node.gridX * nodeDiameter + nodeRadius, node.gridY * nodeDiameter + nodeRadius, 0f) + transform.position;
     }

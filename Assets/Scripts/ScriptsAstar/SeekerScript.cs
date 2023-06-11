@@ -55,6 +55,11 @@ public class SeekerScript : MonoBehaviour
 			StopCoroutine("FollowPath");
 			StartCoroutine("FollowPath");
 		}
+        else
+        {
+            Stop();
+         
+        }
 	}
 
     IEnumerator FollowPath()

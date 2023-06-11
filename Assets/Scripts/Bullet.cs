@@ -12,13 +12,11 @@ public class Bullet : MonoBehaviour
     }
     private void Update()
     {
-        // Move the bullet forward
+        
         transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-        // Increment the timer
         timer += Time.deltaTime;
 
-        // Deactivate the bullet if it collides with the player or reaches its lifetime
         if (timer >= lifeTime)
         {
             DeactivateBullet();
@@ -75,7 +73,7 @@ public class Bullet : MonoBehaviour
 
     private void DeactivateBullet()
     {
-        // Reset the timer and deactivate the bullet
+   
         timer = 0f;
         gameObject.SetActive(false);
     }

@@ -9,7 +9,7 @@ public class PlayerSeeker : SeekerScript, IDamage
     public Transform nozzle;
     private UnitSpawn units;
     private Status status;
-    public bool dead;
+    private bool dead;
     public LayerMask layer;
    
     private AudioSource audios;

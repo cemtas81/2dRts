@@ -14,7 +14,7 @@ public class RtsController : MonoBehaviour
     private LayerMask UnitLayers, FloorLayers;
     [SerializeField]
     private float DragDelay = 0.1f,camSpeed=1,maxValueX,maxValueY,minValueX,minValueY,mouseDownTime;
-    public float radius;
+    //public float radius;
     private Vector2 startPosition;
     public Transform target;
     private Barracks hittoB;
@@ -113,7 +113,7 @@ public class RtsController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition),out RaycastHit hit,UnitLayers)
                 &&hit.collider.TryGetComponent<SelectableUnit>(out SelectableUnit unit))
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.RightAlt))
                 {
                     if (SelectionManager.Instance.IsSelected(unit))
                     {

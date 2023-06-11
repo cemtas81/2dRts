@@ -5,13 +5,12 @@ using UnityEngine;
 public class RtsMover : MonoBehaviour
 {
     private Camera cam;
-    public Vector3 target;
+  
     public Transform target2;
-    public List<EnemySeeker> enemies;
-    public float timer,timer2;
-    // Start is called before the first frame update
+   
     void Start()
     {
+       
         cam = GetComponent<Camera>();
     }
     void Update()
