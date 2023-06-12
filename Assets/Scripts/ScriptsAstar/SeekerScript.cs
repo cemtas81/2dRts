@@ -48,19 +48,26 @@ public class SeekerScript : MonoBehaviour
     }
     public void OnPathFound(Vector2[] newPath, bool pathSuccessful)
     {
-		if (pathSuccessful)
+        if (pathSuccessful)
         {
-			path = newPath;
-			targetIndex = 0;
-			StopCoroutine("FollowPath");
-			StartCoroutine("FollowPath");
-		}
+            if (target != null) // Check if the target object is still valid
+            {
+                path = newPath;
+                targetIndex = 0;
+                StopCoroutine("FollowPath");
+                StartCoroutine("FollowPath");
+            }
+            else
+            {
+     
+                Stop(); 
+            }
+        }
         else
         {
             Stop();
-         
         }
-	}
+    }
 
     IEnumerator FollowPath()
     {

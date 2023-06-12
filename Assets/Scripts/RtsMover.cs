@@ -43,14 +43,19 @@ public class RtsMover : MonoBehaviour
                     {
                         if (hit.collider.gameObject.CompareTag("EnemyBarracks"))
                         {
-                            Debug.Log("enemybarracks");
+                            unit.GetComponent<PlayerSeeker>().foundTarget = true;
                             
                         }
                         if (hit.collider.gameObject.CompareTag("Enemy"))
                         {
-                            Debug.Log("enemy");
+                            unit.GetComponent<PlayerSeeker>().foundTarget = true;
                         }
                     }
+                    else
+                    {
+                        unit.GetComponent<PlayerSeeker>().foundTarget = false;
+                    }
+                        
                 }
                
             }

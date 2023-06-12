@@ -11,7 +11,7 @@ public class PlayerSeeker : SeekerScript, IDamage
     private Status status;
     private bool dead;
     public LayerMask layer;
-   
+    public bool foundTarget;
     private AudioSource audios;
     public AudioClip clip;
     private float range;
@@ -28,27 +28,27 @@ public class PlayerSeeker : SeekerScript, IDamage
 
     private void Update()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, layer);
+        //Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, layer);
 
-        bool foundTarget = false; // Flag to track if a valid target is found
+        //bool foundTarget = false; // Flag to track if a valid target is found
 
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            Collider2D collider = colliders[i];
-            Transform targetTransform = collider.gameObject.GetComponent<Transform>();
+        //for (int i = 0; i < colliders.Length; i++)
+        //{
+        //    Collider2D collider = colliders[i];
+        //    Transform targetTransform = collider.gameObject.GetComponent<Transform>();
 
-            if (targetTransform != null)
-            {
-                // Check if the collider has a valid position and is not destroyed
-                if (IsValidTarget(collider))
-                {
+        //    if (targetTransform != null)
+        //    {
+        //        // Check if the collider has a valid position and is not destroyed
+        //        if (IsValidTarget(collider))
+        //        {
                    
-                    foundTarget = true;
-                    range = Vector3.Distance(transform.position, targetTransform.position);
-                    break;
-                }
-            }
-        }
+        //            foundTarget = true;
+        //            range = Vector3.Distance(transform.position, targetTransform.position);
+        //            break;
+        //        }
+        //    }
+        //}
         timer += Time.deltaTime;
         if (!foundTarget&&range<=5)
         {
