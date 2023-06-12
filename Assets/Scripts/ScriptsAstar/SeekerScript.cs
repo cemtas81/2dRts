@@ -65,7 +65,13 @@ public class SeekerScript : MonoBehaviour
     IEnumerator FollowPath()
     {
         targetIndex = 0;
+        if (path == null || path.Length == 0)
+        {
+            yield break; // Exit the coroutine if the path is empty
+        }
+
         Vector3 currentWaypoint = path[0];
+
 
         while (true)
         {
