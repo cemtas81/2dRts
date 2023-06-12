@@ -11,11 +11,7 @@ public class BuildingManager : MonoBehaviour
     public BoxCollider2D detection;
     private AudioSource sound;
     public AudioClip clip;
-    //private void OnEnable()
-    //{       
-    //    grid = FindObjectOfType<MyGrid>();
-    //    coll=GetComponent<BoxCollider>(); 
-    //}
+   
     private void Awake()
     {
         grid = FindObjectOfType<MyGrid>();

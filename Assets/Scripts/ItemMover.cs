@@ -19,7 +19,7 @@ public class ItemMover : MonoBehaviour
     }
     void Move()
     {
-        transform.position = targetPosition;
+        transform.localPosition = targetPosition;
     }
     
 }
