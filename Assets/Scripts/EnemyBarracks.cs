@@ -39,12 +39,15 @@ public class EnemyBarracks :BuildingManager,IDamage
         enemyBStatus.health-=damage;
         if (enemyBStatus.health<=0)
         {
+            enemyBStatus.GetComponent<Collider>().enabled = false;
             Die();
         }
 
     }
     public void Die()
     {
+        GetComponentInChildren<Collider>().enabled = false;
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
         Demolition();
     }
 }

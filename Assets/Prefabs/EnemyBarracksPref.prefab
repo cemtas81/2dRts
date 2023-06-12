@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4814976511827413074}
   m_Layer: 7
   m_Name: Sprite
-  m_TagString: Enemy
+  m_TagString: EnemyBarracks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 5547315464064622874}
   - component: {fileID: 1862442556}
   - component: {fileID: 1862442555}
+  - component: {fileID: 488961376}
   m_Layer: 7
   m_Name: EnemyBarracksPref
   m_TagString: EnemyBarracks
@@ -210,8 +211,23 @@ MonoBehaviour:
     m_Size: {x: 0, y: 0, z: 0}
   coll: {fileID: 0}
   detection: {fileID: 4814976511827413074}
+  clip: {fileID: 8300000, guid: 11064bc3536a64653b85457d156975ce, type: 3}
   m_SpawnTransform: {fileID: 5041664971534352214}
   soldier: {fileID: 1558981321293870158, guid: d4a8c809439a86c4c85b24297f146162, type: 3}
   spawn: 10
   enemies: 0
-  maxEnemy: 5
+  maxEnemy: 0
+--- !u!114 &488961376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5893593981824383762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e83d5bf63e4ca419cd7e4a37f6a9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 100
+  health: 0

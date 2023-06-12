@@ -8,12 +8,12 @@ public class SelectableUnit : MonoBehaviour
     public bool selected;
     public BoundsInt area;
    
-    private PlayerSeeker seeker;
+    private SeekerScript seeker;
     private void Awake()
     {
         SelectionManager.Instance.AvailableUnits.Add(this); 
       
-        seeker = GetComponent<PlayerSeeker>();
+        seeker = GetComponent<SeekerScript>();
     }
     public void OnSelected()
     {

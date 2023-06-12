@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class PlayerSeeker : SeekerScript, IDamage
+public class PlayerSeeker : MonoBehaviour, IDamage
 {
     private MyBulletPool bulletPool;
     public float fireRate,radius;
@@ -19,11 +19,11 @@ public class PlayerSeeker : SeekerScript, IDamage
     {
         status = GetComponent<Status>();
        
-        target = FindObjectOfType<ItemMover>().transform.position;   
+        //target = FindObjectOfType<ItemMover>().transform.position;   
         units=FindObjectOfType<UnitSpawn>();
         bulletPool = FindObjectOfType<MyBulletPool>();
         audios = FindObjectOfType<AudioSource>();
-        cam = FindObjectOfType<Camera>();
+        //cam = FindObjectOfType<Camera>();
     }
 
     private void Update()
@@ -32,7 +32,7 @@ public class PlayerSeeker : SeekerScript, IDamage
         timer += Time.deltaTime;
         if (foundTarget)
         {
-            LookAtTarget();
+            //LookAtTarget();
             if (timer >= fireRate)
             {
                 bulletPool.FireBullet2(nozzle.position, nozzle.rotation);

@@ -15,7 +15,7 @@ PlayerSettings:
   companyName: DefaultCompany
   productName: 2dAstarRtsStrategy
   defaultCursor: {fileID: 2800000, guid: d96ed13ce771bb24f844cfe09fbf819f, type: 3}
-  cursorHotspot: {x: 0, y: 0}
+  cursorHotspot: {x: 32, y: 32}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1

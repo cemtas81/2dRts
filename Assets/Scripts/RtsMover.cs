@@ -41,14 +41,16 @@ public class RtsMover : MonoBehaviour
 
                     if (Physics.Raycast(ray, out RaycastHit hit, 100))
                     {
+                        
                         if (hit.collider.gameObject.CompareTag("EnemyBarracks"))
                         {
                             unit.GetComponent<PlayerSeeker>().foundTarget = true;
-                            
+                            Debug.Log("enemyBarracks");
                         }
-                        if (hit.collider.gameObject.CompareTag("Enemy"))
+                        if (hit.collider.gameObject.CompareTag("Enemy")|| hit.collider.gameObject.CompareTag("EnemyHit"))
                         {
                             unit.GetComponent<PlayerSeeker>().foundTarget = true;
+                            Debug.Log("enemy");
                         }
                     }
                     else

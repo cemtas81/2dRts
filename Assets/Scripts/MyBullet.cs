@@ -28,7 +28,7 @@ public class MyBullet : MonoBehaviour
         switch (collision.tag)
         {
             case "Enemy":
-                EnemySeeker enemy = collision.GetComponent<EnemySeeker>();
+                EnemySeeker enemy = collision.GetComponentInParent<EnemySeeker>();
                 if (enemy != null)
                 {
                     enemy.LoseHealth(10);
@@ -36,10 +36,11 @@ public class MyBullet : MonoBehaviour
                 DeactivateBullet2();
                 break;
             case "EnemyBarracks":
-                EnemyBarracks eBarracks = collision.GetComponent<EnemyBarracks>();
+                EnemyBarracks eBarracks = collision.GetComponentInParent<EnemyBarracks>();
                 if (eBarracks != null)
                 {
-                    eBarracks.LoseHealth(5);
+              
+                    eBarracks.LoseHealth(10);
                 }
                 DeactivateBullet2();
                 break;
