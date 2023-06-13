@@ -15,13 +15,11 @@ public class PlayerSeeker : SeekerScript, IDamage
     private AudioSource audios;
     public AudioClip clip;
     private float range;
-  
-    //private Vector3 target;
-    //private SeekerScript seeker;
+
     private void Awake()
     {
         status = GetComponent<Status>();
-        //seeker = GetComponent<SeekerScript>();    
+      
         units=FindObjectOfType<UnitSpawn>();
         bulletPool = FindObjectOfType<MultiObjectPool>();
         audios = FindObjectOfType<AudioSource>();

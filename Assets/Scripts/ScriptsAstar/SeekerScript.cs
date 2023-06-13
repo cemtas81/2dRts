@@ -55,6 +55,9 @@ public class SeekerScript : MonoBehaviour
     }
     public void OnPathFound(Vector2[] newPath, bool pathSuccessful)
     {
+        if (!gameObject.activeInHierarchy)
+            return; // Exit if the game object is inactive
+
         if (target == null)
         {
             Stop();

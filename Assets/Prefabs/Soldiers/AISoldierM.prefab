@@ -250,7 +250,6 @@ MonoBehaviour:
     m_Bits: 136
   locked: 0
   clip: {fileID: 8300000, guid: 75b8320020f3a4ec488bd70393a7e09d, type: 3}
-  canMove: 0
 --- !u!114 &-6665389822058284447
 MonoBehaviour:
   m_ObjectHideFlags: 0
