@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using Unity.Mathematics;
-using System.Collections.Generic;
+
 
 public class SeekerScript : MonoBehaviour
 {
@@ -22,7 +22,7 @@ public class SeekerScript : MonoBehaviour
         cam = FindObjectOfType<Camera>();
         currenttarget = target;
 		PathRequestManager.RequestPath(transform.position,target, OnPathFound);
-      
+        
     }
 
     public void Move(Vector3 target)

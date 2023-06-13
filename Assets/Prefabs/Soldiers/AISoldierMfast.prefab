@@ -181,7 +181,6 @@ GameObject:
   - component: {fileID: 2464365316855414546}
   - component: {fileID: 6963763649353023338}
   - component: {fileID: 4066478202075226710}
-  - component: {fileID: 4455224110819248332}
   m_Layer: 3
   m_Name: AISoldierMfast
   m_TagString: Player2
@@ -233,11 +232,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3218574123713683905}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 648f299d998116041816033837800df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {x: 0, y: 0, z: 0}
+  speed: 1
+  angle: 0
+  cam: {fileID: 0}
   fireRate: 1
   radius: 8
   dist: 5
@@ -274,22 +277,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4455224110819248332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3218574123713683905}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88aca1e933ab3034a81d1f63b46db2c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {x: 0, y: 0, z: 0}
-  speed: 1.5
-  angle: 0
-  cam: {fileID: 0}
 --- !u!1 &5480912152116281315
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections;
 
 using UnityEngine;
 
@@ -19,6 +20,9 @@ public class SelectableUnit : MonoBehaviour
     {
         selected = true;
         selectionSprite.gameObject.SetActive(true);
+        //Just a workaround 
+        seeker.enabled = true;
+        seeker.enabled = false;
         seeker.enabled = true;
     }
     public void OnDeselected()
@@ -27,6 +31,6 @@ public class SelectableUnit : MonoBehaviour
         selected = false;
         seeker.enabled = false;
     }
-   
+ 
 } 
 

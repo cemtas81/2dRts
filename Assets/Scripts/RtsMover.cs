@@ -9,6 +9,7 @@ public class RtsMover : MonoBehaviour
     public List<GameObject> enemyBase;
     public Transform target2;
     public GameObject victory;
+    public bool canMove;
     void Start()
     {
        
@@ -57,20 +58,20 @@ public class RtsMover : MonoBehaviour
 
                     if (Physics.Raycast(ray, out RaycastHit hit, 100))
                     {
-                        
+                        canMove = true;
                         if (hit.collider.gameObject.CompareTag("EnemyBarracks"))
                         {
                             unit.GetComponent<PlayerSeeker>().locked = true;
                             Debug.Log("enemyBarracks");
                             //unit.GetComponent<PlayerSeeker>().dist = 8;
                             //target2.position = new Vector3(hit.collider.transform.position.x - 3,hit.collider.transform.position.y, 0);
-                            unit.GetComponent<PlayerSeeker>().canMove = true;
+                            
                         }
                         if (hit.collider.gameObject.CompareTag("Enemy")|| hit.collider.gameObject.CompareTag("EnemyHit"))
                         {
                             unit.GetComponent<PlayerSeeker>().locked = true;
                             Debug.Log("enemy");
-                            unit.GetComponent<PlayerSeeker>().canMove = true;
+                         
 
                         }
                     }
@@ -78,7 +79,7 @@ public class RtsMover : MonoBehaviour
                     {
                         unit.GetComponent<PlayerSeeker>().locked = false;
                         target2 = FindObjectOfType<ItemMover>().transform;
-                        unit.GetComponent<PlayerSeeker>().canMove = true;
+                      
                     }
 
                 }
