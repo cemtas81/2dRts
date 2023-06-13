@@ -181,7 +181,7 @@ BoxCollider:
   m_GameObject: {fileID: 1141643030464170378}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.961, y: 0.961, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
@@ -270,7 +270,7 @@ MonoBehaviour:
   areaTemp:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 0, y: 0, z: 0}
-  coll: {fileID: 3765434249736502295}
+  coll: {fileID: 6418505318734872259}
   detection: {fileID: 884351112502341018}
   clip: {fileID: 8300000, guid: 11064bc3536a64653b85457d156975ce, type: 3}
 --- !u!65 &6418505318734872259
@@ -282,7 +282,7 @@ BoxCollider:
   m_GameObject: {fileID: 5893593981824383762}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3.7446225, y: 3.7193868, z: 0.15}
   m_Center: {x: 1.519895, y: 1.4437982, z: 0}

@@ -15,7 +15,7 @@ public class BuildingManager : MonoBehaviour
     private void Awake()
     {
         grid = FindObjectOfType<MyGrid>();
-        coll = GetComponent<BoxCollider>();
+        //coll = GetComponent<BoxCollider>();
         sound = FindObjectOfType<AudioSource>();
     }
     public bool CanBePlaced()
@@ -45,7 +45,7 @@ public class BuildingManager : MonoBehaviour
     public void Demolition()
     {
         sound.PlayOneShot(clip);
-        TileBuildingSystem.current.ClearArea2(area);
+        TileBuildingSystem.current.ClearArea2(areaTemp);
         coll.enabled = false;
         StartCoroutine(Demo());
     }

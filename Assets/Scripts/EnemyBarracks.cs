@@ -39,7 +39,7 @@ public class EnemyBarracks :BuildingManager,IDamage
         enemyBStatus.health-=damage;
         if (enemyBStatus.health<=0)
         {
-            enemyBStatus.GetComponent<Collider>().enabled = false;
+            GetComponent<Collider>().enabled = false;
             Die();
         }
 
