@@ -12,14 +12,14 @@ public class SeekerScript : MonoBehaviour
     Vector2[] path;
 	int targetIndex;
 
-    private Vector3 currenttarget;
+    public Vector3 currenttarget;
     public float angle;
 
-    public Camera cam;
+  
     
     public void Start()
     {
-        cam = FindObjectOfType<Camera>();
+     
         currenttarget = target;
 		PathRequestManager.RequestPath(transform.position,target, OnPathFound);
         

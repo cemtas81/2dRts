@@ -77416,6 +77416,7 @@ MonoBehaviour:
   enemyBase: []
   target2: {fileID: 2019248355}
   victory: {fileID: 1048847653}
+  canMove: 0
 --- !u!1 &564281274
 GameObject:
   m_ObjectHideFlags: 0
@@ -100221,10 +100222,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 664065156}
     m_Modifications:
-    - target: {fileID: 817742891, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -37.50006
-      objectReference: {fileID: 0}
     - target: {fileID: 311706511030852665, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -100313,14 +100310,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildingMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 311706512229871715, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -37.50006
-      objectReference: {fileID: 0}
-    - target: {fileID: 8787618397703126316, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
 --- !u!224 &1124746000043572874 stripped
@@ -100328,15 +100317,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 311706511030852665, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
   m_PrefabInstance: {fileID: 849071383509525171}
   m_PrefabAsset: {fileID: 0}
---- !u!225 &1124746000043572875
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662975489}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0

@@ -30,10 +30,10 @@ public class TileBuildingSystem : MonoBehaviour
     private void Start()
     {
         string tilePath = @"Tiles\";
-        tileBases.Add(TileType.Empty, Resources.Load<TileBase>( path:tilePath + "Empty"));
-        tileBases.Add(TileType.White, Resources.Load<TileBase>( path:tilePath + "White"));  
-        tileBases.Add(TileType.Red, Resources.Load<TileBase>( path:tilePath + "Red"));
-        tileBases.Add(TileType.Green, Resources.Load<TileBase>(path:tilePath + "Green"));
+        tileBases.Add(TileType.Empty, Resources.Load<TileBase>(path: tilePath + "Empty"));
+        tileBases.Add(TileType.White, Resources.Load<TileBase>(path: tilePath + "White"));
+        tileBases.Add(TileType.Red, Resources.Load<TileBase>(path: tilePath + "Red"));
+        tileBases.Add(TileType.Green, Resources.Load<TileBase>(path: tilePath + "Green"));
     }
     public void InitializeWithBuilding(GameObject building)
     {
