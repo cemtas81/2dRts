@@ -44,10 +44,10 @@ public class SeekerScript : MonoBehaviour
      
         StopCoroutine("FollowPath");
     }
- 
-    private void OnDestroy()
+
+    private void OnDisable()
     {
-        StopCoroutines();
+        Stop();
     }
     public void StopCoroutines()
     {

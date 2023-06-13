@@ -1,9 +1,9 @@
 
 using UnityEngine;
 
-public class PlayerSeeker : MonoBehaviour, IDamage
+public class PlayerSeeker : SeekerScript, IDamage
 {
-    private MyBulletPool bulletPool;
+    private MultiObjectPool bulletPool;
     public float fireRate,radius,dist;
     private float timer=0 ;
     public Transform nozzle;
@@ -11,27 +11,30 @@ public class PlayerSeeker : MonoBehaviour, IDamage
     private Status status;
     //private bool dead;
     public LayerMask layer;
-    public bool foundTarget;
+    public bool locked;
     private AudioSource audios;
     public AudioClip clip;
     private float range;
-    private Vector3 target;
-    private SeekerScript seeker;
+    public bool canMove;
+    //private Vector3 target;
+    //private SeekerScript seeker;
     private void Awake()
     {
         status = GetComponent<Status>();
-        seeker = GetComponent<SeekerScript>();
-        //target = FindObjectOfType<ItemMover>().transform.position;   
+        //seeker = GetComponent<SeekerScript>();
+      
         units=FindObjectOfType<UnitSpawn>();
-        bulletPool = FindObjectOfType<MyBulletPool>();
+        bulletPool = FindObjectOfType<MultiObjectPool>();
         audios = FindObjectOfType<AudioSource>();
-        //cam = FindObjectOfType<Camera>();
+        canMove = false;
+     
     }
+   
 
     private void Update()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, layer);
-        bool foundTarget = false;
+        bool foundTarget2 = false;
         bool currentTargetValid = false;
 
         for (int i = 0; i < colliders.Length; i++)
@@ -49,51 +52,49 @@ public class PlayerSeeker : MonoBehaviour, IDamage
                 {
                     target = targetTransform.position;
                     currentTargetValid = true;
-              
                 }
 
-                foundTarget = true;
+                foundTarget2 = true;
                 break;
             }
         }
 
-        if (!foundTarget)
+        if (!foundTarget2)
         {
             target = transform.position;
-       
+            locked = false;
             currentTargetValid = false;
         }
-
+        if (target == null)
+        {
+            locked = false;
+            return; // Exit the Update method if the target is no longer valid
+        }
         timer += Time.deltaTime;
         if (target != null && currentTargetValid)
         {
-            if (target != null)
-            {
-                Vector3 direction = target - transform.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                Quaternion q= Quaternion.AngleAxis(angle, Vector3.forward);
-                transform.rotation=Quaternion.RotateTowards(transform.rotation,q,45);
-            }
+
+            Vector3 direction = target - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 45);
+
             range = Vector3.Distance(transform.position, target);
 
-            if (range> dist && timer > 0.3f)
+            if (range > dist && timer > 0.3f)
             {
-              
                 timer = 0f;
             }
 
-            if (range <= dist && timer >= fireRate)
+            if (range <= dist && timer >= fireRate && locked)
             {
-                seeker.Stop();
-                bulletPool.FireBullet2(nozzle.position, nozzle.rotation);
+                Stop();
+                bulletPool.SpawnFromPool("MyBullet", nozzle.position, nozzle.rotation);
                 timer = 0f;
             }
         }
-        //else
-        //{
-        //    //seeker.Stop();
-        //}
     }
+
     private bool IsValidTarget(Collider2D collider, Transform targetTransform)
     {
         string tag = collider.tag;
@@ -114,8 +115,8 @@ public class PlayerSeeker : MonoBehaviour, IDamage
         audios.PlayOneShot(clip,Random.Range(.3f,1));
         //dead = true;
         units.soldiers--;
-        seeker.StopCoroutines();
-        Destroy(this.gameObject);
+        StopCoroutines();
+        this.gameObject.SetActive(false);
     
     }
 }

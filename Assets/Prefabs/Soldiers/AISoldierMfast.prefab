@@ -239,13 +239,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 1
-  radius: 10
-  dist: 6
+  radius: 8
+  dist: 5
   nozzle: {fileID: 5570653158319399086}
   layer:
     serializedVersion: 2
     m_Bits: 136
-  foundTarget: 0
+  locked: 0
   clip: {fileID: 8300000, guid: 75b8320020f3a4ec488bd70393a7e09d, type: 3}
 --- !u!114 &6963763649353023338
 MonoBehaviour:

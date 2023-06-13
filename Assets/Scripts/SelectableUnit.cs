@@ -8,18 +8,18 @@ public class SelectableUnit : MonoBehaviour
     public bool selected;
     public BoundsInt area;
    
-    private SeekerScript seeker;
+    private PlayerSeeker seeker;
     private void Awake()
     {
         SelectionManager.Instance.AvailableUnits.Add(this); 
       
-        seeker = GetComponent<SeekerScript>();
+        seeker = GetComponent<PlayerSeeker>();
     }
     public void OnSelected()
     {
         selected = true;
         selectionSprite.gameObject.SetActive(true);
-     
+        seeker.enabled = true;
     }
     public void OnDeselected()
     {

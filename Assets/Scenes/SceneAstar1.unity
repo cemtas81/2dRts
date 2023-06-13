@@ -598,29 +598,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 175799288}
-  - component: {fileID: 175799287}
-  - component: {fileID: 175799289}
+  - component: {fileID: 175799290}
   m_Layer: 0
-  m_Name: Bulletpool
+  m_Name: Objectpool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &175799287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 175799286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac69dc5907432ee429e7759cb12cb500, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8559500821180523088, guid: e089c83cb1821de48ae1a9ecc5d7e13a, type: 3}
-  poolSize: 20
 --- !u!4 &175799288
 Transform:
   m_ObjectHideFlags: 0
@@ -636,7 +621,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &175799289
+--- !u!114 &175799290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -645,11 +630,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 175799286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc51dc032ddfcb4488f02a6619fb872b, type: 3}
+  m_Script: {fileID: 11500000, guid: 661f90285e2b3e844883256bdc03090a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab2: {fileID: 8559500821180523088, guid: 83dd50f6a7a6bec45bd84428e9de851c, type: 3}
-  poolSize: 20
+  objectPrefabs:
+  - {fileID: 8559500821180523088, guid: e089c83cb1821de48ae1a9ecc5d7e13a, type: 3}
+  - {fileID: 8559500821180523088, guid: 83dd50f6a7a6bec45bd84428e9de851c, type: 3}
+  - {fileID: 1558981321293870158, guid: d4a8c809439a86c4c85b24297f146162, type: 3}
+  - {fileID: 3218574123713683905, guid: 5cce03729f6126649b1e8a28aa9a6995, type: 3}
+  - {fileID: 3218574123713683905, guid: b529b22066679804a960bd2bb114b004, type: 3}
+  - {fileID: 3218574123713683905, guid: 1d4a7527ba78505499c99e8eed828ea2, type: 3}
+  initialPoolSize: 10
 --- !u!1 &283122861
 GameObject:
   m_ObjectHideFlags: 0
@@ -100146,6 +100137,7 @@ MonoBehaviour:
   - {fileID: 3218574123713683905, guid: 1d4a7527ba78505499c99e8eed828ea2, type: 3}
   maxSoldiers: 20
   soldiers: 0
+  pool: {fileID: 175799290}
 --- !u!1 &2117733222
 GameObject:
   m_ObjectHideFlags: 0
@@ -100229,6 +100221,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 664065156}
     m_Modifications:
+    - target: {fileID: 817742891, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -37.50006
+      objectReference: {fileID: 0}
     - target: {fileID: 311706511030852665, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -100316,6 +100312,10 @@ PrefabInstance:
     - target: {fileID: 311706511030852666, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
       propertyPath: m_Name
       value: BuildingMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 311706512229871715, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -37.50006
       objectReference: {fileID: 0}
     - target: {fileID: 8787618397703126316, guid: 5027f4ceaa2554c49ad17f7a60d39652, type: 3}
       propertyPath: m_Color.a

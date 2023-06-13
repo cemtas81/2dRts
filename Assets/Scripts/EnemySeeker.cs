@@ -5,7 +5,7 @@ public class EnemySeeker : SeekerScript, IDamage
     private float timer = 0f;
     public float dist = 4f;
     private bool canMove;
-    private BulletPool bulletPool;
+    private MultiObjectPool bulletPool;
     public Transform nozzle;
     public float fireRate;
     public float radius;
@@ -15,7 +15,7 @@ public class EnemySeeker : SeekerScript, IDamage
     private void Awake()
     {
         enemyStatus = GetComponent<Status>();
-        bulletPool = FindObjectOfType<BulletPool>();
+        bulletPool = FindObjectOfType<MultiObjectPool>();
         canMove = false;
   
     }
@@ -71,7 +71,7 @@ public class EnemySeeker : SeekerScript, IDamage
             if (canMove && distance <= dist && timer >= fireRate)
             {
                 Stop();
-                bulletPool.FireBullet(nozzle.position, nozzle.rotation);
+                bulletPool.SpawnFromPool("Bullet",nozzle.position, nozzle.rotation);
                 timer = 0f;
             }
         }
@@ -102,7 +102,7 @@ public class EnemySeeker : SeekerScript, IDamage
     {
 
         StopAllCoroutines();
-        Destroy(gameObject);
+        this.gameObject.SetActive(false);
     
     }
 }

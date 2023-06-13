@@ -13,6 +13,7 @@ public class EnemyBarracks :BuildingManager,IDamage
     private Status enemyBStatus;
     private RtsMover rts;
     private bool canProduce;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +35,7 @@ public class EnemyBarracks :BuildingManager,IDamage
     {
         if (enemies<maxEnemy&&canProduce)
         {
-            Instantiate(soldier, m_SpawnTransform.position, Quaternion.identity);
+            MultiObjectPool.Instance.SpawnFromPool("AIEnemy", m_SpawnTransform.position, Quaternion.identity);
             enemies++;
         }
        

@@ -60,24 +60,25 @@ public class RtsMover : MonoBehaviour
                         
                         if (hit.collider.gameObject.CompareTag("EnemyBarracks"))
                         {
-                            unit.GetComponent<PlayerSeeker>().foundTarget = true;
+                            unit.GetComponent<PlayerSeeker>().locked = true;
                             Debug.Log("enemyBarracks");
-
-                            target2.position = new Vector3(hit.collider.transform.position.x - 3,hit.collider.transform.position.y, 0);
-
+                            //unit.GetComponent<PlayerSeeker>().dist = 8;
+                            //target2.position = new Vector3(hit.collider.transform.position.x - 3,hit.collider.transform.position.y, 0);
+                            unit.GetComponent<PlayerSeeker>().canMove = true;
                         }
                         if (hit.collider.gameObject.CompareTag("Enemy")|| hit.collider.gameObject.CompareTag("EnemyHit"))
                         {
-                            unit.GetComponent<PlayerSeeker>().foundTarget = true;
+                            unit.GetComponent<PlayerSeeker>().locked = true;
                             Debug.Log("enemy");
-                            //target2.position = new Vector3(hit.collider.transform.position.x - 1, hit.collider.transform.position.y+1, 0);
-                           
+                            unit.GetComponent<PlayerSeeker>().canMove = true;
+
                         }
                     }
                     else
                     {
-                        unit.GetComponent<PlayerSeeker>().foundTarget = false;
+                        unit.GetComponent<PlayerSeeker>().locked = false;
                         target2 = FindObjectOfType<ItemMover>().transform;
+                        unit.GetComponent<PlayerSeeker>().canMove = true;
                     }
 
                 }
