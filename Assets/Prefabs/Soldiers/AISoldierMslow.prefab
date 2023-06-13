@@ -239,7 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 1
-  radius: 5
+  radius: 10
+  dist: 6
   nozzle: {fileID: 962554045300193079}
   layer:
     serializedVersion: 2
@@ -288,7 +289,6 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   speed: 0.7
   angle: 0
-  Enemies: []
   cam: {fileID: 0}
 --- !u!1 &4173267643953984901
 GameObject:

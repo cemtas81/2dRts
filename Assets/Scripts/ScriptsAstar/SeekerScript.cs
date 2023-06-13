@@ -16,7 +16,7 @@ public class SeekerScript : MonoBehaviour
     public float angle;
     private Quaternion targetRotation;
     //public bool attackRange;
-    public List<EnemySeeker> Enemies;
+    //public List<EnemySeeker> Enemies;
     public Camera cam;
     
     public void Start()
@@ -43,8 +43,20 @@ public class SeekerScript : MonoBehaviour
 
     public void Stop()
     {
-        
+     
         StopCoroutine("FollowPath");
+    }
+    //private void OnDisable()
+    //{
+    //    StopCoroutines();
+    //}
+    private void OnDestroy()
+    {
+        StopCoroutines();
+    }
+    public void StopCoroutines()
+    {
+        StopAllCoroutines();
     }
     public void OnPathFound(Vector2[] newPath, bool pathSuccessful)
     {
@@ -62,7 +74,10 @@ public class SeekerScript : MonoBehaviour
                 StopCoroutine("FollowPath");
                 StartCoroutine("FollowPath");
             }
-      
+            else
+            {
+                Stop();
+            }
         }
         else
         {

@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class BuildingManager : MonoBehaviour
 {
     public bool Placed { get; private set; }
@@ -53,8 +54,8 @@ public class BuildingManager : MonoBehaviour
     {
         yield return new WaitForSeconds(.2f);
         grid.CreateGrid();
-        Destroy(this.gameObject);
-      
+        //Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 }
 

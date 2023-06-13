@@ -77420,7 +77420,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5fc1a265e7b834fa83d56edbcd4fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBase: []
   target2: {fileID: 2019248355}
+  victory: {fileID: 1048847653}
 --- !u!1 &564281274
 GameObject:
   m_ObjectHideFlags: 0
@@ -98296,7 +98298,7 @@ GameObject:
   - component: {fileID: 1048847656}
   - component: {fileID: 1048847655}
   m_Layer: 5
-  m_Name: caution
+  m_Name: VICTORY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98342,7 +98344,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cannot build on units!
+  m_text: VICTORY!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -98369,8 +98371,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 54
+  m_fontSizeBase: 54
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -98647,7 +98649,6 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   speed: 1
   angle: 0
-  Enemies: []
   cam: {fileID: 0}
 --- !u!1 &1270024316
 GameObject:
@@ -99666,6 +99667,10 @@ PrefabInstance:
     - target: {fileID: 5893593981824383762, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
       propertyPath: m_Name
       value: EnemyBarracksPref (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5893593981824383762, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53eccd8ed379d8f4194302ffc16a432d, type: 3}

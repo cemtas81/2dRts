@@ -1,13 +1,14 @@
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class RtsMover : MonoBehaviour
 {
     private Camera cam;
-  
+    public List<GameObject> enemyBase;
     public Transform target2;
-   
+    public GameObject victory;
     void Start()
     {
        
@@ -16,11 +17,26 @@ public class RtsMover : MonoBehaviour
     void Update()
     {
         HandleMovement();
-       
+   
+    }
+    public void CheckEnemyBases()
+    {
+        if (enemyBase.Count<=0)
+        {
+            victory.SetActive(true);
+            StartCoroutine(StartAgain());
+           
+        }
+    }
+    IEnumerator StartAgain()
+    {
+        yield return new WaitForSeconds(2);
+      
+        SceneManager.LoadSceneAsync(0);
     }
     private void HandleMovement()
     {
-      
+    
         if (Input.GetMouseButtonUp(1) && SelectionManager.Instance.SelectedUnits.Count > 0)
         {
             List<Vector3> targetPoslist2 = GetPosListAround(target2.position, new float[] { 1, 2, 4f }, new int[] { 5, 10, 20 });
@@ -46,16 +62,21 @@ public class RtsMover : MonoBehaviour
                         {
                             unit.GetComponent<PlayerSeeker>().foundTarget = true;
                             Debug.Log("enemyBarracks");
+                            //target2.position =new Vector3( hit.collider.transform.position.x-5,hit.collider.transform.position.y+5,0);
+                          
                         }
                         if (hit.collider.gameObject.CompareTag("Enemy")|| hit.collider.gameObject.CompareTag("EnemyHit"))
                         {
                             unit.GetComponent<PlayerSeeker>().foundTarget = true;
                             Debug.Log("enemy");
+                            //target2.position = new Vector3(hit.collider.transform.position.x - 1, hit.collider.transform.position.y+1, 0);
+                           
                         }
                     }
                     else
                     {
                         unit.GetComponent<PlayerSeeker>().foundTarget = false;
+                        target2 = FindObjectOfType<ItemMover>().transform;
                     }
 
                 }

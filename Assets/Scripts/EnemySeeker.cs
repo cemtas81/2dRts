@@ -18,7 +18,7 @@ public class EnemySeeker : SeekerScript, IDamage
         bulletPool = FindObjectOfType<BulletPool>();
         canMove = false;
      
-        Enemies.Add(this);
+        //Enemies.Add(this);
     }
 
     private void Update()
@@ -63,7 +63,7 @@ public class EnemySeeker : SeekerScript, IDamage
             LookAtTarget();
             float distance = Vector3.Distance(transform.position, target);
 
-            if (canMove && distance > dist && timer > 0.4f)
+            if (canMove && distance > dist && timer > 0.3f)
             {
                 Move(target);
                 timer = 0f;
@@ -101,7 +101,10 @@ public class EnemySeeker : SeekerScript, IDamage
 
     public void Die()
     {
-        Enemies.Remove(this);
+        //Enemies.Remove(this);
+        
+        StopAllCoroutines();
         Destroy(gameObject);
+        //this.gameObject.SetActive(false);
     }
 }

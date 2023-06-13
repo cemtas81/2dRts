@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 2464365316855414546}
   - component: {fileID: -6665389822058284447}
   - component: {fileID: 202577181313182598}
-  - component: {fileID: 4909578845818743822}
+  - component: {fileID: -3291163068954570139}
   m_Layer: 3
   m_Name: AISoldierM
   m_TagString: Player
@@ -239,7 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 1
-  radius: 5
+  radius: 10
+  dist: 6
   nozzle: {fileID: 6930649124458647120}
   layer:
     serializedVersion: 2
@@ -273,7 +274,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4909578845818743822
+--- !u!114 &-3291163068954570139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -288,7 +289,6 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   speed: 1
   angle: 0
-  Enemies: []
   cam: {fileID: 0}
 --- !u!1 &4809995386771435183
 GameObject:
