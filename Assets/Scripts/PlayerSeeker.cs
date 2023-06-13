@@ -89,10 +89,10 @@ public class PlayerSeeker : MonoBehaviour, IDamage
                 timer = 0f;
             }
         }
-        else
-        {
-            //seeker.Stop();
-        }
+        //else
+        //{
+        //    //seeker.Stop();
+        //}
     }
     private bool IsValidTarget(Collider2D collider, Transform targetTransform)
     {

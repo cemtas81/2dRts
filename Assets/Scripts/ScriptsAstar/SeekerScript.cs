@@ -8,15 +8,13 @@ public class SeekerScript : MonoBehaviour
 {
 	public Vector3 target;
 	public float speed = 1;
-    //public float rotationSpeed = 1;
+ 
     Vector2[] path;
 	int targetIndex;
-    //public float timer;
+
     private Vector3 currenttarget;
     public float angle;
-    private Quaternion targetRotation;
-    //public bool attackRange;
-    //public List<EnemySeeker> Enemies;
+
     public Camera cam;
     
     public void Start()
@@ -46,10 +44,7 @@ public class SeekerScript : MonoBehaviour
      
         StopCoroutine("FollowPath");
     }
-    //private void OnDisable()
-    //{
-    //    StopCoroutines();
-    //}
+ 
     private void OnDestroy()
     {
         StopCoroutines();
@@ -139,8 +134,8 @@ public class SeekerScript : MonoBehaviour
         {
             Vector3 direction = target - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 45);
         }
     }
     public void OnDrawGizmos()

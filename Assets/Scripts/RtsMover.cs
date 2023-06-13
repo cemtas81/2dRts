@@ -62,8 +62,9 @@ public class RtsMover : MonoBehaviour
                         {
                             unit.GetComponent<PlayerSeeker>().foundTarget = true;
                             Debug.Log("enemyBarracks");
-                            //target2.position =new Vector3( hit.collider.transform.position.x-5,hit.collider.transform.position.y+5,0);
-                          
+
+                            target2.position = new Vector3(hit.collider.transform.position.x - 3,hit.collider.transform.position.y, 0);
+
                         }
                         if (hit.collider.gameObject.CompareTag("Enemy")|| hit.collider.gameObject.CompareTag("EnemyHit"))
                         {
