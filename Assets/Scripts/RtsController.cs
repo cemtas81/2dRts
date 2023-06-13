@@ -136,10 +136,13 @@ public class RtsController : MonoBehaviour
             }
             mouseDownTime = 0;
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") != 0)
+
+        else if (Input.GetAxis("Mouse ScrollWheel") != 0 && !EventSystem.current.IsPointerOverGameObject())
         {
-            cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime*100;
-            cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 5,13);
+           
+                cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * 100;
+                cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 5, 13);
+           
         }
     }
     private void MoveCam()

@@ -48,6 +48,11 @@ public class SeekerScript : MonoBehaviour
     }
     public void OnPathFound(Vector2[] newPath, bool pathSuccessful)
     {
+        if (target == null)
+        {
+            Stop();
+            return;
+        }
         if (pathSuccessful)
         {
             if (target != null) // Check if the target object is still valid
@@ -57,11 +62,7 @@ public class SeekerScript : MonoBehaviour
                 StopCoroutine("FollowPath");
                 StartCoroutine("FollowPath");
             }
-            else
-            {
-     
-                Stop(); 
-            }
+      
         }
         else
         {
