@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemySeeker : SeekerScript, IDamage
 {
     private float timer = 0f;
-    private float dist = 4f;
+    public float dist = 4f;
     private bool canMove;
     private BulletPool bulletPool;
     public Transform nozzle;
@@ -17,7 +17,7 @@ public class EnemySeeker : SeekerScript, IDamage
         enemyStatus = GetComponent<Status>();
         bulletPool = FindObjectOfType<BulletPool>();
         canMove = false;
-        dist = 4f;
+     
         Enemies.Add(this);
     }
 
