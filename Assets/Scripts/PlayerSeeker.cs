@@ -67,7 +67,13 @@ public class PlayerSeeker : MonoBehaviour, IDamage
         timer += Time.deltaTime;
         if (target != null && currentTargetValid)
         {
-            //seeker.LookAtTarget();
+            if (target != null)
+            {
+                Vector3 direction = target - transform.position;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                Quaternion q= Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation=Quaternion.RotateTowards(transform.rotation,q,45);
+            }
             range = Vector3.Distance(transform.position, target);
 
             if (range> dist && timer > 0.3f)
@@ -78,7 +84,7 @@ public class PlayerSeeker : MonoBehaviour, IDamage
 
             if (range <= dist && timer >= fireRate)
             {
-                //seeker.Stop();
+                seeker.Stop();
                 bulletPool.FireBullet2(nozzle.position, nozzle.rotation);
                 timer = 0f;
             }
@@ -110,6 +116,6 @@ public class PlayerSeeker : MonoBehaviour, IDamage
         units.soldiers--;
         seeker.StopCoroutines();
         Destroy(this.gameObject);
-        //this.gameObject.SetActive(false);
+    
     }
 }

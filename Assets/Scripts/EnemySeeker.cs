@@ -17,8 +17,7 @@ public class EnemySeeker : SeekerScript, IDamage
         enemyStatus = GetComponent<Status>();
         bulletPool = FindObjectOfType<BulletPool>();
         canMove = false;
-     
-        //Enemies.Add(this);
+  
     }
 
     private void Update()
@@ -101,10 +100,9 @@ public class EnemySeeker : SeekerScript, IDamage
 
     public void Die()
     {
-        //Enemies.Remove(this);
-        
+
         StopAllCoroutines();
         Destroy(gameObject);
-        //this.gameObject.SetActive(false);
+    
     }
 }
