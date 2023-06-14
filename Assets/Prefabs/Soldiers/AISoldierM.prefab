@@ -243,7 +243,7 @@ MonoBehaviour:
   angle: 0
   fireRate: 1
   radius: 8
-  dist: 6
+  dist: 5
   nozzle: {fileID: 6930649124458647120}
   layer:
     serializedVersion: 2

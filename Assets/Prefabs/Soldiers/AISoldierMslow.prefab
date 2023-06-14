@@ -238,12 +238,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
-  speed: 1
+  speed: 0.7
   currenttarget: {x: 0, y: 0, z: 0}
   angle: 0
   fireRate: 1
   radius: 8
-  dist: 7
+  dist: 6
   nozzle: {fileID: 962554045300193079}
   layer:
     serializedVersion: 2
