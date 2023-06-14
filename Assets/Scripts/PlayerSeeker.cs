@@ -5,7 +5,7 @@ public class PlayerSeeker : SeekerScript, IDamage
 {
     private MultiObjectPool bulletPool;
     public float fireRate,radius,dist;
-    private float timer=0 ;
+    private float timer=0,range ;
     public Transform nozzle;
     private UnitSpawn units;
     private Status status;
@@ -14,18 +14,21 @@ public class PlayerSeeker : SeekerScript, IDamage
     public bool locked;
     private AudioSource audios;
     public AudioClip clip;
-    private float range;
 
+ 
     private void Awake()
     {
         status = GetComponent<Status>();
-      
-        units=FindObjectOfType<UnitSpawn>();
+       
+        units =FindObjectOfType<UnitSpawn>();
         bulletPool = FindObjectOfType<MultiObjectPool>();
         audios = FindObjectOfType<AudioSource>();
-  
+        
     }
-   
+    private new void Start()
+    {
+       target = transform.position;
+    }
 
     private void Update()
     {

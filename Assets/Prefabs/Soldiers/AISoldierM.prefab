@@ -196,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3218574123713683905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: -3.05, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -250,6 +250,12 @@ MonoBehaviour:
     m_Bits: 136
   locked: 0
   clip: {fileID: 8300000, guid: 75b8320020f3a4ec488bd70393a7e09d, type: 3}
+  separationRadius: 0.1
+  separationWeight: 0.1
+  alignmentRadius: 0.1
+  alignmentWeight: 0.1
+  cohesionRadius: 0.1
+  cohesionWeight: 0.1
 --- !u!114 &-6665389822058284447
 MonoBehaviour:
   m_ObjectHideFlags: 0
