@@ -20,15 +20,12 @@ public class SelectableUnit : MonoBehaviour
     {
         selected = true;
         selectionSprite.gameObject.SetActive(true);
-        
-        seeker.target = seeker.transform.position;
         seeker.enabled = true;
     }
     public void OnDeselected()
     {
         selectionSprite.gameObject.SetActive(false);
         selected = false;
-        //seeker.enabled = false;
         seeker.target = seeker.currenttarget;
     }
  

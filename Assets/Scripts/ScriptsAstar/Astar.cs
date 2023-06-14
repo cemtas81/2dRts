@@ -18,12 +18,26 @@ public class Astar : MonoBehaviour
 	}
 
 
-	public void StartFindPath(Vector2 startPos, Vector2 targetPos)
-	{
-		StartCoroutine(FindPath(startPos, targetPos));
-	}
+    public void StartFindPath(Vector2 startPos, Vector2 targetPos)
+    {
+        Node startNode = grid.NodeFromWorldPoint(startPos);
+        Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
-	IEnumerator FindPath(Vector2 startPos, Vector2 targetPos)
+        if (!startNode.isWalkable)
+        {
+            startNode = FindNearestWalkableNode(startPos);
+        }
+
+        if (!targetNode.isWalkable)
+        {
+            targetNode = FindNearestWalkableNode(targetPos);
+        }
+
+        StartCoroutine(FindPath(startNode.worldPosition, targetNode.worldPosition));
+    }
+
+
+    IEnumerator FindPath(Vector2 startPos, Vector2 targetPos)
 	{
 
 		Vector2[] waypoints = new Vector2[0];
@@ -115,7 +129,26 @@ public class Astar : MonoBehaviour
 		}
 		return waypoints.ToArray();
 	}
+	Node FindNearestWalkableNode(Vector2 position)
+{
+    Node nearestNode = null;
+    float nearestDistance = float.MaxValue;
 
+    foreach (Node node in grid.GetAllNodes())
+    {
+        if (node.isWalkable)
+        {
+            float distance = Vector2.Distance(position, node.worldPosition);
+            if (distance < nearestDistance)
+            {
+                nearestNode = node;
+                nearestDistance = distance;
+            }
+        }
+    }
+
+    return nearestNode;
+}
 
 	int Cost(Node nodeA, Node nodeB)
 	{

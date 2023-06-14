@@ -113,5 +113,18 @@ public class MyGrid : MonoBehaviour
 			}
 		}
 	}
+    public List<Node> GetAllNodes()
+    {
+        List<Node> nodes = new List<Node>();
 
+        for (int x = 0; x < gridSizeX; x++)
+        {
+            for (int y = 0; y < gridSizeY; y++)
+            {
+                nodes.Add(grid[x, y]);
+            }
+        }
+
+        return nodes;
+    }
 }

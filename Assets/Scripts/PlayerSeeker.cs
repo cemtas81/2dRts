@@ -25,11 +25,11 @@ public class PlayerSeeker : SeekerScript, IDamage
         audios = FindObjectOfType<AudioSource>();
         
     }
-    private new void Start()
+    private void OnEnable()
     {
-       target = transform.position;
+        target = transform.position;
     }
-
+  
     private void Update()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, layer);
