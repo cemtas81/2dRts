@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 2464365316855414546}
   - component: {fileID: -6665389822058284447}
   - component: {fileID: 202577181313182598}
+  - component: {fileID: 8509956334966149817}
   m_Layer: 3
   m_Name: AISoldierM
   m_TagString: Player
@@ -250,12 +251,6 @@ MonoBehaviour:
     m_Bits: 136
   locked: 0
   clip: {fileID: 8300000, guid: 75b8320020f3a4ec488bd70393a7e09d, type: 3}
-  separationRadius: 0.1
-  separationWeight: 0.1
-  alignmentRadius: 0.1
-  alignmentWeight: 0.1
-  cohesionRadius: 0.1
-  cohesionWeight: 0.1
 --- !u!114 &-6665389822058284447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +278,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8509956334966149817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3218574123713683905}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dd8f3028249424c83bbb2bb270682b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  rotationSpeed: 1
+  neighborRadius: 1
+  separationWeight: 1.5
+  alignmentWeight: 1
+  cohesionWeight: 1
 --- !u!1 &4809995386771435183
 GameObject:
   m_ObjectHideFlags: 0
