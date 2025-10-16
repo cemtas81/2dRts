@@ -20,7 +20,10 @@ public class SelectableUnit : MonoBehaviour
     {
         selected = true;
         selectionSprite.gameObject.SetActive(true);
+      
         seeker.enabled = true;
+       
+
     }
     public void OnDeselected()
     {
